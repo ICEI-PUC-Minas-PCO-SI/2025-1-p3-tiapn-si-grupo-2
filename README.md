@@ -15,7 +15,7 @@ Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
 * Daniel de Queiroz Fernandes
 * Daniel Heringer Verner Silva
 * João Vitor Vitalino da Silva Roveda
-* Victor Mendonça Braga
+* Vitor Mendonça Braga
 
 ## Professor
 
