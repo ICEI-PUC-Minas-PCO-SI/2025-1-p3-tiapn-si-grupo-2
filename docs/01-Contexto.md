@@ -1,51 +1,37 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto. Visando contextualizar melhor o projeto e destacar sua importância para a disciplina, que é **extensionista**, acrescente todas as informações relevantes que julgar necessárias.
+Esse projeto surgiu com a abordagem extensionista da disciplina "Trabalho Interdisciplinar: Aplicações para Processos de Negócios" (TIAPN) 2025/01, pois, consiste em elaborar uma aplicação WEB e uma ação que ajude a comunidade através de algum tipo de intituição. No caso do nosso projeto, vamos atuar para solucionar a dor de uma Empresa de Contagem, mais precisamente, atuaremos em seu processo interno para manutenção de equipamentos. Essa empresa se chama Porto Ferreira Locações e já possui 21 anos de trajetória. Eles são especialistas em locações de equipamentos para: Solda, Hidráulica, Içamento e Carga, Elétrica, Torque e Roscas e tubos, mas, além disso, eles também oferecem serviços de manutenção de máquinas para terceiros e para a própria empresa, visto que são o maquinário da empresa é extenso. Aparentemente eles já possuem um sistema que funciona bem para a parte de locação de máquinas, todavia, não há nenhum tipo de sistema para o serviço de manutenção de equipamentos. Temos, portanto, o objetivo de elaborar uma aplicação Web para ajudar os funcionários da empresa no processo de manutenção de equipamentos. Isso irá melhorar o processo da empresa e irá facilitar a vida de todas as pessoas envolvidas nesse contexto, além de contribuir para o coletivo de Contagem, trazendo a PUC Minas para mais perto deles, o que é demasiado importante.
 
-## Cliente 
-Nesta seção, devem ser apresentadas informações essenciais sobre o cliente (parceiro) para garantir um entendimento mais preciso do projeto como uma iniciativa extensionista.  
+## Cliente
 
-Recomenda-se incluir dados como missão, visão e valores da organização, além de seu ramo de atuação, porte, nicho de mercado e principais desafios enfrentados. Também é relevante fornecer informações sobre sua localização, histórico, impacto social e possíveis demandas específicas. Quanto mais detalhadas forem essas informações, mais embasada será a análise do contexto, permitindo uma abordagem estratégica e alinhada às necessidades do cliente.
+O cliente em questão será a empresa Porto Ferreira Locações, localizada na Rua Rio Paranaguá, 1316 - Novo Riacho - Contagem/MG, telefone: 2568 - 0202, e-mail: comercial@portoferreiralocacoes.com.br e manutencao@portoferreiralocacoes.com.br. Essa é uma empresa familiar, de porte pequeno/médio, que surgiu em janeiro de 2004 e que já passou por altos e baixos durante esses 21 anos de mercado no setor de locação de máquinas e ferramentas industriais, torqueamento e manutenção e assistência técnica. Nos últimos anos, por motivos internos, a empresa passou por um momento financeiro muito delicado, porém, hoje esse problema está controlado e eles vem tendo bons resultados, felizmente. A principal solução oferecida pela empresa é a de locação de máquinas para: Solda (MIG/MAG, Retificadoras, Inversoras e Plasma), Hidráulica (Cilindros, Bombas Hidráulicas Elétricas e Manuais), Içamento e Carga (Tirfor, patescas, Talhas manuais e elétricas), Elétrica (Lixadeiras, Marteletes, Furadeiras e Parafusadeiras), Torque (Torqueadeiras, Torquímetros e Bombas de Torque) e Roscas e tubos (Rosqueadeiras Elétricas e Dobradores de Tubo). 
+
+Além disso, eles também oferecem serviços para manutenção de equipamentos, tanto para terceiros, quanto para a própria empresa, que conta com um estoque de mais ou menos **checando informação** equipamentos.
+Quanto à parte de locação de máquinas, a empresa possui um sistema antigo que cumpre seu papel e auxilia esse processo, porém, o mesmo não ocorre em relação à parte de manutenção de equipamentos, essa é uma área que o cliente gostaria de melhorar e é onde vimos uma oportunidade em atuar para superar essa dor da empresa. Segundo o gestor da empresa, o setor de manutenção precisa melhorar esse processo por meio de uma aplicação para gestão desse maquinário, ou seja, deve-se fazer um cadastro de equipamentos que seja coerente com o contexto da empresa, cadastrando cada caso e garantindo que não terá nenhum tipo de confusão ou engano em relação aos equipamentos. Ainda segundo o gestor, já houve casos em que foram trocados os equipamentos para devolução, ou seja, confundiram um equipamento de cliente com o da própria empresa ou um terceiro cliente da empresa, etc.
 
 ## Problema
-Aqui, a equipe deve fornecer uma descrição detalhada do problema a ser resolvido. Não é o momento adequado para abordar questões técnicas relacionadas ao desenvolvimento da aplicação. O objetivo é compreender e comunicar de maneira precisa qual é o desafio ou necessidade que motiva a criação da aplicação.
 
-Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de fato existir, pois ainda não é a hora de apresentar requisitos detalhados ou projetos.
-
-O grupo pode optar por fazer uso de ferramentas como Design Thinking, que permite uma visão completa do problema.
+Conforme foi dito anteriormente, a Porto Ferreira Locações enfrenta problemas em seu processo para manutenção de equipamentos. Não há um controle eficaz em relação ao registro das máquinas que chegam, por exemplo, o que impacta negativamente o acompanhamento desse processo. Isso tudo gera muito estresse no dia a dia da empresa, gerando constrangimento e atrasos indevidos.
 
 > **Links úteis**:
-> - [Objetivos, problema de pesquisa e justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz certezas, suposições e dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+>
+> - [Site da empresa](https://www.portoferreiralocacoes.com.br/)
+> - [Localização da empresa](https://g.co/kgs/mwqbXSq)
 
 ## Objetivos
 
-Aqui, você deve descrever os objetivos do trabalho, indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima.
+O objetivo desse projeto é melhorar o processo de acompanhamento da manutenção dos equipamentos (de clientes ou da própria empresa) ajudando os funcionários envolvidos a terem um melhor nível de ornanização e informação sobre a situação de cada equipamento durante todas as etapas desse processo. Faremos isso por meio de uma aplicação Web que será utilizada para auxiliar os funcionários da empresa no processo de manutenção de equipamentos.
 
-Além disso, apresente alguns (pelo menos 3) objetivos específicos, dependendo de onde você pretende concentrar sua prática investigativa ou como deseja aprofundar seu trabalho.
- 
-> **Links úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+> **Objetivos principais:**
+>
+> - Melhorar o nível de informação sobre cada equipamento durante o processo de manutenção.
+> - Auxiliar os funcionários durante o processo.
+> - Diminuir erros durante o processo.
 
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
-
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
-
-> **Links úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+A justificativa principal é poder atuar de forma direta na resolução de um problema enfrentado por alguma instituição de Contagem, fazendo papel ativo de cidadão contagense. A outra justificativa é a de representar a Universidade, mais precisamente o Campus de Contagem/MG da PUC Minas, através de parceria com as comunidades em seu entorno.
 
 ## Público-alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
-
-Adicione informações sobre o público-alvo por meio de uma descrição textual, diagramas de personas e mapa de stakeholders.
-
-> **Links úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público-alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
+O público alvo desse projeto são todas as pessoas que integram a empresa Porto Ferreira Locações, sendo elas funcionárias, clientes, vendedores, gerentes, empresários, etc, trazendo melhoria na sua organização interna e para os clientes que consumem seus serviços e também melhorias em seus resultados.
