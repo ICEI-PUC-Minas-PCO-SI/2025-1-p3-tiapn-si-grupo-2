@@ -8,37 +8,25 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 ## Personas
 
-Exemplo: _Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente por meio de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros._
+• Carlos Ferreira tem 35 anos, trabalha há 10 anos na área de manutenção e está acostumado a resolver problemas técnicos rapidamente. No entanto, enfrenta dificuldades na organização das ordens de serviço e na atualização do status das manutenções. Ele busca uma solução que facilite a consulta e o registro dos serviços realizados.
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
+• Mariana Souza tem 42 anos, é responsável por supervisionar as manutenções e garantir que os serviços sejam concluídos dentro dos prazos. Seu trabalho envolve acompanhar a produtividade da equipe e gerar relatórios para embasar a tomada de decisões. Ela busca uma solução que facilite o monitoramento das manutenções, proporcionando uma visão mais clara e ágil do andamento dos serviços.
 
-> **Links úteis**:
-> - [Rock content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
+• João Pedro, 37 anos, é o primeiro ponto de contato dos clientes que solicitam manutenção. Ele é responsável por registrar as ordens de serviço e fornecer respostas ágeis e precisas sobre o status das manutenções. Para isso, precisa de uma solução que facilite a visualização em tempo real da situação das máquinas em manutenção, permitindo um atendimento mais eficiente e assertivo aos clientes.
+
+• Sérgio Rodrigues, 56 anos, é empresário e proprietário de uma empresa especializada na manutenção de equipamentos próprios e de terceiros. Devido ao grande volume de máquinas em manutenção, ele enfrenta desafios para monitorar o status de cada uma e manter um controle eficiente. Por isso, busca uma solução que centralize as informações e facilite o acompanhamento dos serviços, garantindo maior organização e otimização do processo.
 
 ## Histórias de usuários
 
 Com base na análise das personas, foram identificadas as seguintes histórias de usuários:
 
-|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
-|--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
+|EU COMO... `PERSONA`                              | QUERO/PRECISO ... `FUNCIONALIDADE`                                                 |PARA ... `MOTIVO/VALOR`                                                                        |
+|--------------------------------------------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+|Carlos Ferreira (Técnico de manutenção)           | Registrar e atualizar o status das manutenções de forma rápida e organizada        | Melhorar a eficiência no acompanhamento dos serviços e evitar atrasos                         |
+|Mariana Souza (Supervisora de manutenção)         | Acompanhar o andamento das manutenções em tempo real                               | Garantir que os serviços sejam concluídos dentro dos prazos                                   |
+|João Pedro (Atendente)                            | Consultar rapidamente o status das ordens de serviço                               | Responder com agilidade e precisão às dúvidas dos clientes                                    |
+|Sérgio Rodrigues (Empresário)                     | Monitorar todas as manutenções de forma centralizada                               | Melhorar a organização e garantir um controle eficiente dos serviços prestados                |
 
-Apresente aqui as histórias de usuários que são relevantes para o projeto da sua solução. As histórias de usuários consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuários por contexto, para facilitar consultas recorrentes a esta parte do documento.
-
-> **Links úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (user stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 common user story mistakes](https://airfocus.com/blog/user-story-mistakes/)
 
 ## Requisitos
 
