@@ -1,4 +1,4 @@
-# Rentify
+# FixWise
 
 `CURSO: Sistemas de Informação`
 
