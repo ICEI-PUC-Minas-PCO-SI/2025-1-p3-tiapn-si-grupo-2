@@ -6,7 +6,9 @@
 
 `1º semestre/2025`
 
-Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
+  O objetivo desse projeto é melhorar o processo de acompanhamento da manutenção dos equipamentos, sejam eles de clientes ou da própria empresa. Com isso, buscamos proporcionar aos funcionários envolvidos um maior nível de organização e acesso à informação, permitindo um melhor controle sobre a situação de cada equipamento ao longo de todas as etapas do processo.
+
+  Para atingir esse objetivo, desenvolveremos uma aplicação Web que será utilizada para auxiliar os funcionários da empresa na gestão da manutenção dos equipamentos. Essa ferramenta facilitará o monitoramento das atividades, garantindo maior eficiência e transparência no acompanhamento de cada etapa do serviço.
 
 ## Integrantes
 
