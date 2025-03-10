@@ -34,4 +34,4 @@ A justificativa principal é poder atuar de forma direta na resolução de um pr
 
 ## Público-alvo
 
-O público alvo desse projeto são todas as pessoas que integram a empresa Porto Ferreira Locações, sendo elas funcionárias, clientes, vendedores, gerentes, empresários, etc, trazendo melhoria na sua organização interna e para os clientes que consumem seus serviços e também melhorias em seus resultados.
+O público alvo desse projeto são todas as pessoas que integram a empresa Porto Ferreira Locações, sendo elas funcionários, clientes, vendedores, gerentes, empresários, etc, trazendo melhoria na sua organização interna e para os clientes que consomem seus serviços e também melhorias em seus resultados.
