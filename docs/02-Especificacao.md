@@ -8,37 +8,25 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 ## Personas
 
-Exemplo: _Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente por meio de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros._
+• Carlos Ferreira tem 35 anos, trabalha há 10 anos na área de manutenção e está acostumado a resolver problemas técnicos rapidamente. No entanto, enfrenta dificuldades na organização das ordens de serviço e na atualização do status das manutenções. Ele busca uma solução que facilite a consulta e o registro dos serviços realizados.
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
+• Mariana Souza tem 42 anos, é responsável por supervisionar as manutenções e garantir que os serviços sejam concluídos dentro dos prazos. Seu trabalho envolve acompanhar a produtividade da equipe e gerar relatórios para embasar a tomada de decisões. Ela busca uma solução que facilite o monitoramento das manutenções, proporcionando uma visão mais clara e ágil do andamento dos serviços.
 
-> **Links úteis**:
-> - [Rock content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
+• João Pedro, 37 anos, é o primeiro ponto de contato dos clientes que solicitam manutenção. Ele é responsável por registrar as ordens de serviço e fornecer respostas ágeis e precisas sobre o status das manutenções. Para isso, precisa de uma solução que facilite a visualização em tempo real da situação das máquinas em manutenção, permitindo um atendimento mais eficiente e assertivo aos clientes.
+
+• Sérgio Rodrigues, 56 anos, é empresário e proprietário de uma empresa especializada na manutenção de equipamentos próprios e de terceiros. Devido ao grande volume de máquinas em manutenção, ele enfrenta desafios para monitorar o status de cada uma e manter um controle eficiente. Por isso, busca uma solução que centralize as informações e facilite o acompanhamento dos serviços, garantindo maior organização e otimização do processo.
 
 ## Histórias de usuários
 
 Com base na análise das personas, foram identificadas as seguintes histórias de usuários:
 
-|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
-|--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
+|EU COMO... `PERSONA`                              | QUERO/PRECISO ... `FUNCIONALIDADE`                                                 |PARA ... `MOTIVO/VALOR`                                                                        |
+|--------------------------------------------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+|Carlos Ferreira (Técnico de manutenção)           | Registrar e atualizar o status das manutenções de forma rápida e organizada        | Melhorar a eficiência no acompanhamento dos serviços e evitar atrasos                         |
+|Mariana Souza (Supervisora de manutenção)         | Acompanhar o andamento das manutenções em tempo real                               | Garantir que os serviços sejam concluídos dentro dos prazos                                   |
+|João Pedro (Atendente)                            | Consultar rapidamente o status das ordens de serviço                               | Responder com agilidade e precisão às dúvidas dos clientes                                    |
+|Sérgio Rodrigues (Empresário)                     | Monitorar todas as manutenções de forma centralizada                               | Melhorar a organização e garantir um controle eficiente dos serviços prestados                |
 
-Apresente aqui as histórias de usuários que são relevantes para o projeto da sua solução. As histórias de usuários consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuários por contexto, para facilitar consultas recorrentes a esta parte do documento.
-
-> **Links úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (user stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 common user story mistakes](https://airfocus.com/blog/user-story-mistakes/)
 
 ## Requisitos
 
@@ -48,33 +36,27 @@ As tabelas a seguir apresentam os requisitos funcionais e não funcionais que de
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| Cadastro de Equipamentos | ALTA | 
+|RF-002| Registro de Ordens de Serviço   | ALTA |
+|RF-003| Atualização de Status   | ALTA |
+|RF-004| Histórico de Manutenção   | MÉDIA |
+|RF-005| Notificações e Alertas   | MÉDIA |
+|RF-006| Relatórios Gerenciais   | MÉDIA |
+|RF-007| Controle de Acesso   | ALTA |
+|RF-008| Busca e Filtros   | MÉDIA |
 
 ### Requisitos não funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em dispositivos móveis | MÉDIA | 
-|RNF-002| Deve processar as requisições do usuário em no máximo 3 segundos |  BAIXA | 
+|RNF-001| Segurança | ALTA | 
+|RNF-002| Usabilidade |  ALTA | 
+|RNF-003| Performance |  MÉDIA | 
+|RNF-004| Escalabilidade |  MÉDIA | 
+|RNF-005| Disponibilidade |  ALTA | 
+|RNF-006| Compatibilidade |  MÉDIA | 
+|RNF-007| Backup |  ALTA | 
 
-Com base nas histórias de usuários, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos não funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-
-Lembre-se de que cada requisito deve corresponder a uma e somente uma característica-alvo da sua solução. Além disso, certifique-se de que todos os aspectos capturados nas histórias de usuários foram cobertos.
-
-> **Links úteis**:
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [Entenda o que são requisitos de software, a diferença entre requisito funcional e não funcional, e como identificar e documentar cada um deles](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
 
 ## Restrições
 
@@ -82,20 +64,18 @@ Enumere as restrições à sua solução. Lembre-se de que as restrições geral
 
 O projeto está restrito aos itens apresentados na tabela a seguir.
 
-|ID| Restrição                                             |
-|--|-------------------------------------------------------|
-|001| O projeto deverá ser entregue até o final do semestre |
-|002| O custo total do projeto não deve exceder o orçamento definido       |
+## Restrições do Projeto
+
+| **ID** | **Restrição**                                                                 |
+|--------|-------------------------------------------------------------------------------|
+| 001    | O projeto deve ser entregue até o final do semestre, não permitindo prorrogações no cronograma estabelecido. |
+| 002    | O custo total do projeto não deve ultrapassar o orçamento previamente definido, o que exige um gerenciamento rigoroso dos recursos financeiros. |
+| 003    | O sistema deve ser compatível com os equipamentos e dispositivos já utilizados pela equipe de manutenção, sem a necessidade de grandes investimentos em novos hardwares. |
+| 004    | O sistema deve garantir a segurança das informações sensíveis, incluindo dados de clientes e históricos de manutenção, atendendo às normas de proteção de dados como a LGPD (Lei Geral de Proteção de Dados). |
+| 005    | O sistema deve ser capaz de se integrar com ferramentas ou plataformas já utilizadas pela empresa, como sistemas de gestão de manutenção anteriores, sem exigir grandes mudanças ou adaptações. |
+| 006    | O desenvolvimento do projeto dependerá da disponibilidade e alocação de profissionais internos da empresa. Caso a equipe técnica necessária não esteja disponível, isso poderá impactar no andamento do projeto, exigindo uma revisão de prazos. |
+
 
 ## Diagrama de casos de uso
 
-O diagrama de casos de uso é o próximo passo após a elicitação de requisitos. Ele utiliza um modelo gráfico e uma tabela com as descrições sucintas dos casos de uso e dos atores. O diagrama contempla a fronteira do sistema e o detalhamento dos requisitos funcionais, com a indicação dos atores, casos de uso e seus relacionamentos.
-
-As referências abaixo irão auxiliá-lo na geração do artefato “diagrama de casos de uso”.
-
-> **Links úteis**:
-> - [Criando casos de uso](https://www.ibm.com/docs/pt-br/engineering-lifecycle-management-suite/design-rhapsody/10.0?topic=cases-creating-use)
-> - [Como criar diagrama de caso de uso: tutorial passo a passo](https://gitmind.com/pt/fazer-diagrama-de-caso-uso.html/)
-> - [Lucidchart](https://www.lucidchart.com/)
-> - [Astah](https://astah.net/)
-> - [Diagrams](https://app.diagrams.net/)
+![WiseFix](https://github.com/user-attachments/assets/256af132-02ee-428a-8d9f-b74b8b0bd333)
