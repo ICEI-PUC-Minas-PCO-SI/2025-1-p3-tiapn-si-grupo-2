@@ -60,14 +60,14 @@ As tabelas a seguir apresentam os requisitos funcionais e não funcionais que de
 
 ## Restrições
 
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-O projeto está restrito aos itens apresentados na tabela a seguir.
-
-|ID| Restrição                                             |
-|--|-------------------------------------------------------|
-|001| O projeto deverá ser entregue até o final do semestre |
-|002| O custo total do projeto não deve exceder o orçamento definido       |
+| **ID** | **Restrição**                                                                 |
+|--------|-------------------------------------------------------------------------------|
+| 001    | O projeto deve ser entregue até o final do semestre, não permitindo prorrogações no cronograma estabelecido. |
+| 002    | O custo total do projeto não deve ultrapassar o orçamento previamente definido, o que exige um gerenciamento rigoroso dos recursos financeiros. |
+| 003    | O sistema deve ser compatível com os equipamentos e dispositivos já utilizados pela equipe de manutenção, sem a necessidade de grandes investimentos em novos hardwares. |
+| 004    | O sistema deve garantir a segurança das informações sensíveis, incluindo dados de clientes e históricos de manutenção, atendendo às normas de proteção de dados como a LGPD (Lei Geral de Proteção de Dados). |
+| 005    | O sistema deve ser capaz de se integrar com ferramentas ou plataformas já utilizadas pela empresa, como sistemas de gestão de manutenção anteriores, sem exigir grandes mudanças ou adaptações. |
+| 006    | O desenvolvimento do projeto dependerá da disponibilidade e alocação de profissionais internos da empresa. Caso a equipe técnica necessária não esteja disponível, isso poderá impactar no andamento do projeto, exigindo uma revisão de prazos. |
 
 ## Diagrama de casos de uso
 
