@@ -2,9 +2,9 @@
 
 <span style="color:red">Pré-requisitos: <a href="01-Contexto.md"> Documentação de contexto</a></span>
 
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
+O projeto tem como objetivo resolver as dificuldades que os profissionais de manutenção enfrentam na organização e no acompanhamento das ordens de serviço. Atualmente, a ausência de um sistema eficiente para registrar, monitorar e atualizar o status das manutenções resulta em atrasos, desorganização e um impacto negativo na produtividade da equipe.
 
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto.
+A solução proposta é o desenvolvimento de um sistema centralizado que torne mais fácil o registro, a atualização e o monitoramento das manutenções em tempo real. O intuito é otimizar a comunicação entre técnicos, supervisores e clientes, garantindo maior transparência e controle operacional.
 
 ## Personas
 
