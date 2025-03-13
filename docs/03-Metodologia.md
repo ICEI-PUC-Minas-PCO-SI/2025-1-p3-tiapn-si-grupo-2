@@ -87,7 +87,7 @@ Atualizado em: 12/03/2025
 | AlunaZ        | Objetivos    | 03/02/2024     | 10/02/2024 | 📝    |                 |
 | AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
 | Daniel Heringer        | Slide de apresentação  |    10/03/2025        | 12/03/2025 |  ✔️   |    10/03/2025   |
-| Daniel de Queiroz        | Template do relaório  |    10/03/2024        | 13/03/2005 | ✔️    |  13/03/2025     |
+| Daniel de Queiroz        | Template do relatório  |    10/03/2024        | 13/03/2005 | ✔️    |  13/03/2025     |
 | Vitor Mendonça       | Personas e histórias de usuários  |    08/03/2025        | 10/03/2025 | ✔️    |  09/03/2025     |
 
 #### Sprint 2
