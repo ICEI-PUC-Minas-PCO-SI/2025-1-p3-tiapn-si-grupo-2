@@ -5,7 +5,7 @@
 
 Nossa equipe adota uma abordagem colaborativa e estruturada para o desenvolvimento do projeto, utilizando diversas ferramentas para organização, comunicação e versionamento de código. A metodologia de trabalho inclui a definição dos ambientes utilizados, a estrutura para gestão do código-fonte e as ferramentas para organização das tarefas e do fluxo de desenvolvimento.
 
-Ambientes de Trabalho
+Ambientes de Trabalho:
 
 Trello – Utilizado para organização e acompanhamento das tarefas da equipe. As atividades são distribuídas em quadros, listas e cartões, seguindo um fluxo de trabalho bem definido. O Trello permite a visualização do progresso do projeto e facilita a comunicação entre os membros.
 
@@ -15,7 +15,7 @@ Figma – Responsável pelo design e prototipação das interfaces. O Figma perm
 
 GitHub – Repositório utilizado para versionamento do código-fonte. A equipe gerencia o desenvolvimento através de branches, commits e pull requests, garantindo um fluxo de trabalho organizado e rastreável. O GitHub também permite a colaboração assíncrona, facilitando a integração contínua das funcionalidades desenvolvidas.
 
-Processo e Gestão de Equipes
+Processo e Gestão de Equipes:
 
 Divisão de tarefas: As tarefas são distribuídas no Trello e organizadas conforme a prioridade e complexidade.
 
