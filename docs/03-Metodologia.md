@@ -86,7 +86,7 @@ Atualizado em: 12/03/2025
 | AlunaX        | Introdução | 01/02/2024     | 07/02/2024 | ✔️    | 05/02/2024      |
 | AlunaZ        | Objetivos    | 03/02/2024     | 10/02/2024 | 📝    |                 |
 | AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
-| AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
+| Daniel Heringer        | Slide de apresentação  |    10/03/2025        | 12/03/2025 |  ✔️   |    10/03/2025   |
 | AlunoK        | Personas 1  |    01/01/2024        | 12/02/2005 | ❌    |       |
 | Vitor Mendonça       | Personas e histórias de usuários  |    08/03/2025        | 10/03/2025 | ✔️    |  09/03/2025     |
 
