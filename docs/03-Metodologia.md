@@ -83,7 +83,7 @@ Atualizado em: 12/03/2025
 
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Introdução | 01/02/2024     | 07/02/2024 | ✔️    | 05/02/2024      |
+| Arthur Lima        | Introdução | 08/03/2025     | 13/13/2024 | ✔️    | 09/03/2025      |
 | Caio Martins       | Especificação do projeto    | 08/03/2025     | 10/03/2025 | ✔️    | 09/03/2025 |   
 | Daniel de Queiroz        | Template do relatório  |    10/03/2024        | 13/03/2005 | ✔️    |  13/03/2025     |
 | Daniel Heringer        | Slide de apresentação  |    10/03/2025        | 12/03/2025 |  ✔️   |    10/03/2025   |
