@@ -3,7 +3,22 @@
 
 <span style="color:red">Pré-requisitos: <a href="02-Especificacao.md"> Especificação do projeto</a></span>
 
-Descreva aqui a metodologia de trabalho do grupo para abordar o problema. Inclua definições sobre os ambientes de trabalho utilizados pela equipe para desenvolver o projeto. Isso abrange a relação dos ambientes utilizados, a estrutura para a gestão do código-fonte, além da definição do processo e das ferramentas por meio dos quais a equipe se organiza (gestão de equipes).
+Nossa equipe adota uma abordagem colaborativa e estruturada para o desenvolvimento do projeto, utilizando diversas ferramentas para organização, comunicação e versionamento de código. A metodologia de trabalho inclui a definição dos ambientes utilizados, a estrutura para gestão do código-fonte e as ferramentas para organização das tarefas e do fluxo de desenvolvimento.
+
+Ambientes de Trabalho
+Trello – Utilizado para organização e acompanhamento das tarefas da equipe. As atividades são distribuídas em quadros, listas e cartões, seguindo um fluxo de trabalho bem definido. O Trello permite a visualização do progresso do projeto e facilita a comunicação entre os membros.
+
+Miro – Ferramenta utilizada para a criação de diagramas e fluxos do projeto. A equipe utiliza o Miro para mapear processos, estruturar ideias e desenvolver representações visuais que auxiliam na compreensão das etapas do desenvolvimento.
+
+Figma – Responsável pelo design e prototipação das interfaces. O Figma permite a criação de wireframes e protótipos interativos, garantindo que a equipe visualize e refine a experiência do usuário antes da implementação.
+
+GitHub – Repositório utilizado para versionamento do código-fonte. A equipe gerencia o desenvolvimento através de branches, commits e pull requests, garantindo um fluxo de trabalho organizado e rastreável. O GitHub também permite a colaboração assíncrona, facilitando a integração contínua das funcionalidades desenvolvidas.
+
+Processo e Gestão de Equipes
+Divisão de tarefas: As tarefas são distribuídas no Trello e organizadas conforme a prioridade e complexidade.
+Reuniões e feedbacks: O Miro é utilizado para brainstorming e definição de fluxos, enquanto o Figma possibilita a validação visual das interfaces.
+Versionamento e deploy: O GitHub gerencia o código-fonte, permitindo colaboração segura e controle sobre alterações.
+Essa metodologia garante um desenvolvimento eficiente, organizado e colaborativo, maximizando a produtividade e a qualidade do projeto.
 
 ## Controle de versão
 
