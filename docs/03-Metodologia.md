@@ -84,7 +84,7 @@ Atualizado em: 12/03/2025
 | Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
 | AlunaX        | Introdução | 01/02/2024     | 07/02/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | Objetivos    | 03/02/2024     | 10/02/2024 | 📝    |                 
+| João Vitor Roveda        | Objetivos    | 07/03/2025     | 10/03/2025 | ✔️    | 09/03/2025 |   
 | Daniel de Queiroz        | Template do relatório  |    10/03/2024        | 13/03/2005 | ✔️    |  13/03/2025     |
 | Daniel Heringer        | Slide de apresentação  |    10/03/2025        | 12/03/2025 |  ✔️   |    10/03/2025   |
 | AlunoY        | Histórias de usuário  | 01/01/2024     | 07/01/2005 | ⌛     |                 |
