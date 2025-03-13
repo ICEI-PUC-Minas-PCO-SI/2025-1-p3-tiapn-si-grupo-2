@@ -63,7 +63,7 @@ Discuta como a configuração do projeto foi feita na ferramenta de versionament
 - Contexto: Arthur Lima Camargos
 - Especificação: Caio Martins Bicalho da Costa, João Vitor Vitalino da Silva Roveda e Vitor Mendonça Braga
 - Metodologia: Daniel Heringer Verner Silva e Vitor Mendonça Braga
-- Read.ME: João Vitor Vitalino da Silva Roveda
+- README: João Vitor Vitalino da Silva Roveda
 - Slide de Apresentação: Daniel Heringer Verner Silva
 - Template: Daniel de Queiroz Fernandes
 
