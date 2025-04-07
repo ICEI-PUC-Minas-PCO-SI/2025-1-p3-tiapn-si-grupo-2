@@ -2,7 +2,7 @@
 
 Este processo trata da manutenção de equipamentos utilizados internamente pela empresa Porto Ferreira Locações. Atualmente, esse processo é realizado de forma manual, sem um sistema informatizado que acompanhe desde a solicitação até a finalização dos reparos.
 
-Oportunidades de melhoria:
+## Oportunidades de melhoria:
 
 Centralizar a comunicação entre setores (solicitante, manutenção, gerência).
 Acompanhar o status em tempo real das solicitações e reparos.
