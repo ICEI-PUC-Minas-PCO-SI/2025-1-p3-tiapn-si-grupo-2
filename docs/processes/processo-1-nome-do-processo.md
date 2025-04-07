@@ -7,9 +7,6 @@ Em seguida, apresente o modelo do processo 1, descrito no padrão BPMN._
 
 #### Detalhamento das atividades
 
-_Descreva aqui cada uma das propriedades das atividades do processo 1. 
-Devem estar relacionadas com o modelo de processo apresentado anteriormente._
-
 _Os tipos de dados a serem utilizados são:_
 
 _* **Área de texto** - campo texto de múltiplas linhas_
