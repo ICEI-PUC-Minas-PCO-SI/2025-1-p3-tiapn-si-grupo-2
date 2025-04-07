@@ -68,7 +68,7 @@ Discuta como a configuração do projeto foi feita na ferramenta de versionament
 - Template: Daniel de Queiroz Fernandes
 
 #### Sprint 2
-- _Scrum master_: 
+- _Scrum master_: Daniel Heringer Verner Silva 
 - Desenvolvedor _front-end_: AlunoX
 - Desenvolvedor _back-end_: AlunoK
 - Testes: AlunaZ
