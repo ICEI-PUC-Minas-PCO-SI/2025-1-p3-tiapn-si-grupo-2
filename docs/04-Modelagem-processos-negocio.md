@@ -13,6 +13,10 @@ O novo sistema proposto busca resolver esse problema com a implementação de at
 
 Com o tema do projeto definido, escolham alguns processos no contexto de negócios. Para ilustrar os potenciais ganhos com a automatização, imaginem processos manuais, ineficientes e/ou com muitas idas e vindas, gerando, assim, retrabalho. Colem aqui os modelos dos processos atuais (modelo AS-IS), elaborados com o apoio da ferramenta baseada em BPMN utilizada na disciplina.
 
+[PROCESSO 1 EM PDF - AS-IS-INTERNO](./processes/AS-IS-Interno.pdf "Processo 1.")
+
+[PROCESSO 2 EM PDF- AS-IS-TERCEIROS](./processes/AS-IS-Terceiros.pdf "Processo 2.")
+
 ## Descrição geral da proposta (Modelagem TO BE)
 
 A proposta de solução tem como foco principal a melhoria da comunicação entre os setores envolvidos no processo de manutenção de equipamentos de terceiros, utilizando recursos tecnológicos para proporcionar mais controle, rastreabilidade e eficiência operacional.
@@ -37,6 +41,8 @@ Apesar das melhorias, o sistema não fornecerá acesso direto ao cliente final, 
 
 A introdução do novo sistema com controle de status internos é uma solução prática, de fácil adoção e com grande potencial de impacto positivo no dia a dia da empresa.
 
+[PROCESSO 3 EM PDF - TO-BE-INTERNO](./processes/TO-BE-Internos.pdf "Processo 3.")
+[PROCESSO 4 EM PDF - TO-BE-TERCEIROS](./processes/TO-BE-Terceiros.pdf "Processo 4.")
 
 ## Modelagem dos processos
 
