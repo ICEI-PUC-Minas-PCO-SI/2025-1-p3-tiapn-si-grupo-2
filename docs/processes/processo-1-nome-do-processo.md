@@ -79,6 +79,7 @@ _* **Seleção única** - campo com várias opções de valores que são mutuame
 |         Aprovação do gerente      |           Seleção única(sim/não)       |      	Obrigatório      |        —           |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
+| ---                  | ---                            | ---               |
 | cancelar                | FIM                           | ---               |
 | enviar | Executar reparos  | default |
 
@@ -95,6 +96,7 @@ _* **Seleção única** - campo com várias opções de valores que são mutuame
 |         Data da execução    |          Data       |      	Obrigatório      |        —           |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
+| ---                  | ---                            | ---               |
 | enviar | Testar equipamento  | default |
 
 
@@ -108,4 +110,5 @@ _* **Seleção única** - campo com várias opções de valores que são mutuame
 |         Observações    |          Área de texto     |      	Obrigatório      |        —           |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
+| ---                  | ---                            | ---               |
 | enviar | FIM  | default |
