@@ -20,48 +20,92 @@ _* **Número** - campo numérico_
 
 _* **Data** - campo do tipo data (dd-mm-aaaa)_
 
-_* **Hora** - campo do tipo hora (hh:mm:ss)_
-
-_* **Data e Hora** - campo do tipo data e hora (dd-mm-aaaa, hh:mm:ss)_
-
-_* **Imagem** - campo contendo uma imagem_
-
 _* **Seleção única** - campo com várias opções de valores que são mutuamente exclusivas (tradicional radio button ou combobox)_
 
-_* **Seleção múltipla** - campo com várias opções que podem ser selecionadas mutuamente (tradicional checkbox ou listbox)_
 
-_* **Arquivo** - campo de upload de documento_
-
-_* **Link** - campo que armazena uma URL_
-
-_* **Tabela** - campo formado por uma matriz de valores_
-
-
-**Nome da atividade 1**
+**Informar necessidade**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-| [Nome do campo] | [tipo de dados]  |                |                   |
-| ***Exemplo:***  |                  |                |                   |
-| login           | Caixa de Texto   | formato de e-mail |                |
-| senha           | Caixa de Texto   | mínimo de 8 caracteres |           |
+| Descrição da solicitação | Área de texto  |   Obrigatório             |        —           |
+| Data da solicitação | 	Data  |   Obrigatório             |        —           |
+| Nome do solicitante | Caixa de texto  |  	Somente letras           |        -         |
+
 
 | **Comandos**         |  **Destino**                   | **Tipo** |
 | ---                  | ---                            | ---               |
-| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel/  ) |
-| ***Exemplo:***       |                                |                   |
-| entrar               | Fim do Processo 1              | default           |
-| cadastrar            | Início do proceso de cadastro  |                   |
+| enviar | Cadastrar solicitação  | Default |
 
 
-**Nome da atividade 2**
+
+
+**Cadastrar solicitação**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
 | ---             | ---              | ---            | ---               |
-| [Nome do campo] | [tipo de dados]  |                |                   |
-|                 |                  |                |                   |
+| Número da solicitação | 	Número  |        	Automático        |          —        |
+|         Equipamento       |           Caixa de texto       |      	Obrigatório      |        —           |
+|         Cliente       |           Caixa de texto       |      	Obrigatório      |        —           |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
-| [Nome do botão/link] | Atividade/processo de destino  | (default/cancel/  ) |
-|                      |                                |                   |
+| enviar | Avaliar o equipamento  | default | 
+
+
+
+
+**Avaliar o equipamento**
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+|         Diagnóstico       |           Área de texto       |      	Obrigatório      |        —           |
+|         Falta peça ou serviço?       |           Seleção única (sim/não)       |      	Obrigatório      |        —           |
+|         Técnico responsável      |           Caixa de texto       |      	Obrigatório      |        —           |
+
+| **Comandos**         |  **Destino**                   | **Tipo**          |
+| ---                  | ---                            | ---               |
+| enviar | Consolidação de valores  | default |
+
+
+
+
+**Consolidação de valores**
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+|         Valor total       |           Caixa de texto       |      	Obrigatório      |        —           |
+|         Justificativa       |          Área de texto      |      	Obrigatório      |        —           |
+|         Responsável      |           Caixa de texto       |      	Obrigatório      |        —           |
+|         Aprovação do gerente      |           Seleção única(sim/não)       |      	Obrigatório      |        —           |
+
+| **Comandos**         |  **Destino**                   | **Tipo**          |
+| cancelar                | FIM                           | ---               |
+| enviar | Executar reparos  | default |
+
+
+
+
+**Executar reparos**
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+|         Técnico responsável      |           Caixa de texto       |      	Obrigatório      |        —           |
+|         Ações realizadas      |          Área de texto     |      	Obrigatório      |        —           |
+|         Peças substituídas      |           Área de texto       |      	Obrigatório      |        —           |
+|         Data da execução    |          Data       |      	Obrigatório      |        —           |
+
+| **Comandos**         |  **Destino**                   | **Tipo**          |
+| enviar | Testar equipamento  | default |
+
+
+
+
+**Testar equipamentos**
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+|         Técnico responsável      |           Caixa de texto       |      	Obrigatório      |        —           |
+|         Observações    |          Área de texto     |      	Obrigatório      |        —           |
+
+| **Comandos**         |  **Destino**                   | **Tipo**          |
+| enviar | FIM  | default |
