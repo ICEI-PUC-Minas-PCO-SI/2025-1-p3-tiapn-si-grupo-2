@@ -1,7 +1,13 @@
 ### 3.3.1 Processo 1 – AS-IS-INTERNO
 
-_Apresente aqui o nome e as oportunidades de melhoria para o processo 1. 
-Em seguida, apresente o modelo do processo 1, descrito no padrão BPMN._
+Este processo trata da manutenção de equipamentos utilizados internamente pela empresa Porto Ferreira Locações. Atualmente, esse processo é realizado de forma manual, sem um sistema informatizado que acompanhe desde a solicitação até a finalização dos reparos.
+
+Oportunidades de melhoria:
+
+Centralizar a comunicação entre setores (solicitante, manutenção, gerência).
+Acompanhar o status em tempo real das solicitações e reparos.
+Controlar aprovações e prazos.
+Disponibilizar histórico de manutenção por equipamento.
  
 ![Exemplo de um Modelo BPMN do PROCESSO 1](../images/as-is-interno.png "Modelo BPMN do Processo 1.")
 
