@@ -11,7 +11,7 @@ Disponibilizar histórico de manutenção por equipamento.
  
 ![Exemplo de um Modelo BPMN do PROCESSO 1](../images/as-is-interno.png "Modelo BPMN do Processo 1.")
 
-#### Detalhamento das atividades
+### Detalhamento das atividades
 
 _Os tipos de dados a serem utilizados são:_
 
