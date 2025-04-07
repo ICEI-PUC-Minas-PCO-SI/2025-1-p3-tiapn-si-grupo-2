@@ -8,17 +8,38 @@
 
 ## Modelagem da situação atual (Modelagem AS IS)
 
-Apresente uma descrição textual de como os sistemas atuais resolvem o problema que seu projeto se propõe a resolver. Caso sua proposta seja inovadora e não existam processos claramente definidos, apresente como as tarefas que seu sistema pretende implementar são executadas atualmente, mesmo que não se utilize tecnologia computacional.
+Atualmente, a empresa utiliza o Trello para registrar os equipamentos enviados para manutenção, além de recorrer ao uso de fichas em papel para anotar os dados dos clientes. No entanto, essa abordagem não se mostra eficaz na comunicação entre os setores, o que acaba gerando diversos desafios operacionais. Quando um equipamento chega para manutenção, ele é registrado no Trello, mas a ferramenta não oferece recursos adequados para acompanhar de forma clara e eficiente o andamento de cada serviço. Isso compromete a visibilidade do processo, dificulta a troca de informações entre os setores envolvidos e pode levar a atrasos, retrabalho e falhas no atendimento ao cliente.
+
+Uma das maiores dores enfrentadas atualmente é justamente a falta de visibilidade e alinhamento entre os setores sobre o status dos equipamentos. Isso causa atrasos, retrabalho, perda de tempo e, muitas vezes, informações inconsistentes ou desatualizadas, prejudicando tanto a operação interna quanto a experiência do cliente.
+
+O novo sistema proposto busca resolver esse problema com a implementação de atualizações de status específicas para os funcionários, permitindo que cada setor sinalize claramente em que etapa o equipamento se encontra. Essa visibilidade facilitará a comunicação interna e agilizará os processos, sem a necessidade de múltiplas consultas informais.
 
 Com o tema do projeto definido, escolham alguns processos no contexto de negócios. Para ilustrar os potenciais ganhos com a automatização, imaginem processos manuais, ineficientes e/ou com muitas idas e vindas, gerando, assim, retrabalho. Colem aqui os modelos dos processos atuais (modelo AS-IS), elaborados com o apoio da ferramenta baseada em BPMN utilizada na disciplina.
 
 ## Descrição geral da proposta (Modelagem TO BE)
 
-Tendo identificado os gargalos dos modelos AS-IS, apresentem uma descrição da proposta de solução, buscando maior eficiência com a introdução da tecnologia. Abordem também os limites dessa solução e seu alinhamento com as estratégias e objetivos do contexto de negócio escolhido.
+A proposta de solução tem como foco principal a melhoria da comunicação entre os setores envolvidos no processo de manutenção de equipamentos de terceiros, utilizando recursos tecnológicos para proporcionar mais controle, rastreabilidade e eficiência operacional.
 
-Cole aqui os modelos da solução proposta (modelo TO-BE), elaborados com o apoio da ferramenta baseada em BPMN utilizada na disciplina. Cada processo identificado deve ter seu modelo TO-BE específico. Descrevam as oportunidades de melhoria de cada processo da solução proposta.
+O novo sistema permitirá que cada setor registre e atualize o status do equipamento conforme sua responsabilidade, criando uma linha do tempo clara e compartilhada sobre o andamento do serviço. Esses status não serão acessíveis diretamente pelos clientes, mas estarão visíveis em tempo real para os funcionários da loja, especialmente o time de atendimento. Isso representa um avanço significativo, pois permitirá que qualquer atendente possa informar ao cliente, de forma rápida e precisa, a situação atual do seu equipamento, eliminando a necessidade de consultas manuais, buscas físicas ou ligações internas desnecessárias.
 
-Apresente aqui uma descrição da sua proposta, abordando seus limites e suas ligações com as estratégias e objetivos do negócio. Apresente também as oportunidades de melhoria.
+Essa padronização da comunicação entre setores reduz falhas, evita retrabalho e torna o processo mais fluido, beneficiando toda a operação e, indiretamente, melhorando a satisfação do cliente.
+
+Limites da Solução
+
+Apesar das melhorias, o sistema não fornecerá acesso direto ao cliente final, o que significa que o cliente ainda dependerá do contato com a loja para obter informações. Essa decisão foi tomada estrategicamente para evitar a exposição de dados sensíveis do processo interno e manter o controle centralizado nas mãos da equipe.
+
+Alinhamento com os Objetivos do Negócio
+A proposta está totalmente alinhada com os objetivos do negócio, que incluem:
+
+Redução de erros de comunicação entre os setores;
+
+Melhoria da eficiência no atendimento ao cliente;
+
+Padronização dos processos internos de manutenção;
+
+
+A introdução do novo sistema com controle de status internos é uma solução prática, de fácil adoção e com grande potencial de impacto positivo no dia a dia da empresa.
+
 
 ## Modelagem dos processos
 
