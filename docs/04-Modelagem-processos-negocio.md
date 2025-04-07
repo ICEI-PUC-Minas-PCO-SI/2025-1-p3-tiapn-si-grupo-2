@@ -26,18 +26,12 @@ Apresente aqui uma descrição da sua proposta, abordando seus limites e suas li
 
 [PROCESSO 2 - Nome do processo](./processes/processo-2-nome-do-processo.md "Detalhamento do processo 2.")
 
-
 ## Indicadores de desempenho
-
-Apresente aqui os principais indicadores de desempenho e algumas metas para o processo. Atenção: as informações necessárias para gerar os indicadores devem estar contempladas no diagrama de classe. Coloque no mínimo 5 indicadores.
-
-Use o seguinte modelo:
 
 | **Indicador** | **Objetivos** | **Descrição** | **Fonte de dados** | **Fórmula de cálculo** |
 | ---           | ---           | ---           | ---             | ---             |
-| Percentual de reclamações | Avaliar quantitativamente as reclamações | Percentual de reclamações em relação ao total de atendimentos | Tabela Reclamações | número total de reclamações / número total de atendimentos |
-| Taxa de requisições atendidas | Melhorar a prestação de serviços medindo a porcentagem de requisições atendidas| Mede a % de requisições atendidas na semana | Tabela Solicitações | (número de requisições atendidas / número total de requisições) * 100 |
-| Taxa de entrega de material | Manter controle sobre os materiais que estão sendo entregues | Mede % de material entregue dentro do mês | Tabela Pedidos | (número de pedidos entregues / número total de pedidos) * 100 |
-
-
-Obs.: todas as informações necessárias para gerar os indicadores devem estar no diagrama de classe a ser apresentado posteriormente.
+| Taxa de entrega de material | Manter controle sobre os materiais que estão sendo entregues |Mede a % de material entregue dentro do mês | Sistema de Pedidos / Entregas | (número de pedidos entregues / número total de pedidos) * 100 |
+| Taxa de requisições atendidas no prazo | Aumentar a confiabilidade entre setores internos da empresa | Mede a porcentagem de requisições internas (como peças para manutenção) atendidas no prazo | Sistema Interno de Requisições | (nº de requisições atendidas no prazo / nº total de requisições) * 100 |
+| Tempo médio de atendimento técnico | Melhorar o suporte ao cliente em relação a pedidos e peças | Tempo médio entre a abertura e a resolução de um chamado técnico | Sistema de Atendimento | (soma dos tempos de atendimento / nº total de atendimentos) |
+| Taxa de cobertura de peças solicitadas | Garantir a disponibilidade de peças solicitadas | Mede quantas das peças solicitadas estão disponíveis em estoque | Requisições | (número de peças disponíveis / número de peças solicitadas) * 100 |
+| Índice de confiabilidade do estoque | Reduzir divergências entre sistema e estoque físico | Mede a precisão dos registros de estoque em relação ao inventário real | Inventário físico / Sistema | ((nº de itens corretos / total de itens verificados) * 100) |
