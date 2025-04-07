@@ -24,11 +24,11 @@ O novo sistema permitirá que cada setor registre e atualize o status do equipam
 
 Essa padronização da comunicação entre setores reduz falhas, evita retrabalho e torna o processo mais fluido, beneficiando toda a operação e, indiretamente, melhorando a satisfação do cliente.
 
-Limites da Solução
+###Limites da Solução
 
 Apesar das melhorias, o sistema não fornecerá acesso direto ao cliente final, o que significa que o cliente ainda dependerá do contato com a loja para obter informações. Essa decisão foi tomada estrategicamente para evitar a exposição de dados sensíveis do processo interno e manter o controle centralizado nas mãos da equipe.
 
-Alinhamento com os Objetivos do Negócio
+###Alinhamento com os Objetivos do Negócio
 A proposta está totalmente alinhada com os objetivos do negócio, que incluem:
 
 Redução de erros de comunicação entre os setores;
