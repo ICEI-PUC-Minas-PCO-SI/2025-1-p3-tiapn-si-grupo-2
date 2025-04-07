@@ -48,7 +48,7 @@ _* **Seleção única** - campo com várias opções de valores que são mutuame
 | ---             | ---              | ---            | ---               |
 | Número da solicitação | 	Número  |        	Automático        |          —        |
 |         Equipamento       |           Caixa de texto       |      	Obrigatório      |        —           |
-|         Cliente       |           Caixa de texto       |      	Obrigatório      |        —           |
+|         Setor solicitante       |           Caixa de texto       |      	Obrigatório      |        —           |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
