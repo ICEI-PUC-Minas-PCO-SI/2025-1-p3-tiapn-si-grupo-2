@@ -29,13 +29,13 @@ Essa padronização da comunicação entre setores reduz falhas, evita retrabalh
 Apesar das melhorias, o sistema não fornecerá acesso direto ao cliente final, o que significa que o cliente ainda dependerá do contato com a loja para obter informações. Essa decisão foi tomada estrategicamente para evitar a exposição de dados sensíveis do processo interno e manter o controle centralizado nas mãos da equipe.
 
 ### Alinhamento com os Objetivos do Negócio
-A proposta está totalmente alinhada com os objetivos do negócio, que incluem:
+ - A proposta está totalmente alinhada com os objetivos do negócio, que incluem:
 
-Redução de erros de comunicação entre os setores;
+ - Redução de erros de comunicação entre os setores;
 
-Melhoria da eficiência no atendimento ao cliente;
+ - Melhoria da eficiência no atendimento ao cliente;
 
-Padronização dos processos internos de manutenção;
+ - Padronização dos processos internos de manutenção;
 
 
 A introdução do novo sistema com controle de status internos é uma solução prática, de fácil adoção e com grande potencial de impacto positivo no dia a dia da empresa.
