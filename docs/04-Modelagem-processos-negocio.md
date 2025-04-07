@@ -2,9 +2,6 @@
 
 <span style="color:red">Pré-requisitos: <a href="02-Especificacao.md"> Especificação do projeto</a></span>
 
-> **Links úteis**:
-> - [Modelagem de processos AS-IS x TO-BE](https://dheka.com.br/modelagem-as-is-to-be/)
-> - [20 dicas práticas de modelagem de processos](https://dheka.com.br/20-dicas-praticas-de-modelagem-de-processos/)
 
 ## Modelagem da situação atual (Modelagem AS IS)
 
@@ -43,9 +40,11 @@ A introdução do novo sistema com controle de status internos é uma solução 
 
 ## Modelagem dos processos
 
-[PROCESSO 1 - Nome do processo](./processes/processo-1-nome-do-processo.md "Detalhamento do processo 1.")
+[PROCESSO 1 - AS-IS-INTERNO](./processes/processo-1-nome-do-processo.md "Detalhamento do processo 1.")
 
-[PROCESSO 2 - Nome do processo](./processes/processo-2-nome-do-processo.md "Detalhamento do processo 2.")
+[PROCESSO 2 - AS-IS-TERCEIROS](./processes/processo-2-nome-do-processo.md "Detalhamento do processo 2.")
+
+[PROCESSO 3 - TO-BE-INTERNO](./processes/processo-2-nome-do-processo.md "Detalhamento do processo 2.")
 
 ## Indicadores de desempenho
 
