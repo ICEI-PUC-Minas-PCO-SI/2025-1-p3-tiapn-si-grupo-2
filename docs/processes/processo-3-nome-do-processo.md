@@ -3,10 +3,9 @@
 Este processo trata da manutenção de equipamentos utilizados internamente pela empresa Porto Ferreira Locações. Atualmente, esse processo é realizado de forma manual, sem um sistema informatizado que acompanhe desde a solicitação até a finalização dos reparos.
 
 **Oportunidades de melhoria:**
-- Automatizar o cadastro de solicitações de manutenção.
 - Centralizar a comunicação entre setores (solicitante, manutenção, gerência).
 - Acompanhar o status em tempo real das solicitações e reparos.
-- Controlar orçamentos, aprovações e prazos.
+- Controlar  aprovações e prazos.
 - Disponibilizar histórico de manutenção por equipamento.
 
 A seguir, apresentamos o modelo do processo 2, descrito no padrão BPMN.
