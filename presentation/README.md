@@ -7,7 +7,9 @@
 
 Coloque aqui o conjunto de slides.
 
-> O arquivo deve estar no formato PDF e conter a apresentação completa do projeto, abordando todos os itens trabalhados nos demais artefatos. 
+> O arquivo deve estar no formato PDF e conter a apresentação completa do projeto, abordando todos os itens trabalhados nos demais artefatos.
+
+[Apresentação-Sprint1.pdf](https://github.com/user-attachments/files/19655876/Apresentacao-Sprint1.pdf)
 
 > **Links úteis**:
 > - [10 dicas de design para slides](https://rockcontent.com/blog/design-para-slides/)
@@ -30,5 +32,6 @@ A seguir, estão as especificações técnicas que devem ser seguidas na criaç�
 > - taxa de FPS limitada a 30 quadros por segundo
 > - resolução HD (720p) ou Full HD (1080p)
 > - formato mp4.
+
 
 
