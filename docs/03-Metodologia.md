@@ -98,7 +98,7 @@ Atualizado em: 21/04/2024
 | :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
 | AlunaX        | Página inicial   | 01/02/2024     | 07/03/2024 | ✔️    | 05/02/2024      |
 | AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
-| AlunoY        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
+| Daniel de Queiroz       | Slides de apresentação | 04/04/2025 | 10/04/2025 | ⌛|                 |
 | Daniel Heringer        | Diagramas AS IS e TO BE  | 24/03/2025 | 10/04/2025 |  ✔️  | 07/04/2025 |
 | AlunoW        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
 | AlunoN       | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
