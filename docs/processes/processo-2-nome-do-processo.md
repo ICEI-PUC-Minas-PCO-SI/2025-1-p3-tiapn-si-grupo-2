@@ -107,6 +107,39 @@ _* **Arquivo** - upload de um arquivo_
 
 
 
+**Enviar orçamento para o cliente**
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+|         Valor total       |           Caixa de texto       |      	Obrigatório      |        —           |
+|         Justificativa       |          Área de texto      |      	Obrigatório      |        —           |
+|         Responsável      |           Caixa de texto       |      	Obrigatório      |        —           |
+
+| **Comandos**         |  **Destino**                   | **Tipo**          |
+| ---                  | ---                            | ---               |
+| cancelar                | FIM                           | ---               |
+| enviar | Receber orçamento  | default |
+
+
+
+
+**Receber orçamento**
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+|         Valor total       |           Caixa de texto       |      	Obrigatório      |        —           |
+|         Justificativa       |          Área de texto      |      	Obrigatório      |        —           |
+|         Responsável      |           Caixa de texto       |      	Obrigatório      |        —           |
+|         Aprovação do cliente      |           Seleção única(sim/não)       |      	Obrigatório      |        —           |
+
+| **Comandos**         |  **Destino**                   | **Tipo**          |
+| ---                  | ---                            | ---               |
+| cancelar                | FIM                           | ---               |
+| enviar | Executar reparos  | default |
+
+
+
+
 **Executar reparos**
 
 | **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
@@ -115,6 +148,20 @@ _* **Arquivo** - upload de um arquivo_
 |         Ações realizadas      |          Área de texto     |      	Obrigatório      |        —           |
 |         Peças substituídas      |           Área de texto       |      	Obrigatório      |        —           |
 |         Data da execução    |          Data       |      	Obrigatório      |        —           |
+
+| **Comandos**         |  **Destino**                   | **Tipo**          |
+| ---                  | ---                            | ---               |
+| enviar | Realizar testes  | default |
+
+
+
+
+**Realizar testes**
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+|         Técnico responsável      |           Caixa de texto       |      	Obrigatório      |        —           |
+|         Data do teste    |          Data       |      	Obrigatório      |        —           |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
@@ -130,6 +177,51 @@ _* **Arquivo** - upload de um arquivo_
 |         Equipamento     |           Caixa de texto       |      	Obrigatório      |        —           |
 |         Cliente      |           Caixa de texto       |      	Obrigatório      |        —           |
 |         Observações    |          Área de texto     |      	Obrigatório      |        —           |
+
+| **Comandos**         |  **Destino**                   | **Tipo**          |
+| ---                  | ---                            | ---               |
+| enviar | FIM  | default |
+
+
+
+
+**Pedir para buscar**
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+|         Equipamento     |           Caixa de texto       |      	Obrigatório      |        —           |
+|         Cliente      |           Caixa de texto       |      	Obrigatório      |        —           |
+|         Data    |          Data     |      	Obrigatório      |        —           |
+
+| **Comandos**         |  **Destino**                   | **Tipo**          |
+| ---                  | ---                            | ---               |
+| enviar | Mensagem recebida  | default |
+
+
+
+
+**Mensagem recebida**
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+|         Mensagem     |           Área de texto       |      	Obrigatório      |        —           |
+|         Cliente      |           Caixa de texto       |      	Obrigatório      |        —           |
+|         Data    |          Data     |      	Obrigatório      |        —           |
+
+| **Comandos**         |  **Destino**                   | **Tipo**          |
+| ---                  | ---                            | ---               |
+| enviar | Pagar pelo serviço  | default |
+
+
+
+
+**Pagar pelo serviço**
+
+| **Campo**       | **Tipo**         | **Restrições** | **Valor default** |
+| ---             | ---              | ---            | ---               |
+|         Cliente      |           Caixa de texto       |      	Obrigatório      |        —           |
+|         Método de pagamento      |           Caixa de texto       |      	Obrigatório      |        —           |
+|         Data    |          Data     |      	Obrigatório      |        —           |
 
 | **Comandos**         |  **Destino**                   | **Tipo**          |
 | ---                  | ---                            | ---               |
