@@ -52,9 +52,9 @@ A introdução do novo sistema com controle de status internos é uma solução 
 
 [PROCESSO 2 - AS-IS-TERCEIROS](./processes/processo-2-AS-IS-TERCEIROS.md "Detalhamento do processo 2.")
 
-[PROCESSO 3 - TO-BE-INTERNO](./processes/processo-3-TO-BE-INTERNO.md "Detalhamento do processo 3.")
+[PROCESSO 3 - TO-BE-INTERNO](./processes/processo-3-TO-BE-interno.md "Detalhamento do processo 3.")
 
-[PROCESSO 4 - TO-BE-TERCEIROS](./processes/processo-3-TO-BE-TERCEIROS.md "Detalhamento do processo 4.")
+[PROCESSO 4 - TO-BE-TERCEIROS](./processes/processo-3-TO-BE-terceiros.md "Detalhamento do processo 4.")
 
 ## Indicadores de desempenho
 
