@@ -26,3 +26,4 @@ A seguir, estão as especificações técnicas que devem ser seguidas na criaç�
 
 
 
+[SPRINT2.pdf](https://github.com/user-attachments/files/19696305/SPRINT2.pdf)
