@@ -48,13 +48,13 @@ A introdução do novo sistema com controle de status internos é uma solução 
 
 ## Modelagem dos processos
 
-[PROCESSO 1 - AS-IS-INTERNO](./processes/processo-1-nome-do-processo.md "Detalhamento do processo 1.")
+[PROCESSO 1 - AS-IS-INTERNO](./processes/processo-1-AS-IS-INTERNO.md "Detalhamento do processo 1.")
 
-[PROCESSO 2 - AS-IS-TERCEIROS](./processes/processo-2-nome-do-processo.md "Detalhamento do processo 2.")
+[PROCESSO 2 - AS-IS-TERCEIROS](./processes/processo-2-AS-IS-TERCEIROS.md "Detalhamento do processo 2.")
 
-[PROCESSO 3 - TO-BE-INTERNO](./processes/processo-2-nome-do-processo.md "Detalhamento do processo 2.")
+[PROCESSO 3 - TO-BE-INTERNO](./processes/processo-3-TO-BE-INTERNO.md "Detalhamento do processo 3.")
 
-[PROCESSO 4 - TO-BE-TERCEIROS]()
+[PROCESSO 4 - TO-BE-TERCEIROS](./processes/processo-3-TO-BE-TERCEIROS.md "Detalhamento do processo 4.")
 
 ## Indicadores de desempenho
 
