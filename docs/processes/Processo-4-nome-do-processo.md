@@ -12,7 +12,7 @@ Este processo trata da manutenção de equipamentos de clientes externos da empr
 
 A seguir, apresentamos o modelo do processo 4, descrito no padrão BPMN.
 
-![Exemplo de um Modelo BPMN do PROCESSO 4](../images/to-BE%20TERCEIROS.png "Modelo BPMN do Processo 4.")
+![Exemplo de um Modelo BPMN do PROCESSO 4](../images/TO-BE_Terceiros_Modelo.png "Modelo BPMN do Processo 4.")
 
 ---
 
