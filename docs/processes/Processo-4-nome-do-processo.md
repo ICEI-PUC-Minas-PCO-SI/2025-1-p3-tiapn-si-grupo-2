@@ -1,5 +1,3 @@
-Claro! Aqui está a versão do **TO-BE Terceiros** no mesmo estilo exato que você utilizou para o **TO-BE Interno**:
-
 ---
 
 ### 3.3.4 Processo 4 – TO-BE terceiros
