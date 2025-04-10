@@ -9,7 +9,7 @@ Acompanhar o status em tempo real das solicitações e reparos.
 Controlar aprovações e prazos.
 Disponibilizar histórico de manutenção por equipamento.
  
-![Exemplo de um Modelo BPMN do PROCESSO 1](../images/as-is-terceiros.png "Modelo BPMN do AS-IS-TERCEIROS.")
+![Exemplo de um Modelo BPMN do PROCESSO 1](../images/as-is-terceiros-atualizado.png "Modelo BPMN do AS-IS-TERCEIROS.")
 
 ### Detalhamento das atividades
 
