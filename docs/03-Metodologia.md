@@ -1,146 +1,115 @@
-
 # Metodologia
 
-<span style="color:red">Pré-requisitos: <a href="02-Especificacao.md"> Especificação do projeto</a></span>
+<span style="color:red">Pré-requisitos: [Especificação do projeto](02-Especificacao.md)</span>
 
-Nossa equipe adota uma abordagem colaborativa e estruturada para o desenvolvimento do projeto, utilizando diversas ferramentas para organização, comunicação e versionamento de código. A metodologia de trabalho inclui a definição dos ambientes utilizados, a estrutura para gestão do código-fonte e as ferramentas para organização das tarefas e do fluxo de desenvolvimento.
+Adotamos uma abordagem organizada e colaborativa para atender a todos os requisitos das três Sprints estabelecidas pela disciplina de TIAPN. Para garantir o cumprimento de prazos e a qualidade dos artefatos, utilizamos as seguintes ferramentas:
 
-Ambientes de Trabalho:
+- **Trello** – Organização interna das tarefas, principalmente no início do projeto. Facilita a visualização do fluxo de trabalho e o acompanhamento das etapas.
+- **Bizagi Modeler** – Confecção dos Diagramas AS‑IS e TO‑BE em notação BPMN, com validador integrado que assegura a integridade e qualidade dos modelos.
+- **Figma** – Plataforma para criação de wireframes e protótipos interativos da SPA, permitindo refinar a experiência do usuário antes da implementação.
+- **GitHub** – Hospedagem e versionamento do código‑fonte. Gerenciamos o desenvolvimento por meio de branches, commits e pull requests, garantindo rastreabilidade e integração contínua.
+- **GitHub Projects** – Gerenciamento das Sprints e acompanhamento das tarefas a partir da Sprint 2, substituindo o Trello.
+- **WhatsApp** – Comunicação rápida e informal entre os membros do grupo.
+- **Microsoft Teams** – Encontros remotos e videoconferências em situações emergenciais ou para reuniões de Sprint Review/Planning.
 
-Trello – Utilizado para organização e acompanhamento das tarefas da equipe. As atividades são distribuídas em quadros, listas e cartões, seguindo um fluxo de trabalho bem definido. O Trello permite a visualização do progresso do projeto e facilita a comunicação entre os membros.
+## Processo e Gestão de Equipes
 
-Miro – Ferramenta utilizada para a criação de diagramas e fluxos do projeto. A equipe utiliza o Miro para mapear processos, estruturar ideias e desenvolver representações visuais que auxiliam na compreensão das etapas do desenvolvimento.
-
-Figma – Responsável pelo design e prototipação das interfaces. O Figma permite a criação de wireframes e protótipos interativos, garantindo que a equipe visualize e refine a experiência do usuário antes da implementação.
-
-GitHub – Repositório utilizado para versionamento do código-fonte. A equipe gerencia o desenvolvimento através de branches, commits e pull requests, garantindo um fluxo de trabalho organizado e rastreável. O GitHub também permite a colaboração assíncrona, facilitando a integração contínua das funcionalidades desenvolvidas.
-
-Processo e Gestão de Equipes:
-
-Divisão de tarefas: As tarefas são distribuídas no Trello e organizadas conforme a prioridade e complexidade.
-
-Reuniões e feedbacks: O Miro é utilizado para brainstorming e definição de fluxos, enquanto o Figma possibilita a validação visual das interfaces.
-
-Versionamento e deploy: O GitHub gerencia o código-fonte, permitindo colaboração segura e controle sobre alterações.
-
-Essa metodologia garante um desenvolvimento eficiente, organizado e colaborativo, maximizando a produtividade e a qualidade do projeto.
+Seguimos o framework Scrum, com ciclos de Sprint de duas semanas. Cada Sprint inicia com uma reunião de planejamento (_Sprint Planning_), na qual definimos o backlog e estimamos as tarefas. Durante a Sprint, as atividades são acompanhadas no **GitHub Projects**, onde usamos um quadro Kanban para visualizar o progresso. As reuniões de acompanhamento (_Daily Stand‑ups_) ocorrem às sextas-feiras, e reuniões extras são convocadas via **Microsoft Teams** sempre que surgem impedimentos. Ao final de cada Sprint, realizamos a **Sprint Review** para demonstrar os entregáveis e a **Retrospectiva** para identificar melhorias no processo. O **Scrum Master** garante que o time siga as práticas ágeis, enquanto o **Product Owner** prioriza o backlog e valida os requisitos.
 
 ## Controle de versão
 
-A ferramenta de controle de versão adotada no projeto foi o [Git](https://git-scm.com/), sendo que o [GitHub](https://github.com) foi utilizado para hospedagem do repositório.
+Utilizamos o **Git** (https://git-scm.com/) como sistema de controle de versão e o **GitHub** (https://github.com) para hospedagem do repositório. A convenção de branches adotada é:
 
-O projeto segue a seguinte convenção para o nome de branches:
+- `main`: versão estável já testada do software.
+- `release`: versão estável com novas implementações provenientes da branch `development`.
+- `bugfix`: correção de erros e exceções.
+- `feature`: implementação de funcionalidades específicas.
+- `development`: branch de desenvolvimento principal.
 
-- `main`: versão estável já testada do software
-- `unstable`: versão já testada do software, porém instável
-- `testing`: versão em testes do software
-- `dev`: versão de desenvolvimento do software
-
-Quanto à gerência de issues, o projeto adota a seguinte convenção para etiquetas:
-
-- `documentation`: melhorias ou acréscimos à documentação
-- `bug`: uma funcionalidade encontra-se com problemas
-- `enhancement`: uma funcionalidade precisa ser melhorada
-- `feature`: uma nova funcionalidade precisa ser introduzida
-
-Discuta como a configuração do projeto foi feita na ferramenta de versionamento escolhida. Exponha como a gestão de tags, merges, commits e branches é realizada. Discuta também como a gestão de issues foi feita.
-
-> **Links úteis**:
-> - [Tutorial GitHub](https://guides.github.com/activities/hello-world/)
-> - [Git e GitHub](https://www.youtube.com/playlist?list=PLHz_AreHm4dm7ZULPAmadvNhH6vk9oNZA)
-> - [Comparando fluxos de trabalho](https://www.atlassian.com/br/git/tutorials/comparing-workflows)
-> - [Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
-> - [The gitflow workflow - in less than 5 mins](https://www.youtube.com/watch?v=1SXpE08hvGs)
+Essa configuração de branches foi estabelecida em concordância com os membros do grupo. Optamos por essa estrutura por ser fácil e se encaixar bem no nosso projeto. As issues seguirão essa estrutura na elaboração e gerenciamento das Sprints.
 
 ## Planejamento do projeto
 
-###  Divisão de papéis
+### Divisão de papéis
 
-> Apresente a divisão de papéis entre os membros do grupo em cada Sprint. O desejável é que, em cada Sprint, o aluno assuma papéis diferentes na equipe. Siga o modelo do exemplo abaixo:
+#### Sprint 1
 
-#### Sprint 1
-- _Scrum master_: Arthur Lima Camargos
-- Contexto: Arthur Lima Camargos
-- Especificação: Caio Martins Bicalho da Costa, João Vitor Vitalino da Silva Roveda e Vitor Mendonça Braga
-- Metodologia: Daniel Heringer Verner Silva e Vitor Mendonça Braga
-- README: João Vitor Vitalino da Silva Roveda
-- Slide de Apresentação: Daniel Heringer Verner Silva
-- Template: Daniel de Queiroz Fernandes
+- _Scrum Master_: Arthur Lima Camargos  
+- Contexto: Arthur Lima Camargos  
+- Especificação: Caio Martins Bicalho da Costa, João Vitor Vitalino da Silva Roveda e Vitor Mendonça Braga  
+- Metodologia: Daniel Heringer Verner Silva e Vitor Mendonça Braga  
+- README: João Vitor Vitalino da Silva Roveda  
+- Slide de Apresentação: Daniel Heringer Verner Silva  
+- Template: Daniel de Queiroz Fernandes  
 
-#### Sprint 2
-- _Scrum master_: Daniel Heringer Verner Silva 
-- Desenvolvedor _front-end_: AlunoX
-- Desenvolvedor _back-end_: AlunoK
-- Testes: AlunaZ
+#### Sprint 2
 
-###  Quadro de tarefas
+- _Scrum Master_: Daniel Heringer Verner Silva  
+- Product Owner: Arthur Lima Camargos  
+- Slide de Apresentação: Daniel de Queiroz Fernandes  
+- Modelagem de Processos de Negócio: Vitor Mendonça Braga e Caio Martins Bicalho da Costa  
+- Diagrama AS‑IS: Daniel Heringer Verner Silva  
+- Diagrama TO‑BE: Daniel Heringer Verner Silva  
+- Metodologia: Arthur Lima Camargos  
+- Template (Parte 3.3): João Vitor Vitalino da Silva Roveda  
+- Referências: João Vitor Vitalino da Silva Roveda  
 
-> Apresente a divisão de tarefas entre os membros do grupo e o acompanhamento da execução, conforme o exemplo abaixo.
+### Quadro de tarefas
 
-#### Sprint 1
+#### Sprint 1
 
-Atualizado em: 12/03/2025
+_Atualizado em: 12/03/2025_
 
-| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
-| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| Arthur Lima        | Introdução | 08/03/2025     | 13/13/2024 | ✔️    | 09/03/2025      |
-| Caio Martins       | Especificação do projeto    | 08/03/2025     | 10/03/2025 | ✔️    | 09/03/2025 |   
-| Daniel de Queiroz        | Template do relatório  |    10/03/2024        | 13/03/2005 | ✔️    |  13/03/2025     |
-| Daniel Heringer        | Slide de apresentação  |    10/03/2025        | 12/03/2025 |  ✔️   |    10/03/2025   |
-| João Vitor Roveda        | Objetivos    | 07/03/2025     | 10/03/2025 | ✔️    | 09/03/2025 |                 |
-| Vitor Mendonça       | Personas e histórias de usuários  |    08/03/2025        | 10/03/2025 | ✔️    |  09/03/2025     |
+| Responsável            | Tarefa/Requisito                                 | Iniciado em | Prazo       | Status | Terminado em |
+| :--------------------- | :----------------------------------------------- | :---------: | :---------: | :----: | :----------: |
+| Arthur Lima Camargos   | Introdução                                       | 08/03/2025  | 13/03/2025  | ✔️     | 09/03/2025   |
+| Caio Martins           | Especificação do projeto                         | 08/03/2025  | 10/03/2025  | ✔️     | 09/03/2025   |
+| Daniel de Queiroz      | Template do relatório                            | 10/03/2025  | 13/03/2025  | ✔️     | 13/03/2025   |
+| Daniel Heringer        | Slide de apresentação                            | 10/03/2025  | 12/03/2025  | ✔️     | 10/03/2025   |
+| João Vitor Roveda      | Objetivos                                        | 07/03/2025  | 10/03/2025  | ✔️     | 09/03/2025   |
+| Vitor Mendonça Braga   | Personas e histórias de usuários                  | 08/03/2025  | 10/03/2025  | ✔️     | 09/03/2025   |
 
-#### Sprint 2
+#### Sprint 2
 
-Atualizado em: 21/04/2024
+_Atualizado em: 21/04/2025_
 
-| Responsável   | Tarefa/Requisito | Iniciado em    | Prazo      | Status | Terminado em    |
-| :----         |    :----         |      :----:    | :----:     | :----: | :----:          |
-| AlunaX        | Página inicial   | 01/02/2024     | 07/03/2024 | ✔️    | 05/02/2024      |
-| AlunaZ        | CSS unificado    | 03/02/2024     | 10/03/2024 | 📝    |                 |
-| Daniel de Queiroz       | Slides de apresentação | 04/04/2025 | 10/04/2025 | ⌛|                 |
-| Daniel Heringer        | Diagramas AS IS e TO BE  | 24/03/2025 | 10/04/2025 |  ✔️  | 07/04/2025 |
-| AlunoW        | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
-| AlunoN       | Página de login  | 01/02/2024     | 07/03/2024 | ⌛     |                 |
+| Responsável                           | Tarefa/Requisito                           | Iniciado em | Prazo       | Status | Terminado em |
+| :------------------------------------ | :----------------------------------------- | :---------: | :---------: | :----: | :----------: |
+| Daniel Heringer Verner Silva          | Scrum Master                               | 05/04/2025  | 10/04/2025  | ✔️     | 09/04/2025   |
+| Arthur Lima Camargos                  | Product Owner                              | 05/04/2025  | 10/04/2025  | ✔️     | 09/04/2025   |
+| Daniel de Queiroz Fernandes           | Slide de Apresentação                      | 03/04/2025  | 10/04/2025  | ✔️     | 09/04/2025   |
+| Vitor Mendonça Braga                  | Modelagem de Processos de Negócio (BPMN)    | 05/04/2025  | 10/04/2025  | ✔️     | 09/04/2025   |
+| Caio Martins Bicalho da Costa         | Modelagem de Processos de Negócio (BPMN)    | 04/04/2025  | 10/04/2025  | ✔️     | 09/04/2025   |
+| Daniel Heringer Verner Silva          | Diagrama AS‑IS                              | 05/04/2025  | 10/04/2025  | ✔️     | 09/04/2025   |
+| Daniel Heringer Verner Silva          | Diagrama TO‑BE                              | 02/04/2025  | 10/04/2025  | ✔️     | 09/04/2025   |
+| Arthur Lima Camargos                  | Metodologia                                 | 05/04/2025  | 10/04/2025  | ✔️     | 09/04/2025   |
+| João Vitor Vitalino da Silva Roveda   | Template (Parte 3.3)                        | 05/04/2025  | 10/04/2025  | ✔️     | 09/04/2025   |
+| João Vitor Vitalino da Silva Roveda   | Referências                                 | 05/04/2025  | 10/04/2025  | 📝     | 09/04/2025   |
 
-
-Legenda:
-- ✔️: terminado
-- 📝: em execução
-- ⌛: atrasado
-- ❌: não iniciado
-
-
-> **Links úteis**:
-> - [11 passos essenciais para implantar Scrum no seu projeto](https://mindmaster.com.br/scrum-11-passos/)
-> - [Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0)
-> - [Os papéis do Scrum e a verdade sobre cargos nessa técnica](https://www.atlassian.com/br/agile/scrum/roles)
-
-### Processo
-
-Coloque informações sobre detalhes da implementação do Scrum seguido pelo grupo. O grupo deverá fazer uso do recurso de gerenciamento de projeto oferecido pelo GitHub, que permite acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução.
- 
-> **Links úteis**:
-> - [Planejamento e gestão ágil de projetos](https://pucminas.instructure.com/courses/87878/pages/unidade-2-tema-2-utilizacao-de-ferramentas-para-controle-de-versoes-de-software)
-> - [Sobre quadros de projeto](https://docs.github.com/pt/issues/organizing-your-work-with-project-boards/managing-project-boards/about-project-boards)
-> - [Project management, made simple](https://github.com/features/project-management/)
-> - [Como criar backlogs no GitHub](https://www.youtube.com/watch?v=RXEy6CFu9Hk)
-> - [Tutorial slack](https://slack.com/intl/en-br/)
+Legenda:  
+✔️: terminado 
+📝: em execução 
+⌛: atrasado 
+❌: não iniciado
 
 ## Relação de ambientes de trabalho
 
-Os artefatos do projeto são desenvolvidos a partir de diversas plataformas. Todos os ambientes e frameworks utilizados no desenvolvimento da aplicação estão listados na seção abaixo.
+| Ambiente                         | Plataforma            | Link de acesso                                                                 |
+|----------------------------------|-----------------------|-------------------------------------------------------------------------------|
+| Repositório de código-fonte      | GitHub                | https://github.com/ICEI-PUC-Minas-PCO-SI/2025-1-p3-tiapn-si-grupo-2            |
+| Documentos do projeto            | GitHub Projects       | https://github.com/orgs/ICEI-PUC-Minas-PCO-SI/projects/127                    |
+| Projeto de interface             | Figma                 | Em desenvolvimento                                                           |
+| Gerenciamento do projeto         | GitHub Projects       | https://github.com/orgs/ICEI-PUC-Minas-PCO-SI/projects/127                    |
+| Hospedagem da aplicação (front)  | Vercel                | A ser implementado                                                           |
 
 ### Ferramentas
 
-Liste todas as ferramentas que foram empregadas no projeto, justificando a escolha delas, sempre que possível.
-
-Exemplo: os artefatos do projeto são desenvolvidos a partir de diversas plataformas e a relação dos ambientes com seu respectivo propósito é apresentada na tabela que se segue.
-
-| Ambiente                            | Plataforma                         | Link de acesso                         |
-|-------------------------------------|------------------------------------|----------------------------------------|
-| Repositório de código fonte         | GitHub                             | http://....                            |
-| Documentos do projeto               | GitHub                             | http://....                            |
-| Projeto de interface                | Figma                              | http://....                            |
-| Gerenciamento do projeto            | GitHub Projects                    | http://....                            |
-| Hospedagem                          | Vercel                             | http://....                            |
+| Ferramenta            | Propósito                                       | Justificativa                                                        |
+|-----------------------|-------------------------------------------------|----------------------------------------------------------------------|
+| Trello                | Organização interna de tarefas                  | Visualização clara do fluxo e fácil acompanhamento                   |
+| Bizagi Modeler        | Modelagem de processos AS‑IS e TO‑BE (BPMN)      | Validador integrado garante integridade e qualidade dos diagramas    |
+| Figma                 | Criação de wireframes e protótipos interativos  | Permite refinar a experiência do usuário antes da implementação      |
+| GitHub                | Hospedagem e versionamento de código            | Fluxo colaborativo com branches, commits e pull requests             |
+| GitHub Projects       | Gerenciamento de Sprints e acompanhamento       | Quadro Kanban integrado ao repositório                               |
+| WhatsApp              | Comunicação instantânea                         | Agilidade na troca de informações entre membros                      |
+| Microsoft Teams       | Reuniões remotas e videoconferências            | Suporte a videoconferência e compartilhamento de tela em tempo real  |
