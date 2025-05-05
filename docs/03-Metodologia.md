@@ -86,6 +86,20 @@ _Atualizado em: 21/04/2025_
 | João Vitor Vitalino da Silva Roveda   | Template (Parte 3.3)                        | 05/04/2025  | 10/04/2025  | ✔️     | 09/04/2025   |
 | João Vitor Vitalino da Silva Roveda   | Referências                                 | 05/04/2025  | 10/04/2025  | 📝     | 09/04/2025   |
 
+#### Sprint 3
+
+_Atualizado em: 05/05/2025_
+
+| Responsável            | Tarefa/Requisito                                 | Iniciado em | Prazo       | Status | Terminado em |
+| :--------------------- | :----------------------------------------------- | :---------: | :---------: | :----: | :----------: |
+| Arthur Lima Camargos   |                                       | 08/03/2025  | 13/03/2025  | ✔️     | 09/03/2025   |
+| Caio Martins           |                          | 08/03/2025  | 10/03/2025  | ✔️     | 09/03/2025   |
+| Daniel de Queiroz      |                             | 10/03/2025  | 13/03/2025  | ✔️     | /03/2025   |
+| Daniel Heringer        | Diagrama Peter Chen | 21/04/2025  | 08/05/2025  | ✔️     | 01/05/2025 |
+| João Vitor Roveda      |                                       | 07/03/2025  | 10/03/2025  | ✔️     | 09/03/2025   |
+| Vitor Mendonça Braga   |                   | 08/03/2025  | 10/03/2025  | ✔️     | 09/03/2025   |
+
+
 Legenda:  
 ✔️: terminado 
 📝: em execução 
