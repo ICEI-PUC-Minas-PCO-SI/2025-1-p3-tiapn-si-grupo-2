@@ -71,7 +71,7 @@ _Atualizado em: 12/03/2025_
 | Arthur Lima Camargos   | Introdução                                       | 08/03/2025  | 13/03/2025  | ✔️     | 09/03/2025   |
 | Caio Martins           | Especificação do projeto                         | 08/03/2025  | 10/03/2025  | ✔️     | 09/03/2025   |
 | Daniel de Queiroz      | Template do relatório                            | 10/03/2025  | 13/03/2025  | ✔️     | 13/03/2025   |
-| Daniel Heringer        | Slide de apresentação                            | 10/03/2025  | 12/03/2025  | ✔️     | 10/03/2025   |
+| Daniel Heringer Verner Silva        | Slide de apresentação                            | 10/03/2025  | 12/03/2025  | ✔️     | 10/03/2025   |
 | João Vitor Roveda      | Objetivos                                        | 07/03/2025  | 10/03/2025  | ✔️     | 09/03/2025   |
 | Vitor Mendonça Braga   | Personas e histórias de usuários                  | 08/03/2025  | 10/03/2025  | ✔️     | 09/03/2025   |
 
@@ -101,7 +101,7 @@ _Atualizado em: 05/05/2025_
 | Arthur Lima Camargos   |                                       | 08/03/2025  | 13/03/2025  | 📝     | 09/03/2025   |
 | Caio Martins           |                          | 08/03/2025  | 10/03/2025  | 📝     | 09/03/2025   |
 | Daniel de Queiroz      |                             | 10/03/2025  | 13/03/2025  | 📝    | /03/2025   |
-| Daniel Heringer        | Diagrama Peter Chen | 21/04/2025  | 08/05/2025  | ✔️     | 01/05/2025 |
+| Daniel Heringer Verner Silva        | Diagrama Peter Chen | 21/04/2025  | 08/05/2025  | ✔️     | 01/05/2025 |
 | João Vitor Roveda      |                                       | 07/03/2025  | 10/03/2025  | 📝     | 09/03/2025   |
 | Vitor Mendonça Braga   |                   | 08/03/2025  | 10/03/2025  | 📝     | 09/03/2025   |
 
