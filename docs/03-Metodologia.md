@@ -52,7 +52,13 @@ Essa configuração de branches foi estabelecida em concordância com os membros
 - Diagrama TO‑BE: Daniel Heringer Verner Silva  
 - Metodologia: Arthur Lima Camargos  
 - Template (Parte 3.3): João Vitor Vitalino da Silva Roveda  
-- Referências: João Vitor Vitalino da Silva Roveda  
+- Referências: João Vitor Vitalino da Silva Roveda
+
+#### Sprint 3
+
+- _Scrum Master_: Daniel de Queiroz Fernandes
+- Diagrama Peter Chen: Daniel Heringer Verner Silva
+- Diagrama Relacional (Pé de Galinha): Daniel de Queiroz Fernandes e Daniel Heringer Verner Silva
 
 ### Quadro de tarefas
 
