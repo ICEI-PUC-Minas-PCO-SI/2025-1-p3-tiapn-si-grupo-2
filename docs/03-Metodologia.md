@@ -90,7 +90,7 @@ _Atualizado em: 21/04/2025_
 | Daniel Heringer Verner Silva          | Diagrama TO‑BE                              | 02/04/2025  | 10/04/2025  | ✔️     | 09/04/2025   |
 | Arthur Lima Camargos                  | Metodologia                                 | 05/04/2025  | 10/04/2025  | ✔️     | 09/04/2025   |
 | João Vitor Vitalino da Silva Roveda   | Template (Parte 3.3)                        | 05/04/2025  | 10/04/2025  | ✔️     | 09/04/2025   |
-| João Vitor Vitalino da Silva Roveda   | Referências                                 | 05/04/2025  | 10/04/2025  | 📝     | 09/04/2025   |
+| João Vitor Vitalino da Silva Roveda   | Referências                                 | 05/04/2025  | 10/04/2025  | ✔️     | 09/04/2025   |
 
 #### Sprint 3
 
