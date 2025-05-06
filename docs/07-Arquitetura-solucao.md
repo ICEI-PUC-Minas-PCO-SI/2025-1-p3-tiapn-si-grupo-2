@@ -15,29 +15,29 @@ A representação da arquitetura é representada pela imagem abaixo:
 
 ## Diagrama de classes
 
-- 1. Cliente
-   A classe Cliente representa os dados cadastrais dos clientes que possuem equipamentos registrados no sistema.
-   Atributos principais: idCliente: Identificador único do cliente, Nome, CPF_CNPJ, EmailContato, TelefoneContato, Logradouro, CEP, Cidade, Bairro, Numero, UF.
+- Cliente
+   - A classe Cliente representa os dados cadastrais dos clientes que possuem equipamentos registrados no sistema.
+   - Atributos principais: idCliente: Identificador único do cliente, Nome, CPF_CNPJ, EmailContato, TelefoneContato, Logradouro, CEP, Cidade, Bairro, Numero, UF.
 
-- 2. Equipamento
-   A classe Equipamento representa os dispositivos ou máquinas dos clientes que serão objeto das ordens de serviço.
-   Atributos principais:idEquipamento, Nome, Descricao, Status, Cliente_idCliente.
+- Equipamento
+   - A classe Equipamento representa os dispositivos ou máquinas dos clientes que serão objeto das ordens de serviço.
+   - Atributos principais:idEquipamento, Nome, Descricao, Status, Cliente_idCliente.
 
-- 3. OrdemServico
-   A classe OrdemServico registra as ordens de serviço emitidas para os equipamentos.
-   Atributos principais: idOrdemServico, Equipamento_idEquipamento, Servico_idServico.
+- OrdemServico
+   - A classe OrdemServico registra as ordens de serviço emitidas para os equipamentos.
+   - Atributos principais: idOrdemServico, Equipamento_idEquipamento, Servico_idServico.
 
-- 4. Servico
-   A classe Servico representa os tipos de serviços oferecidos pela empresa.
-   Atributos principais: idServico, TipoServico, DataInicio, DataFim, Status, Setor.
+- Servico
+   - A classe Servico representa os tipos de serviços oferecidos pela empresa.
+   - Atributos principais: idServico, TipoServico, DataInicio, DataFim, Status, Setor.
 
-- 5. Funcionario
-   A classe Funcionario armazena os dados dos usuários responsáveis pelos serviços.
-   Atributos principais: idUsuario, Nome, Senha, TipoUsuario.
+- Funcionario
+   - A classe Funcionario armazena os dados dos usuários responsáveis pelos serviços.
+   - Atributos principais: idUsuario, Nome, Senha, TipoUsuario.
 
-- 6. ServicosFuncionario
-   Classe intermediária (tabela de associação) que estabelece uma relação N:N.
-   Atributos principais: idServicosFuncionario, Funcionario_idUsuario, Servico_idServico.
+-  ServicosFuncionario
+   - Classe intermediária (tabela de associação) que estabelece uma relação N:N.
+   - Atributos principais: idServicosFuncionario, Funcionario_idUsuario, Servico_idServico.
 
 Relacionamentos entre classes:
  - Um cliente possui vários equipamentos.
