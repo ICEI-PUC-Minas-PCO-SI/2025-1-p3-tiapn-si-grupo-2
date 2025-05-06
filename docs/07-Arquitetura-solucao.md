@@ -59,7 +59,7 @@ Apresente o modelo de dados por meio de um modelo relacional que contemple todos
 
 O Modelo ER representa, por meio de um diagrama, como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.
 
-> - [Diagrama de Peter Chen ](images/FixWise-PeterChen.png)
+![Diagrama de Peter Chen ](images/FixWise-PeterChen.png)
 
 ### Modelo físico
 
