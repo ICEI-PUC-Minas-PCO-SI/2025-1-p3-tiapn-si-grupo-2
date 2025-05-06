@@ -49,9 +49,9 @@ Tela de home
 ![Wireframe completo](images/Home.png)
 
 
-###  Telas do processo 1
+###  Telas de login
 
-Descrição da tela relativa à atividade 1 do processo 1.
+Tela de login (anterior ao home)
 
 > Insira aqui a tela da atividade 1
 
