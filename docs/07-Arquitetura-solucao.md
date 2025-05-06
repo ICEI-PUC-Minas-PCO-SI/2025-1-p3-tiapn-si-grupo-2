@@ -15,39 +15,35 @@ A representação da arquitetura é representada pela imagem abaixo:
 
 ## Diagrama de classes
 
-1. Cliente
+- 1. Cliente
    A classe Cliente representa os dados cadastrais dos clientes que possuem equipamentos registrados no sistema.
    Atributos principais: idCliente: Identificador único do cliente, Nome, CPF_CNPJ, EmailContato, TelefoneContato, Logradouro, CEP, Cidade, Bairro, Numero, UF.
 
-2. Equipamento
+- 2. Equipamento
    A classe Equipamento representa os dispositivos ou máquinas dos clientes que serão objeto das ordens de serviço.
    Atributos principais:idEquipamento, Nome, Descricao, Status, Cliente_idCliente.
 
-3. OrdemServico
+- 3. OrdemServico
    A classe OrdemServico registra as ordens de serviço emitidas para os equipamentos.
    Atributos principais: idOrdemServico, Equipamento_idEquipamento, Servico_idServico.
 
-4. Servico
+- 4. Servico
    A classe Servico representa os tipos de serviços oferecidos pela empresa.
    Atributos principais: idServico, TipoServico, DataInicio, DataFim, Status, Setor.
 
-5. Funcionario
+- 5. Funcionario
    A classe Funcionario armazena os dados dos usuários responsáveis pelos serviços.
    Atributos principais: idUsuario, Nome, Senha, TipoUsuario.
 
-6. ServicosFuncionario
+- 6. ServicosFuncionario
    Classe intermediária (tabela de associação) que estabelece uma relação N:N.
    Atributos principais: idServicosFuncionario, Funcionario_idUsuario, Servico_idServico.
 
 Relacionamentos entre classes:
-
-Um cliente possui vários equipamentos.
-
-Um equipamento pode ter várias ordens de serviço.
-
-Uma ordem de serviço está ligada a um serviço específico.
-
-Um serviço pode ser executado por vários funcionários, e um funcionário pode participar de vários serviços (relação N:N através da classe ServicosFuncionario).
+ - Um cliente possui vários equipamentos.
+ - Um equipamento pode ter várias ordens de serviço.
+ - Uma ordem de serviço está ligada a um serviço específico.
+ - Um serviço pode ser executado por vários funcionários, e um funcionário pode participar de vários serviços (relação N:N através da classe ServicosFuncionario).
 
 ![Diagrama de Classes](images/diagramaDeClasses.jpg)
 
@@ -55,7 +51,7 @@ Um serviço pode ser executado por vários funcionários, e um funcionário pode
 
 O desenvolvimento da solução proposta requer a existência de bases de dados que permitam realizar o cadastro de dados e os controles associados aos processos identificados, assim como suas recuperações.
 
-Utilizando a notação do DER (Diagrama Entidade-Relacionamento), elabore um modelo, usando alguma ferramenta, que contemple todas as entidades e atributos associados às atividades dos processos identificados. Deve ser gerado um único DER que suporte todos os processos escolhidos, visando, assim, uma base de dados integrada. O modelo deve contemplar também o controle de acesso dos usuários (partes interessadas nos processos) de acordo com os papéis definidos nos modelos do processo de negócio.
+Utilizando a notação do DER (Diagrama Entidade-Relacionamento), elaboramos um modelo ER utilizando a ferramenta "MIRO", contemplando todas as entidades e atributos associados às atividades dos processos identificados. 
 
 Apresente o modelo de dados por meio de um modelo relacional que contemple todos os conceitos e atributos apresentados na modelagem dos processos.
 
@@ -63,13 +59,7 @@ Apresente o modelo de dados por meio de um modelo relacional que contemple todos
 
 O Modelo ER representa, por meio de um diagrama, como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.
 
-> **Links úteis**:
->
-> - [Como fazer um diagrama entidade relacionamento](images/FixWise-PeterChen.png)
-
-> **Links úteis**:
->
-> - [Criando um modelo relacional - documentação da IBM](https://www.ibm.com/docs/pt-br/cognos-analytics/12.0.0?topic=designer-creating-relational-model)
+> - [Diagrama de Peter Chen ](images/FixWise-PeterChen.png)
 
 ### Modelo físico
 
@@ -219,3 +209,11 @@ Apresente também uma figura explicando como as tecnologias estão relacionadas 
 A hospedagem na prática será rodando um servidor local, porém, para apresentação do produto, iremos utilizar algum serviço em núvem como AWS ou Azure para hospedar a aplicação e seu banco de dados.
 
 ## Qualidade de software
+
+Para garantir a qualidade da solução, serão implementadas as seguintes práticas:
+
+ - Testes Unitários: Testes automatizados para verificar o correto funcionamento de cada componente individualmente.
+ - Testes de Integração: Testes para verificar a interação entre os diferentes componentes do sistema.
+ - Revisão de Código: Inspeção do código por pares para identificar e corrigir possíveis erros e garantir a qualidade do código.
+ - Análise Estática de Código: Utilização de ferramentas para identificar problemas de qualidade no código, como erros de sintaxe, vulnerabilidades de segurança e problemas de desempenho.
+ - Documentação: Manutenção de documentação atualizada do sistema, incluindo a arquitetura, o modelo de dados e o código fonte.
