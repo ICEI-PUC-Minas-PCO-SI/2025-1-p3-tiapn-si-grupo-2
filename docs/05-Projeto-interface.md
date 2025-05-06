@@ -33,28 +33,20 @@ O diagrama de fluxo pode ser desenvolvido com “boxes” que possuem, intername
 ## Wireframes
 
 
-![Exemplo de wireframe](images/Wireframe_completo.png)
+![Wireframe completo](images/Wireframe_completo.png)
  
-> **Links úteis**:
-> - [Protótipos: baixa, média ou alta fidelidade?](https://medium.com/ladies-that-ux-br/prot%C3%B3tipos-baixa-m%C3%A9dia-ou-alta-fidelidade-71d897559135)
-> - [Protótipos vs wireframes](https://www.nngroup.com/videos/prototypes-vs-wireframes-ux-projects/)
-> - [Ferramentas de wireframes](https://rockcontent.com/blog/wireframes/)
-> - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
-> - [Figma](https://www.figma.com/)
-> - [Adobe XD](https://www.adobe.com/br/products/xd.html#scroll)
-> - [Axure](https://www.axure.com/edu) (Licença Educacional)
-> - [InvisionApp](https://www.invisionapp.com/) (Licença Educacional)
+
 
 
 ## Interface do sistema
 
-Visão geral da interação do usuário por meio das telas do sistema. Apresente as principais interfaces da plataforma em sua versão final.
+![Wireframe completo](images/Wireframe_completo.png)
 
 ### Tela principal do sistema
 
-Descrição da tela principal do sistema.
+Tela de home
 
-> Insira aqui a tela principal do sistema
+![Wireframe completo](images/Home.png)
 
 
 ###  Telas do processo 1
