@@ -2,19 +2,56 @@
 
 <span style="color:red">Pré-requisitos: <a href="05-Projeto-interface.md"> Projeto de interface</a></span>
 
-Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
+A arquitetura que utilizaremos para manter nossa aplicação é simples, porém, irá ser segura e confiável. Em termos simples, nossa arquitetura é constituída da seguinte maneira:
 
-![Arquitetura da Solução](images/arquitetura.png)
+- Frontend: Desenvolvido em React JS, acessado por clientes através de navegadores web.
+- Backend: Uma API desenvolvida em ASP.Net Core, rodando localmente em um servidor na empresa parceira.
+- Banco de Dados: Local, utilizando MySQL, com suporte para backup.
+- Fluxo de Comunicação: Os clientes (computadores e dispositivos móveis) se conectam ao servidor via rede local.
+
+A representação da arquitetura é representada pela imagem abaixo:
+
+![Arquitetura da Solução](images/Arquitetura-FixWise.png)
 
 ## Diagrama de classes
 
-O diagrama de classes ilustra graficamente a estrutura do software e como cada uma das classes estará interligada. Essas classes servem de modelo para materializar os objetos que serão executados na memória.
+1. Cliente
+   A classe Cliente representa os dados cadastrais dos clientes que possuem equipamentos registrados no sistema.
+   Atributos principais: idCliente: Identificador único do cliente, Nome, CPF_CNPJ, EmailContato, TelefoneContato, Logradouro, CEP, Cidade, Bairro, Numero, UF.
 
-> **Links úteis**:
-> - [Diagramas de classes - documentação da IBM](https://www.ibm.com/docs/pt-br/rational-soft-arch/9.7.0?topic=diagrams-class)
-> - [O que é um diagrama de classe UML?](https://www.lucidchart.com/pages/pt/o-que-e-diagrama-de-classe-uml)
+2. Equipamento
+   A classe Equipamento representa os dispositivos ou máquinas dos clientes que serão objeto das ordens de serviço.
+   Atributos principais:idEquipamento, Nome, Descricao, Status, Cliente_idCliente.
 
-##  Modelo de dados
+3. OrdemServico
+   A classe OrdemServico registra as ordens de serviço emitidas para os equipamentos.
+   Atributos principais: idOrdemServico, Equipamento_idEquipamento, Servico_idServico.
+
+4. Servico
+   A classe Servico representa os tipos de serviços oferecidos pela empresa.
+   Atributos principais: idServico, TipoServico, DataInicio, DataFim, Status, Setor.
+
+5. Funcionario
+   A classe Funcionario armazena os dados dos usuários responsáveis pelos serviços.
+   Atributos principais: idUsuario, Nome, Senha, TipoUsuario.
+
+6. ServicosFuncionario
+   Classe intermediária (tabela de associação) que estabelece uma relação N:N.
+   Atributos principais: idServicosFuncionario, Funcionario_idUsuario, Servico_idServico.
+
+Relacionamentos entre classes:
+
+Um cliente possui vários equipamentos.
+
+Um equipamento pode ter várias ordens de serviço.
+
+Uma ordem de serviço está ligada a um serviço específico.
+
+Um serviço pode ser executado por vários funcionários, e um funcionário pode participar de vários serviços (relação N:N através da classe ServicosFuncionario).
+
+![Diagrama de Classes](images/diagramaDeClasses.jpg)
+
+## Modelo de dados
 
 O desenvolvimento da solução proposta requer a existência de bases de dados que permitam realizar o cadastro de dados e os controles associados aos processos identificados, assim como suas recuperações.
 
@@ -27,66 +64,142 @@ Apresente o modelo de dados por meio de um modelo relacional que contemple todos
 O Modelo ER representa, por meio de um diagrama, como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.
 
 > **Links úteis**:
-> - [Como fazer um diagrama entidade relacionamento](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
-
-### Esquema relacional
-
-O Esquema Relacional corresponde à representação dos dados em tabelas juntamente com as restrições de integridade e chave primária.
- 
-
-![Exemplo de um modelo relacional](images/modelo_relacional.png "Exemplo de modelo relacional.")
----
+>
+> - [Como fazer um diagrama entidade relacionamento](images/FixWise-PeterChen.png)
 
 > **Links úteis**:
+>
 > - [Criando um modelo relacional - documentação da IBM](https://www.ibm.com/docs/pt-br/cognos-analytics/12.0.0?topic=designer-creating-relational-model)
 
 ### Modelo físico
 
 Insira aqui o script de criação das tabelas do banco de dados.
 
-Veja um exemplo:
+Veja nosso caso:
 
 ```sql
--- Criação da tabela Medico
-CREATE TABLE Medico (
-    MedCodigo INTEGER PRIMARY KEY,
-    MedNome VARCHAR(100)
-);
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
--- Criação da tabela Paciente
-CREATE TABLE Paciente (
-    PacCodigo INTEGER PRIMARY KEY,
-    PacNome VARCHAR(100)
-);
+-- -----------------------------------------------------
+-- Schema fixwise
+-- -----------------------------------------------------
 
--- Criação da tabela Consulta
-CREATE TABLE Consulta (
-    ConCodigo INTEGER PRIMARY KEY,
-    MedCodigo INTEGER,
-    PacCodigo INTEGER,
-    Data DATE,
-    FOREIGN KEY (MedCodigo) REFERENCES Medico(MedCodigo),
-    FOREIGN KEY (PacCodigo) REFERENCES Paciente(PacCodigo)
-);
+-- -----------------------------------------------------
+-- Schema fixwise
+-- -----------------------------------------------------
+CREATE DATABASE IF NOT EXISTS `fixwise` DEFAULT CHARACTER SET utf8 ;
+USE `fixwise` ;
 
--- Criação da tabela Medicamento
-CREATE TABLE Medicamento (
-    MdcCodigo INTEGER PRIMARY KEY,
-    MdcNome VARCHAR(100)
-);
+-- -----------------------------------------------------
+-- Table `fixwise`.`Cliente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fixwise`.`Cliente` (
+  `idCliente` INT NOT NULL,
+  `Nome` VARCHAR(45) NOT NULL,
+  `CPF_CNPJ` VARCHAR(14) NOT NULL,
+  `EmailContato` VARCHAR(45) NULL,
+  `TelefoneContato` VARCHAR(15) NULL,
+  `Logradouro` VARCHAR(45) NULL,
+  `CEP` VARCHAR(9) NULL,
+  `Cidade` VARCHAR(45) NULL,
+  `Bairro` VARCHAR(45) NULL,
+  `Numero` INT NULL,
+  `UF` VARCHAR(2) NULL,
+  PRIMARY KEY (`idCliente`))
+ENGINE = InnoDB;
 
--- Criação da tabela Prescricao
-CREATE TABLE Prescricao (
-    ConCodigo INTEGER,
-    MdcCodigo INTEGER,
-    Posologia VARCHAR(200),
-    PRIMARY KEY (ConCodigo, MdcCodigo),
-    FOREIGN KEY (ConCodigo) REFERENCES Consulta(ConCodigo),
-    FOREIGN KEY (MdcCodigo) REFERENCES Medicamento(MdcCodigo)
-);
+-- -----------------------------------------------------
+-- Table `fixwise`.`Equipamento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fixwise`.`Equipamento` (
+  `idEquipamento` INT NOT NULL,
+  `Nome` VARCHAR(45) NULL,
+  `Descricao` VARCHAR(45) NULL,
+  `Status` VARCHAR(10) NULL,
+  `Cliente_idCliente` INT NOT NULL,
+  PRIMARY KEY (`idEquipamento`),
+  INDEX `fk_Equipamento_Cliente_idx` (`Cliente_idCliente` ASC) VISIBLE,
+  CONSTRAINT `fk_Equipamento_Cliente`
+    FOREIGN KEY (`Cliente_idCliente`)
+    REFERENCES `fixwise`.`Cliente` (`idCliente`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `fixwise`.`Funcionario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fixwise`.`Funcionario` (
+  `idUsuario` INT NOT NULL,
+  `Nome` VARCHAR(45) NULL,
+  `Senha` VARCHAR(45) NULL,
+  `TipoUsuario` INT NULL,
+  PRIMARY KEY (`idUsuario`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `fixwise`.`Servico`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fixwise`.`Servico` (
+  `idServico` INT NOT NULL,
+  `TipoServico` VARCHAR(45) NULL,
+  `DataInicio` DATE NULL,
+  `DataFim` DATE NULL,
+  `Status` VARCHAR(45) NULL,
+  `Setor` VARCHAR(45) NULL,
+  PRIMARY KEY (`idServico`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `fixwise`.`OrdemServico`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fixwise`.`OrdemServico` (
+  `idOrdemServico` INT NOT NULL,
+  `Equipamento_idEquipamento` INT NOT NULL,
+  `Servico_idServico` INT NOT NULL,
+  PRIMARY KEY (`idOrdemServico`),
+  INDEX `fk_OrdemServico_Equipamento1_idx` (`Equipamento_idEquipamento` ASC) VISIBLE,
+  INDEX `fk_OrdemServico_Servico1_idx` (`Servico_idServico` ASC) VISIBLE,
+  CONSTRAINT `fk_OrdemServico_Equipamento1`
+    FOREIGN KEY (`Equipamento_idEquipamento`)
+    REFERENCES `fixwise`.`Equipamento` (`idEquipamento`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_OrdemServico_Servico1`
+    FOREIGN KEY (`Servico_idServico`)
+    REFERENCES `fixwise`.`Servico` (`idServico`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `fixwise`.`ServicosFuncionario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fixwise`.`ServicosFuncionario` (
+  `idServicosFuncionario` INT NOT NULL,
+  `Funcionario_idUsuario` INT NOT NULL,
+  `Servico_idServico` INT NOT NULL,
+  PRIMARY KEY (`idServicosFuncionario`),
+  INDEX `fk_ServicosFuncionario_Funcionario1_idx` (`Funcionario_idUsuario` ASC) VISIBLE,
+  INDEX `fk_ServicosFuncionario_Servico1_idx` (`Servico_idServico` ASC) VISIBLE,
+  CONSTRAINT `fk_ServicosFuncionario_Funcionario1`
+    FOREIGN KEY (`Funcionario_idUsuario`)
+    REFERENCES `fixwise`.`Funcionario` (`idUsuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ServicosFuncionario_Servico1`
+    FOREIGN KEY (`Servico_idServico`)
+    REFERENCES `fixwise`.`Servico` (`idServico`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 ```
-Esse script deverá ser incluído em um arquivo .sql na pasta [de scripts SQL](../src/db).
-
 
 ## Tecnologias
 
@@ -94,34 +207,15 @@ Descreva qual(is) tecnologias você vai usar para resolver o seu problema, ou se
 
 Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
 
-
-| **Dimensão**   | **Tecnologia**  |
-| ---            | ---             |
-| Front-end      | HTML + CSS + JS + React |
-| Back-end       | Node.js         |
-| SGBD           | MySQL           |
-| Deploy         | Vercel          |
-
+| **Dimensão** | **Tecnologia**          |
+| ------------ | ----------------------- |
+| Front-end    | HTML + CSS + JS + React |
+| Back-end     | .Asp Net Core           |
+| SGBD         | MySQL                   |
+| Deploy       | Localhost               |
 
 ## Hospedagem
 
-Explique como a hospedagem e o lançamento da plataforma foram realizados.
-
-> **Links úteis**:
-> - [Website com GitHub Pages](https://pages.github.com/)
-> - [Programação colaborativa com Repl.it](https://repl.it/)
-> - [Getting started with Heroku](https://devcenter.heroku.com/start)
-> - [Publicando seu site no Heroku](http://pythonclub.com.br/publicando-seu-hello-world-no-heroku.html)
+A hospedagem na prática será rodando um servidor local, porém, para apresentação do produto, iremos utilizar algum serviço em núvem como AWS ou Azure para hospedar a aplicação e seu banco de dados.
 
 ## Qualidade de software
-
-Conceituar qualidade é uma tarefa complexa, mas ela pode ser vista como um método gerencial que, por meio de procedimentos disseminados por toda a organização, busca garantir um produto final que satisfaça às expectativas dos stakeholders.
-
-No contexto do desenvolvimento de software, qualidade pode ser entendida como um conjunto de características a serem atendidas, de modo que o produto de software atenda às necessidades de seus usuários. Entretanto, esse nível de satisfação nem sempre é alcançado de forma espontânea, devendo ser continuamente construído. Assim, a qualidade do produto depende fortemente do seu respectivo processo de desenvolvimento.
-
-A norma internacional ISO/IEC 25010, que é uma atualização da ISO/IEC 9126, define oito características e 30 subcaracterísticas de qualidade para produtos de software. Com base nessas características e nas respectivas subcaracterísticas, identifique as subcaracterísticas que sua equipe utilizará como base para nortear o desenvolvimento do projeto de software, considerando alguns aspectos simples de qualidade. Justifique as subcaracterísticas escolhidas pelo time e elenque as métricas que permitirão à equipe avaliar os objetos de interesse.
-
-> **Links úteis**:
-> - [ISO/IEC 25010:2011 - Systems and Software Engineering — Systems and Software Quality Requirements and Evaluation (SQuaRE) — System and Software Quality Models](https://www.iso.org/standard/35733.html/)
-> - [Análise sobre a ISO 9126 – NBR 13596](https://www.tiespecialistas.com.br/analise-sobre-iso-9126-nbr-13596/)
-> - [Qualidade de software - Engenharia de Software](https://www.devmedia.com.br/qualidade-de-software-engenharia-de-software-29/18209)
