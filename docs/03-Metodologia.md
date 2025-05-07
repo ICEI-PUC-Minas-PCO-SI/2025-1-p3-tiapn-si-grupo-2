@@ -59,6 +59,7 @@ Essa configuração de branches foi estabelecida em concordância com os membros
 - _Scrum Master_: Daniel de Queiroz Fernandes
 - Diagrama Peter Chen: Daniel Heringer Verner Silva
 - Diagrama Relacional (Pé de Galinha): Daniel de Queiroz Fernandes e Daniel Heringer Verner Silva
+- Template: Daniel Heringer Verner Silva, Daniel de Queiroz Fernandes e João Vitor Vitalino da Silva Roveda
 
 ### Quadro de tarefas
 
@@ -101,7 +102,7 @@ _Atualizado em: 05/05/2025_
 | Arthur Lima Camargos   |                                       | 08/03/2025  | 13/03/2025  | 📝     | 09/03/2025   |
 | Caio Martins           |                          | 08/03/2025  | 10/03/2025  | 📝     | 09/03/2025   |
 | Daniel de Queiroz      |                             | 10/03/2025  | 13/03/2025  | 📝    | /03/2025   |
-| Daniel Heringer Verner Silva        | Diagrama Peter Chen | 21/04/2025  | 08/05/2025  | ✔️     | 01/05/2025 |
+| Daniel Heringer Verner Silva        | Diagrama Peter Chen; Relatório-Template; | 21/04/2025  | 08/05/2025  | ✔️     | 01/05/2025 |
 | João Vitor Roveda      |                                       | 07/03/2025  | 10/03/2025  | 📝     | 09/03/2025   |
 | Vitor Mendonça Braga   | Jornada do usuário e diagrama de fluxo                 | 04/05/2025  | 8/05/2025  | ✔️     | 07/05/2025   |
 
