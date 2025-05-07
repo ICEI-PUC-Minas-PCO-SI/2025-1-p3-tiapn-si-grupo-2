@@ -65,7 +65,7 @@ Ativos internos
 ![Wireframe completo](images/AtivosInternos.png)
 
 
-Ativos internos
+Ativos Externos
 
 ![Wireframe completo](images/AtivosExternos.png)
 
