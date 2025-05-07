@@ -46,67 +46,66 @@ O diagrama de fluxo pode ser desenvolvido com “boxes” que possuem, intername
 
 ###  Telas de login
 
-Tela de login (anterior ao home)
 
-![Wireframe completo](images/Login.png)
+
+![Tela de login](images/Login.png)
 
 
 ### Tela Home
 
-Tela de home
 
-![Wireframe completo](images/Home.png)
+
+![Tela de home](images/Home.png)
 
 
 ### Tela de ativos 
 
-Ativos internos
-
-![Wireframe completo](images/AtivosInternos.png)
 
 
-Ativos Externos
-
-![Wireframe completo](images/AtivosExternos.png)
+![Ativos internos](images/AtivosInternos.png)
 
 
-## Tela ao selecionar o ativo
 
-Informações do ativo
-
-![Wireframe completo](images/InfoAtivo.png)
+![Ativos Externos](images/AtivosExternos.png)
 
 
-Informações de manutenção
+*Tela ao selecionar o ativo*
 
-![Wireframe completo](images/InfoManutencao.png)
+
+
+![Informações do ativo](images/InfoAtivo.png)
+
+
+
+
+![Informações de manutenção](images/InfoManutencao.png)
 
 
 ### Telas de cadastros
 
-## Tela cadastro de produtos
-
-Cadastro de produtos
-
-![Wireframe completo](images/CadastroProd.png)
+*Tela cadastro de produtos*
 
 
-## Tela cadastro de clientes
 
-Cadastro de cliente
-
-![Wireframe completo](images/CadastroCliente.png)
+![Cadastro de produtos](images/CadastroProd.png)
 
 
-## Tela cadastro de acessos
-
-Cadastro de acessos (somente administrador)
-
-![Wireframe completo](images/CadastroAcesso.png)
+*Tela cadastro de clientes*
 
 
-## Tela cadastro de manutenção
 
-Cadastro de manutenção
+![Cadastro de cliente](images/CadastroCliente.png)
 
-![Wireframe completo](images/CadastroManutencao.png)
+
+*Tela cadastro de acessos*
+
+
+
+![Cadastro de acessos (somente administrador)](images/CadastroAcesso.png)
+
+
+*Tela cadastro de manutenção*
+
+
+
+![Cadastro de manutenção](images/CadastroManutencao.png)
