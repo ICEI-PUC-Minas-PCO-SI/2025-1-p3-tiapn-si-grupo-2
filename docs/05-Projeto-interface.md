@@ -42,30 +42,71 @@ O diagrama de fluxo pode ser desenvolvido com “boxes” que possuem, intername
 
 ![Wireframe completo](images/Wireframe_completo.png)
 
-### Tela principal do sistema
-
-Tela de home
-
-![Wireframe completo](images/Home.png)
 
 
 ###  Telas de login
 
 Tela de login (anterior ao home)
 
-> Insira aqui a tela da atividade 1
-
-Descrição da tela relativa à atividade 2 do processo 1.
-
-> Insira aqui a tela da atividade 2
+![Wireframe completo](images/Login.png)
 
 
-### Telas do processo 2
+### Tela Home
 
-Descrição da tela relativa à atividade 1 do processo 2.
+Tela de home
 
-> Insira aqui a tela da atividade 1
+![Wireframe completo](images/Home.png)
 
-Descrição da tela relativa à atividade 2 do processo 2.
 
-> Insira aqui a tela da atividade 2
+### Tela de ativos 
+
+Ativos internos
+
+![Wireframe completo](images/AtivosInternos.png)
+
+
+Ativos internos
+
+![Wireframe completo](images/AtivosExternos.png)
+
+
+## Tela ao selecionar o ativo
+
+Informações do ativo
+
+![Wireframe completo](images/InfoAtivo.png)
+
+
+Informações de manutenção
+
+![Wireframe completo](images/InfoManutencao.png)
+
+
+### Telas de cadastros
+
+## Tela cadastro de produtos
+
+Cadastro de produtos
+
+![Wireframe completo](images/CadastroProd.png)
+
+
+## Tela cadastro de clientes
+
+Cadastro de cliente
+
+![Wireframe completo](images/CadastroCliente.png)
+
+
+## Tela cadastro de acessos
+
+Cadastro de acessos (somente administrador)
+
+![Wireframe completo](images/CadastroAcesso.png)
+
+
+## Tela cadastro de manutenção
+
+Cadastro de manutenção
+
+![Wireframe completo](images/CadastroManutencao.png)
