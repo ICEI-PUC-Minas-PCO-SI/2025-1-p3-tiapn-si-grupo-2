@@ -46,37 +46,37 @@ O diagrama de fluxo pode ser desenvolvido com “boxes” que possuem, intername
 
 ###  Telas de login
 
-
+Tela de login
 
 ![Tela de login](images/Login.png)
 
 
 ### Tela Home
 
-
+Tela de home
 
 ![Tela de home](images/Home.png)
 
 
 ### Tela de ativos 
 
-
+Ativos internos
 
 ![Ativos internos](images/AtivosInternos.png)
 
-
+Ativos Externos
 
 ![Ativos Externos](images/AtivosExternos.png)
 
 
 *Tela ao selecionar o ativo*
 
-
+Informações do ativo
 
 ![Informações do ativo](images/InfoAtivo.png)
 
 
-
+Informações de manutenção
 
 ![Informações de manutenção](images/InfoManutencao.png)
 
@@ -85,27 +85,27 @@ O diagrama de fluxo pode ser desenvolvido com “boxes” que possuem, intername
 
 *Tela cadastro de produtos*
 
-
+Cadastro de produtos
 
 ![Cadastro de produtos](images/CadastroProd.png)
 
 
 *Tela cadastro de clientes*
 
-
+Cadastro de cliente
 
 ![Cadastro de cliente](images/CadastroCliente.png)
 
 
 *Tela cadastro de acessos*
 
-
+Cadastro de acessos
 
 ![Cadastro de acessos (somente administrador)](images/CadastroAcesso.png)
 
 
 *Tela cadastro de manutenção*
 
-
+Cadastro de manutenção
 
 ![Cadastro de manutenção](images/CadastroManutencao.png)
