@@ -8,7 +8,7 @@ O objetivo principal do software é registrar e atualizar o status das manutenç
 Com essas funcionalidades, buscamos atender às demandas dos diferentes perfis de usuários. Garantindo uma plataforma com uma interface simples e fácil de usar.
  ## User flow
 
-![Imagem user flow completo](![image](https://github.com/user-attachments/assets/2f4c9bde-0a64-4ac5-aed4-43e56c24321f)
+![Imagem user flow completo](imagens/Userflow.png)
 )
 
 
