@@ -8,14 +8,10 @@ O objetivo principal do software é registrar e atualizar o status das manutenç
 Com essas funcionalidades, buscamos atender às demandas dos diferentes perfis de usuários. Garantindo uma plataforma com uma interface simples e fácil de usar.
  ## User flow
 
-Fluxo de usuário (user flow) é uma técnica que permite ao desenvolvedor mapear todo o fluxo de navegação do usuário na aplicação. Essa técnica serve para alinhar os caminhos e as possíveis ações que o usuário pode realizar junto com os membros da equipe.
+![Imagem user flow completo](![image](https://github.com/user-attachments/assets/2f4c9bde-0a64-4ac5-aed4-43e56c24321f)
+)
 
-![Exemplo de user flow](images/user_flow.jpg)
 
-> **Links úteis**:
-> - [User flow: o quê é e como fazer?](https://medium.com/7bits/fluxo-de-usu%C3%A1rio-user-flow-o-que-%C3%A9-como-fazer-79d965872534)
-> - [User flow vs site maps](http://designr.com.br/sitemap-e-user-flow-quais-as-diferencas-e-quando-usar-cada-um/)
-> - [Top 25 user flow tools & templates for smooth](https://www.mockplus.com/blog/post/user-flow-tools)
 
 ### Diagrama de fluxo
 
