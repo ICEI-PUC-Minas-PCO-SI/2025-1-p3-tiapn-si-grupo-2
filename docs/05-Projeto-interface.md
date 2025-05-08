@@ -35,59 +35,59 @@ Fluxo de usuário (user flow) é uma técnica que permite ao desenvolvedor mapea
 
 
 
-###  Telas de login
+##  Telas de login
 
-Tela de login
+###Tela de login
 
 ![Tela de login](images/Login.png)
 - Usuário faz login.
 
 
-### Tela Home
+## Tela Home
 
-Tela de home
+###Tela de home
 
 ![Tela de home](images/Home.png)
 - Usuário seleciona qual atividade ele irá realizar.
 
 
-### Tela de ativos 
+## Tela de ativos 
 
-Ativos internos
+###Ativos internos
 
 ![Ativos internos](images/AtivosInternos.png)
 
 - Usuário visualiza os equipamentos internos em manutenção.
 - Possibilidade de visualizar os status dos equipamentos de maneira rápida e fácil.
 
-Ativos Externos
+###Ativos Externos
 
 ![Ativos Externos](images/AtivosExternos.png)
 
 - Usuário visualiza os equipamentos externos em manutenção.
 - Possibilidade de visualizar os status dos equipamentos de maneira rápida e fácil.
 
-*Tela ao selecionar o ativo*
+##*Tela ao selecionar o ativo*
 
-Informações do ativo
+###Informações do ativo
 
 ![Informações do ativo](images/InfoAtivo.png)
 
 - Usuário visualiza as informações do equipamento selecionado.
 
 
-Informações de manutenção
+###Informações de manutenção
 
 ![Informações de manutenção](images/InfoManutencao.png)
 - Usuário visualiza as manutenções ativas no sistema.
 - Pode verificar as observações da manutenção ao clicar no botão .
 
 
-### Telas de cadastros
+## Telas de cadastros
 
 *Tela cadastro de produtos*
 
-Cadastro de produtos
+###Cadastro de produtos
 
 ![Cadastro de produtos](images/CadastroProd.png)
 - Usuário registra um equipamento.
@@ -96,7 +96,7 @@ Cadastro de produtos
 
 *Tela cadastro de clientes*
 
-Cadastro de cliente
+###Cadastro de cliente
 
 ![Cadastro de cliente](images/CadastroCliente.png)
 - Usuário cadastra o cliente.
@@ -104,7 +104,7 @@ Cadastro de cliente
 
 *Tela cadastro de acessos*
 
-Cadastro de acessos
+###Cadastro de acessos
 
 ![Cadastro de acessos (somente administrador)](images/CadastroAcesso.png)
 - Usuário cria acesso para os demais funcionários da empresa.
@@ -114,7 +114,7 @@ Cadastro de acessos
 
 *Tela cadastro de manutenção*
 
-Cadastro de manutenção
+###Cadastro de manutenção
 
 ![Cadastro de manutenção](images/CadastroManutencao.png)
 
