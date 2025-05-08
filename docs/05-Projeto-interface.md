@@ -8,7 +8,7 @@ O objetivo principal do software é registrar e atualizar o status das manutenç
 Com essas funcionalidades, buscamos atender às demandas dos diferentes perfis de usuários. Garantindo uma plataforma com uma interface simples e fácil de usar.
  ## User flow
 
-![Imagem user flow completo](imagens/Userflow.png)
+![Imagem user flow completo](images/Userflow.png)
 
 
 
