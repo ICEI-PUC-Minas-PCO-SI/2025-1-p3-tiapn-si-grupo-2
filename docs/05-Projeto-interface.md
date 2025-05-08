@@ -21,7 +21,7 @@ Fluxo de usuário (user flow) é uma técnica que permite ao desenvolvedor mapea
 
 ![Diagrama de fluxo](images/Diagrama_de_fluxo.png)
 
-## Wireframes
+## Wireframes e suas descrições
 
 
 ![Wireframe completo](images/Wireframe_completo.png)
@@ -56,12 +56,14 @@ Tela de home
 Ativos internos
 
 ![Ativos internos](images/AtivosInternos.png)
+
 - Usuário visualiza os equipamentos internos em manutenção.
 - Possibilidade de visualizar os status dos equipamentos de maneira rápida e fácil.
 
 Ativos Externos
 
 ![Ativos Externos](images/AtivosExternos.png)
+
 - Usuário visualiza os equipamentos externos em manutenção.
 - Possibilidade de visualizar os status dos equipamentos de maneira rápida e fácil.
 
@@ -70,6 +72,7 @@ Ativos Externos
 Informações do ativo
 
 ![Informações do ativo](images/InfoAtivo.png)
+
 - Usuário visualiza as informações do equipamento selecionado.
 
 
@@ -114,4 +117,5 @@ Cadastro de acessos
 Cadastro de manutenção
 
 ![Cadastro de manutenção](images/CadastroManutencao.png)
+
 - Usuário cadastra a manutenção que será realizada.
