@@ -69,7 +69,7 @@ Fluxo de usuário (user flow) é uma técnica que permite ao desenvolvedor mapea
 
 ## *Tela ao selecionar o ativo*
 
-###Informações do ativo
+### Informações do ativo
 
 ![Informações do ativo](images/InfoAtivo.png)
 
