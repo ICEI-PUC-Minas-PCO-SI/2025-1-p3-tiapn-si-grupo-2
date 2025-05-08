@@ -1,12 +1,11 @@
 
 # Projeto de interface
 
-<span style="color:red">Pré-requisitos: <a href="02-Especificacao.md"> Especificação do projeto</a></span>
+Nesta aba, vamos apresentar o projeto de interface do nosso sistema, incluindo os wireframes, o diagrama de fluxo e o user flow. Esses elementos visuais foram desenvolvidos com base nas necessidades dos usuários e nos requisitos funcionais e não funcionais previamente levantados, garantindo uma experiência intuitiva, eficiente e centrada no usuário.
 
-Visão geral da interação do usuário pelas telas do sistema e protótipo interativo das telas com as funcionalidades que fazem parte do sistema (wireframes).
+O objetivo principal do software é registrar e atualizar o status das manutenções de forma rápida e organizada, permitindo que técnicos e supervisores acompanhem o andamento das manutenções em tempo real. Além disso, o sistema oferece a possibilidade de consultar rapidamente o status das ordens de serviço e monitorar todas as manutenções de forma centralizada, promovendo mais controle, agilidade e eficiência na gestão dos serviços.
 
- Apresente as principais interfaces da plataforma. Discuta como ela foi elaborada de forma a atender os requisitos funcionais, não funcionais e histórias de usuário abordados na <a href="02-Especificacao.md"> Especificação do projeto</a></span>.
-
+Com essas funcionalidades, buscamos atender às demandas dos diferentes perfis de usuários. Garantindo uma plataforma com uma interface simples e fácil de usar.
  ## User flow
 
 Fluxo de usuário (user flow) é uma técnica que permite ao desenvolvedor mapear todo o fluxo de navegação do usuário na aplicação. Essa técnica serve para alinhar os caminhos e as possíveis ações que o usuário pode realizar junto com os membros da equipe.
