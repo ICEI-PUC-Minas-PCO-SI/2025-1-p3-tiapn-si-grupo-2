@@ -60,6 +60,8 @@ Essa configuração de branches foi estabelecida em concordância com os membros
 - Diagrama Peter Chen: Daniel Heringer Verner Silva
 - Diagrama Relacional (Pé de Galinha): Daniel de Queiroz Fernandes e Daniel Heringer Verner Silva
 - Template: Daniel Heringer Verner Silva, Daniel de Queiroz Fernandes e João Vitor Vitalino da Silva Roveda
+- Jornada do usuário: Vitor Mendonça
+- Diagrama de fluxo: Vitor Mendonça
 
 ### Quadro de tarefas
 
