@@ -100,7 +100,7 @@ _Atualizado em: 05/05/2025_
 | Responsável            | Tarefa/Requisito                                 | Iniciado em | Prazo       | Status | Terminado em |
 | :--------------------- | :----------------------------------------------- | :---------: | :---------: | :----: | :----------: |
 | Arthur Lima Camargos   |                                       | 08/03/2025  | 13/03/2025  | 📝     | 09/03/2025   |
-| Caio Martins           |                          | 08/03/2025  | 10/03/2025  | 📝     | 09/03/2025   |
+| Caio Martins           |  Slides de apresentção                        | 06/05/2025  | 08/05/2025  | 📝     | 07/05/2025   |
 | Daniel de Queiroz      | Diagrama Pé de galinha; Relatório-Template | 21/04/2025  | 08/05/2025  | ✔️    | 01/05/2025   |
 | Daniel Heringer Verner Silva        | Diagrama Peter Chen; Relatório-Template; | 21/04/2025  | 08/05/2025  | ✔️     | 01/05/2025 |
 | João Vitor Roveda      |       Wireframes e userflow                                | 01/05/2025  | 08/05/2025  | ✔️     | 08/05/2025   |
