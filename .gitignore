@@ -1,0 +1,81 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Distribution / build files
+dist/
+build/
+.nuxt/
+.next/
+.parcel-cache/
+.cache/
+out/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+*.env.*
+!*.env.example
+
+# Editor and IDE temp files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+._*
+ehthumbs.db
+Thumbs.db
+
+# OS generated files
+.DS_Store
+*.pth
+
+# Temporary files
+tmp/
+temp/
+tmp.*
+
+# Coverage data
+coverage/
+*.lcov
+
+# Compiled files
+*.pyc
+*.pyo
+*.egg
+*.egg-info
+
+# Packages
+*.swp
+*~
+# Optional npm cache directory
+.npm
+
+# Ignore all files in the uploads directory, except .gitkeep
+uploads/*
+!uploads/.gitkeep
+
+# Specific to your project (adapt as needed)
+# If you have a specific configuration file you don't want to commit:
+# config/my_secret_config.js
+
+# If you have specific data files you don't want to commit:
+# data/sensitive_data.csv
+
+# If you are using docker
+docker-compose.override.yml
