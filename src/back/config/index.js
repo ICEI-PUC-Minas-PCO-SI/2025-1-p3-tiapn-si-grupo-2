@@ -1,5 +1,13 @@
 const { fixwise, db } = require('./server');
 
+fixwise.get('/cliente', (req, res) => {
+  const { nome, cpf_cnpj, email, telefone, logradouro, cep, cidade, bairro, numero, uf } = req.body;
+
+  let sql = 'SELECT' From Cliente WHERE 1 = 1;
+
+
+})
+
 fixwise.post('/cliente', (req, res) => {
 
   if (!req.body || Object.keys(req.body).length === 0) {
