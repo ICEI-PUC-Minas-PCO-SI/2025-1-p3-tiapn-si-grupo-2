@@ -4,7 +4,7 @@ import FormCadastroManutencao from '../FormCadastroManutencao/FormCadastroManute
 
 const CadastroManutencao = () => {
   return (
-    <div className='flex h-screen'>
+    <div className='flex min-h-screen'>
     <Sidebar />
         <div className='p-10 w-full'>
         <h1 className='font-bold text-4xl'>Cadastro Manutenção</h1>

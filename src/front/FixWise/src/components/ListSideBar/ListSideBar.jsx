@@ -12,13 +12,15 @@ import { IoHomeOutline } from "react-icons/io5";
 import { IoIosLogOut } from "react-icons/io";
 
 
-const ListSideBar = () => {
+
+const ListSideBar = (props) => {
   return (
     <>
       <div className="flex flex-col justify-between h-11/12">
         <ul>
-          <ItemSideBar tagItem={LuLayoutDashboard} nameItem="Dashboard" route="/"/>
+          <ItemSideBar isOpen={props.isOpen} tagItem={LuLayoutDashboard} nameItem="Dashboard" route="/"/>
           <ItemSideBarDropdown
+          isOpen={props.isOpen}
             tagItem={FiDatabase}
             nameItem="Cadastros"
             listItemsDropdown={[
@@ -45,6 +47,7 @@ const ListSideBar = () => {
             ]}
           />
           <ItemSideBarDropdown
+          isOpen={props.isOpen}
             tagItem={FiDatabase}
             nameItem="Ativos"
             listItemsDropdown={[
@@ -60,12 +63,14 @@ const ListSideBar = () => {
               },
             ]}
           />
-          <ItemSideBar tagItem={IoPersonOutline} nameItem="Clientes" route="/clientes"/>
+          <ItemSideBar isOpen={props.isOpen} tagItem={IoPersonOutline} nameItem="Clientes" route="/clientes"/>
           <ItemSideBar
+            isOpen={props.isOpen}
             tagItem={GrVmMaintenance}
             nameItem="Manutenções Ativas"
             route="/manutencoes"
           />
+          
         </ul>
         <ItemSideBar tagItem={CiSettings} nameItem="Configurações" route="/configuracoes" />
       </div>

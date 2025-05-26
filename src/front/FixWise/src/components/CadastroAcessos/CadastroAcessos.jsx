@@ -4,7 +4,7 @@ import FormCadastroAcesso from '../FormCadastroAcesso/FormCadastroAcesso'
 
 const CadastroAcessos = () => {
   return (
-    <div className='flex h-screen'>
+    <div className='flex min-h-screen'>
     <Sidebar />
         <div className='p-10 w-full'>
         <h1 className='font-bold text-4xl'>Cadastro Acessos</h1>

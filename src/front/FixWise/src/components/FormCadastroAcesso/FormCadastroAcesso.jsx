@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom'
 const FormCadastroAcesso = () => {
   return (
     <div>
-      <form action="" className="p-4 flex flex-col gap-5">
-        <div className="grid grid-cols-2 gap-5 mt-5  ">
+      <form action="" className="py-4 flex flex-col gap-5">
+        <div className="grid grid-cols-3 gap-5 mt-5  ">
           <InputForm content="CPF" />
           <InputForm content="Nome" />
           <InputForm content="Matrícula" />

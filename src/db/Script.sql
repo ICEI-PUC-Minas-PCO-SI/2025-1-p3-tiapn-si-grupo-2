@@ -21,7 +21,7 @@ USE `fixwise` ;
 -- Table `fixwise`.`Cliente`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `fixwise`.`Cliente` (
-  `idCliente` INT NOT NULL,
+  `idCliente` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(45) NOT NULL,
   `CPF_CNPJ` VARCHAR(14) NOT NULL,
   `EmailContato` VARCHAR(45) NULL,
@@ -40,7 +40,7 @@ ENGINE = InnoDB;
 -- Table `fixwise`.`Equipamento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `fixwise`.`Equipamento` (
-  `idEquipamento` INT NOT NULL,
+  `idEquipamento` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(45) NULL,
   `Descricao` VARCHAR(45) NULL,
   `Status` VARCHAR(10) NULL,
@@ -59,10 +59,10 @@ ENGINE = InnoDB;
 -- Table `fixwise`.`Funcionario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `fixwise`.`Funcionario` (
-  `idUsuario` INT NOT NULL,
-  `Nome` VARCHAR(45) NULL,
-  `Senha` VARCHAR(45) NULL,
-  `TipoUsuario` INT NULL,
+  `idUsuario` INT NOT NULL AUTO_INCREMENT,
+  `Nome` VARCHAR(45) NOT NULL,
+  `Senha` VARCHAR(45) NOT NULL,
+  `TipoUsuario` INT NOT NULL,
   PRIMARY KEY (`idUsuario`))
 ENGINE = InnoDB;
 
@@ -71,7 +71,7 @@ ENGINE = InnoDB;
 -- Table `fixwise`.`Servico`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `fixwise`.`Servico` (
-  `idServico` INT NOT NULL,
+  `idServico` INT NOT NULL AUTO_INCREMENT,
   `TipoServico` VARCHAR(45) NULL,
   `DataInicio` DATE NULL,
   `DataFim` DATE NULL,
@@ -85,7 +85,7 @@ ENGINE = InnoDB;
 -- Table `fixwise`.`OrdemServico`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `fixwise`.`OrdemServico` (
-  `idOrdemServico` INT NOT NULL,
+  `idOrdemServico` INT NOT NULL AUTO_INCREMENT,
   `Equipamento_idEquipamento` INT NOT NULL,
   `Servico_idServico` INT NOT NULL,
   PRIMARY KEY (`idOrdemServico`),
@@ -108,7 +108,7 @@ ENGINE = InnoDB;
 -- Table `fixwise`.`ServicosFuncionario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `fixwise`.`ServicosFuncionario` (
-  `idServicosFuncionario` INT NOT NULL,
+  `idServicosFuncionario` INT NOT NULL AUTO_INCREMENT,
   `Funcionario_idUsuario` INT NOT NULL,
   `Servico_idServico` INT NOT NULL,
   PRIMARY KEY (`idServicosFuncionario`),
