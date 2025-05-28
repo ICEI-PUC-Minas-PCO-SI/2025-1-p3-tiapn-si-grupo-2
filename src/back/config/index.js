@@ -1,5 +1,66 @@
 const { fixwise, db } = require('./server');
 
+fixwise.get('/cliente', (req, res) => {
+  const { cpf_cnpj, nome, email, telefone, cidade, bairro } = req.query;
+
+  let sql = 'SELECT * FROM Cliente WHERE 1=1';
+  const params = [];
+
+  if (cpf_cnpj) {
+    sql += ' AND CPF_CNPJ = ?';
+    params.push(cpf_cnpj);
+  }
+
+  if (nome) {
+        sql += ' AND Nome LIKE ?';
+        params.push(`%${nome}%`);
+    }
+
+  if (email) {
+    sql += ' AND EmailContato LIKE ?';
+    params.push(`%${email}%`);
+  }
+
+  if (telefone) {
+    sql += ' AND TelefoneContato LIKE ?';
+    params.push(`%${telefone}%`);
+  }
+
+  if (cidade) {
+    sql += ' AND Cidade LIKE ?';
+    params.push(`%${cidade}%`);
+  }
+
+  if (bairro) {
+    sql += ' AND Bairro LIKE ?';
+    params.push(`%${bairro}%`);
+  }
+
+  db.query(sql, params, (err, results) => {
+    if (err) {
+      console.error('Erro no banco de dados: ', err);
+      return res. status(500).json({
+        erro: 'Erro interno no servidor',
+        detalhes: err.message
+      });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({
+        erro: 'Nenhum cliente encontrado com os filtros informados'
+      });
+    }
+
+    res.json ({
+      sucesso: true,
+      total: results.length,
+      clientes: results
+    });
+  });
+
+
+});
+
 fixwise.post('/cliente', (req, res) => {
 
   if (!req.body || Object.keys(req.body).length === 0) {
