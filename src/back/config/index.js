@@ -1,7 +1,7 @@
 const { fixwise, db } = require('./server');
 
 fixwise.get('/cliente', (req, res) => {
-<<<<<<< HEAD
+
   const { cpf_cnpj, nome, email, telefone, cidade, bairro } = req.query;
 
   let sql = 'SELECT * FROM Cliente WHERE 1=1';
