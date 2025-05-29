@@ -2,7 +2,7 @@ const { fixwise, db } = require('./server');
 
 fixwise.get('/cliente', (req, res) => {
 
-  const { cpf_cnpj, nome, email, telefone, cidade, bairro } = req.query;
+  const { cpf_cnpj, nome, email, telefone, logradouro, cep, cidade, bairro, numero, uf } = req.query;
 
   let sql = 'SELECT * FROM Cliente WHERE 1=1';
   const params = [];
@@ -13,9 +13,9 @@ fixwise.get('/cliente', (req, res) => {
   }
 
   if (nome) {
-        sql += ' AND Nome LIKE ?';
-        params.push(`%${nome}%`);
-    }
+    sql += ' AND Nome LIKE ?';
+    params.push(`%${nome}%`);
+  }
 
   if (email) {
     sql += ' AND EmailContato LIKE ?';
@@ -25,6 +25,16 @@ fixwise.get('/cliente', (req, res) => {
   if (telefone) {
     sql += ' AND TelefoneContato LIKE ?';
     params.push(`%${telefone}%`);
+  }
+
+  if (logradouro) {
+    sql += ' AND Logradouro LIKE ?';
+    params.push(`%${logradouro}%`);
+  }
+
+  if (cep) {
+    sql += ' AND CEP = ?';
+    params.push(cep);
   }
 
   if (cidade) {
@@ -37,10 +47,21 @@ fixwise.get('/cliente', (req, res) => {
     params.push(`%${bairro}%`);
   }
 
+  if (numero) {
+    sql += ' AND Numero = ?';
+    params.push(numero);
+  }
+
+  if (uf) {
+    sql += ' AND UF = ?';
+    params.push(uf);
+  }
+
+
   db.query(sql, params, (err, results) => {
     if (err) {
       console.error('Erro no banco de dados: ', err);
-      return res. status(500).json({
+      return res.status(500).json({
         erro: 'Erro interno no servidor',
         detalhes: err.message
       });
@@ -52,7 +73,7 @@ fixwise.get('/cliente', (req, res) => {
       });
     }
 
-    res.json ({
+    res.json({
       sucesso: true,
       total: results.length,
       clientes: results
@@ -100,6 +121,10 @@ fixwise.post('/cliente', (req, res) => {
         dados: { nome, email: email || 'Não informado' }
       });
     });
+});
+
+fixwise.put('/cliente', (req, res) => {
+  const { cpf_cnpj, nome, email, telefone, logradouro, cep, cidade, bairro, numero, uf }
 });
 
 fixwise.delete('/cliente/:id', (req, res) => {
