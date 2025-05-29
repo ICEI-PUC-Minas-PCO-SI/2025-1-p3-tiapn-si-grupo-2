@@ -124,7 +124,82 @@ fixwise.post('/cliente', (req, res) => {
 });
 
 fixwise.put('/cliente', (req, res) => {
-  const { cpf_cnpj, nome, email, telefone, logradouro, cep, cidade, bairro, numero, uf }
+  const { cpf_cnpj, nome, email, telefone, logradouro, cep, cidade, bairro, numero, uf } = req.body;
+  if (!cpf_cnpj) {
+    return res.status(400).json({
+      erro: 'O campo cpf_cnpj é obrigatório para localizar o cliente a ser atualizado'
+    });
+  }
+
+  const camposParaAtualizar = [];
+  const valores = [];
+
+  if (nome) {
+    camposParaAtualizar.push('Nome = ?');
+    valores.push(nome);
+  }
+  if (email) {
+    camposParaAtualizar.push('EmailContato = ?');
+    valores.push(email);
+  }
+  if (telefone) {
+    camposParaAtualizar.push('TelefoneContato = ?');
+    valores.push(telefone);
+  }
+  if (logradouro) {
+    camposParaAtualizar.push('Logradouro = ?');
+    valores.push(logradouro);
+  }
+  if (cep) {
+    camposParaAtualizar.push('CEP = ?');
+    valores.push(cep);
+  }
+  if (cidade) {
+    camposParaAtualizar.push('Cidade = ?');
+    valores.push(cidade);
+  }
+  if (bairro) {
+    camposParaAtualizar.push('Bairro = ?');
+    valores.push(bairro);
+  }
+  if (numero) {
+    camposParaAtualizar.push('Numero = ?');
+    valores.push(numero);
+  }
+  if (uf) {
+    camposParaAtualizar.push('UF = ?');
+    valores.push(uf);
+  }
+
+  if (camposParaAtualizar.length === 0) {
+    return res.status(400).json({
+      erro: 'Nenhum campo foi informado para atualização'
+    });
+  }
+
+  const sql = 'UPDATE Cliente SET ${camposParaAtualizar.join(" , ")} WHERE CPF_CNPJ = ?';
+  valores.push(cpf_cnpj);
+
+  db.query(sql, valores, (err, result) => {
+    if (err) {
+      console.error('Erro no banco de dados:', err);
+      return res.status(500).json({
+        erro: 'Erro interno no servidor',
+        detalhes: err.message
+      });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ erro: 'Cliente não encontrado' });
+    }
+
+    res.json({
+      sucesso: true,
+      mensagem: 'Cliente atualizado com sucesso'
+    });
+  });
+
+
 });
 
 fixwise.delete('/cliente/:id', (req, res) => {
