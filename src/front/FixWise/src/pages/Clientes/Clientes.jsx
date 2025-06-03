@@ -1,7 +1,7 @@
 import React from "react";
-import Cliente from "../Cliente/Cliente";
-import TableClientes from "../TableClientes/TableClientes";
-import Sidebar from "../Sidebar/Sidebar";
+import Cliente from "../../components/Cliente/Cliente";
+import TableClientes from "../../components/TableClientes/TableClientes";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 const Clientes = () => {
   return (

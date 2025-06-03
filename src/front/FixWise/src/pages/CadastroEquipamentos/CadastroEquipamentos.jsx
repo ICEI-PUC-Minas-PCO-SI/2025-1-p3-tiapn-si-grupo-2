@@ -1,6 +1,6 @@
 import React from 'react'
-import FormCadastroEquipamentos from '../FormCadastroEquipamentos/FormCadastroEquipamentos'
-import Sidebar from '../Sidebar/Sidebar'
+import FormCadastroEquipamentos from '../../components/FormCadastroEquipamentos/FormCadastroEquipamentos'
+import Sidebar from '../../components/Sidebar/Sidebar'
 
 const CadastroEquipamentos = () => {
   return (

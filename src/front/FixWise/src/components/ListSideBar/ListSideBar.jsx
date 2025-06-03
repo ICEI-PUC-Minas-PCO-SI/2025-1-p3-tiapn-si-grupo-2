@@ -4,7 +4,7 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { FiDatabase } from "react-icons/fi";
 import { IoPersonOutline } from "react-icons/io5";
 import { GrVmMaintenance } from "react-icons/gr";
-import { CiSettings } from "react-icons/ci";
+import { CiLogout } from "react-icons/ci";
 import ItemSideBarDropdown from "../ItemSideBarDropdown/ItemSideBarDropdown";
 import { IoKeyOutline } from "react-icons/io5";
 import { CiBoxes } from "react-icons/ci";
@@ -72,7 +72,7 @@ const ListSideBar = (props) => {
           />
           
         </ul>
-        <ItemSideBar tagItem={CiSettings} nameItem="Configurações" route="/configuracoes" />
+        <ItemSideBar isOpen={props.isOpen} tagItem={CiLogout} nameItem="Sair" route="/login"/>
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 import React from 'react'
-import Sidebar from '../Sidebar/Sidebar'
-import Header from '../Header/Header'
-import MainContent from '../Dashboard/Dashboard'
+import Sidebar from '../../components/Sidebar/Sidebar'
+import Header from '../../components/Header/Header'
+import MainContent from '../../components/Dashboard/Dashboard'
 
 const Home = () => {
   return (

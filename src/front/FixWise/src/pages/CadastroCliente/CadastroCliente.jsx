@@ -1,6 +1,6 @@
 import React from "react";
-import FormCadastroCliente from "../FormCadastroCliente/FormCadastroCliente";
-import Sidebar from "../Sidebar/Sidebar";
+import FormCadastroCliente from "../../components/FormCadastroCliente/FormCadastroCliente";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 const CadastroCliente = () => {
   return (

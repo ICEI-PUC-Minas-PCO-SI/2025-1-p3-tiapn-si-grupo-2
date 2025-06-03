@@ -1,6 +1,6 @@
 import React from 'react'
-import Sidebar from '../Sidebar/Sidebar'
-import FormCadastroManutencao from '../FormCadastroManutencao/FormCadastroManutencao'
+import Sidebar from '../../components/Sidebar/Sidebar'
+import FormCadastroManutencao from '../../components/FormCadastroManutencao/FormCadastroManutencao'
 
 const CadastroManutencao = () => {
   return (
