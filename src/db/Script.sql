@@ -48,13 +48,7 @@ CREATE TABLE IF NOT EXISTS `Equipamento` (
 -- ================================
 -- TABELA: Funcionario
 -- ================================
-CREATE TABLE IF NOT EXISTS `Funcionario` (
-  `idUsuario` INT NOT NULL AUTO_INCREMENT,
-  `Nome` VARCHAR(100) NOT NULL,
-  `Senha` VARCHAR(100) NOT NULL,
-  `TipoUsuario` INT NOT NULL,
-  PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB;
+
 
 -- ================================
 -- TABELA: CadastroAcesso
