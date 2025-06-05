@@ -5,7 +5,7 @@ exports.criarequipamento = (req, res) => {
     return res.status(400).json({ erro: 'Corpo da requisição ausente ou inválido' });
   }
 
-  const {idEquipamento,Nome,Tipo,Marca,SerialNumber,Status,DataEntrada,DataSaida,Descricao,
+  const {Nome,Tipo,Marca,SerialNumber,Status,DataEntrada,DataSaida,Descricao,
   Observacoes,Clienteid} = req.body;
 
   if (!Nome || !Tipo || !Marca || !SerialNumber || !Clienteid) {
