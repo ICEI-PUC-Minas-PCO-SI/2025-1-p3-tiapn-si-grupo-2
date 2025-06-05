@@ -124,7 +124,8 @@ _Atualizado em: 04/06/2025_
 | Arthur Lima Camargos   |  | 28/04/2025  | 08/05/2025  | ✔️     | 08/05/2025   |
 | Caio Martins           |                        | 06/05/2025  | 08/05/2025  | ✔️     | 07/05/2025   |
 | Daniel de Queiroz      | | 21/04/2025  | 08/05/2025  | ✔️    | 01/05/2025   |
-| Daniel Heringer Verner Silva        | Banco de Dados e FuncionarioController.js/funcionarioRoutes.js (BackEnd) | 04/06/2025  | 05/06/2025  | ✔️     | 04/06/2025 |
+| Daniel Heringer Verner Silva        | Banco de Dados | 31/05/2025  | 05/06/2025  | ✔️     | 31/05/2025 |
+| Daniel Heringer Verner Silva        | FuncionarioController.js/funcionarioRoutes.js (BackEnd) | 04/06/2025  | 05/06/2025  | ✔️     | 04/06/2025 |
 | João Vitor Roveda      |                                   | 01/05/2025  | 08/05/2025  | ✔️     | 08/05/2025   |
 | Vitor Mendonça Braga   |             | 04/05/2025  | 8/05/2025  | ✔️     | 07/05/2025   |
 
