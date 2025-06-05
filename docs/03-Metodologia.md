@@ -63,6 +63,14 @@ Essa configuração de branches foi estabelecida em concordância com os membros
 - Jornada do usuário: Vitor Mendonça
 - Diagrama de fluxo: Vitor Mendonça
 
+#### Sprint 4
+
+- _Scrum Master_:  
+- Banco de Dados: Daniel Heringer Verner Silva
+- BackEnd: Caio Martins, Daniel Heringer e João Roveda
+
+
+
 ### Quadro de tarefas
 
 #### Sprint 1
@@ -108,6 +116,17 @@ _Atualizado em: 08/05/2025_
 | João Vitor Roveda      |       Wireframes e userflow                                | 01/05/2025  | 08/05/2025  | ✔️     | 08/05/2025   |
 | Vitor Mendonça Braga   | Jornada do usuário e diagrama de fluxo                 | 04/05/2025  | 8/05/2025  | ✔️     | 07/05/2025   |
 
+#### Sprint 4
+_Atualizado em: 04/06/2025_
+
+| Responsável            | Tarefa/Requisito                                 | Iniciado em | Prazo       | Status | Terminado em |
+| :--------------------- | :----------------------------------------------- | :---------: | :---------: | :----: | :----------: |
+| Arthur Lima Camargos   |  | 28/04/2025  | 08/05/2025  | ✔️     | 08/05/2025   |
+| Caio Martins           |                        | 06/05/2025  | 08/05/2025  | ✔️     | 07/05/2025   |
+| Daniel de Queiroz      | | 21/04/2025  | 08/05/2025  | ✔️    | 01/05/2025   |
+| Daniel Heringer Verner Silva        | Banco de Dados e FuncionarioController.js/funcionarioRoutes.js (BackEnd) | 04/06/2025  | 05/06/2025  | ✔️     | 04/06/2025 |
+| João Vitor Roveda      |                                   | 01/05/2025  | 08/05/2025  | ✔️     | 08/05/2025   |
+| Vitor Mendonça Braga   |             | 04/05/2025  | 8/05/2025  | ✔️     | 07/05/2025   |
 
 Legenda:  
 ✔️: terminado 
