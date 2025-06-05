@@ -123,7 +123,7 @@ _Atualizado em: 04/06/2025_
 
 | Responsável            | Tarefa/Requisito                                 | Iniciado em | Prazo       | Status | Terminado em |
 | :--------------------- | :----------------------------------------------- | :---------: | :---------: | :----: | :----------: |
-| Arthur Lima Camargos   |  | 28/04/2025  | 08/05/2025  | ✔️     | 08/05/2025   |
+| Arthur Lima Camargos   | Feature para preenchimento automatico do ClientForm a partir de um CNPJ | 28/05/2025  | 04/05/2025  | ✔️     | 08/05/2025   |
 | Caio Martins           |                        | 06/05/2025  | 08/05/2025  | ✔️     | 07/05/2025   |
 | Daniel de Queiroz      | | 21/04/2025  | 08/05/2025  | ✔️    | 01/05/2025   |
 | Daniel Heringer Verner Silva        | Banco de Dados | 31/05/2025  | 05/06/2025  | ✔️     | 31/05/2025 |
