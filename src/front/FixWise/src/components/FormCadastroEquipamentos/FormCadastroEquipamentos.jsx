@@ -23,14 +23,35 @@ const FormCadastroEquipamentos = ({ onEdit, setOnEdit, getEquipamentos }) => {
 
     const dataSaida = equip.saida.value != '' ? new Date(equip.saida.value) : null;
 
+    console.log(equip.cliente.value)
+    if (!equip.cliente) {
+      console.log('cliente', equip.cliente);
+      return;
+    }
+
     console.log(equip);
 
     if (onEdit) {
-      await axios.put('http://localhost:8080/equipamento',
+      const res = await axios.put('http://localhost:8080/equipamento',
         {
-
+          "Cliente_idCliente": +equip.cliente.value,
+          "Nome": equip.nome.value,
+          "Tipo": equip.Tipo.value,
+          "Marca": equip.marca.value,
+          "SerialNumber": equip.serial.value,
+          "DataEntrada": dataEntrada,
+          "DataSaida": dataSaida,
+          "idEquipamento": onEdit.idEquipamento
         }
       )
+
+      if (res.status == 200) {
+        Swal.fire({
+          title: 'Sucesso',
+          text: 'Registro atualizado com sucesso',
+          icon: 'success'
+        })
+      }
     } else {
       await axios.post('http://localhost:8080/equipamento',
         {
@@ -40,7 +61,8 @@ const FormCadastroEquipamentos = ({ onEdit, setOnEdit, getEquipamentos }) => {
           "Marca": equip.marca.value,
           "SerialNumber": equip.serial.value,
           "DataEntrada": dataEntrada,
-          "DataSaida": dataSaida
+          "DataSaida": dataSaida,
+          "Observacoes": equip.observacoes.value
         }
       )
 
@@ -69,7 +91,23 @@ const FormCadastroEquipamentos = ({ onEdit, setOnEdit, getEquipamentos }) => {
     getClientes();
   }, [setClientes]);
 
-  
+  useEffect(() => {
+    if (onEdit) {
+      const equip = ref.current;
+      console.log('onEdit', onEdit)
+
+      equip.nome.value = onEdit.Nome;
+      equip.Tipo.value = onEdit.Tipo;
+      equip.cliente.value = onEdit.Cliente_idCliente;
+      equip.marca.value = onEdit.Marca; 
+      equip.serial.value = onEdit.SerialNumber;
+      if (onEdit.DataEntrada)
+        equip.entrada.value = onEdit.DataEntrada;
+      if (onEdit.DataSaida)
+        equip.saida.value = onEdit.DataSaida; 
+      equip.observacoes.value = onEdit.Observacoes;
+    }
+  }), [onEdit];
 
   return (
     <div>
@@ -87,7 +125,7 @@ const FormCadastroEquipamentos = ({ onEdit, setOnEdit, getEquipamentos }) => {
         </div>
         <div className="flex flex-col gap-5">
           {/* <TextAreaForm content="Descrição" /> */}
-          <TextAreaForm content="Observações" />
+          <TextAreaForm name="observacoes" content="Observações" />
         </div>
         <div className="flex gap-5 mt-5">
           <Link to="/"><BotaoCancelar /></Link>
