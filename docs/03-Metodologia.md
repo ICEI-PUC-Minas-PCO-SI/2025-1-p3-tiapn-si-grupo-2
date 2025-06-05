@@ -68,6 +68,8 @@ Essa configuração de branches foi estabelecida em concordância com os membros
 - _Scrum Master_:  
 - Banco de Dados: Daniel Heringer Verner Silva
 - BackEnd: Caio Martins, Daniel Heringer e João Roveda
+- FrontEnd: Arthur Lima, Daniel de Queiroz e Vitor Mendonça
+- Slides de apresentação:: Vitor Mendonça
 
 
 
