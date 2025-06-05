@@ -65,7 +65,7 @@ Essa configuração de branches foi estabelecida em concordância com os membros
 
 #### Sprint 4
 
-- _Scrum Master_:  
+- _Scrum Master_:  Vitor Mendonça
 - Banco de Dados: Daniel Heringer Verner Silva
 - BackEnd: Caio Martins, Daniel Heringer e João Roveda
 - FrontEnd: Arthur Lima, Daniel de Queiroz e Vitor Mendonça
@@ -129,7 +129,7 @@ _Atualizado em: 04/06/2025_
 | Daniel Heringer Verner Silva        | Banco de Dados | 31/05/2025  | 05/06/2025  | ✔️     | 31/05/2025 |
 | Daniel Heringer Verner Silva        | FuncionarioController.js/funcionarioRoutes.js (BackEnd) | 04/06/2025  | 05/06/2025  | ✔️     | 04/06/2025 |
 | João Vitor Roveda      |                                   | 01/05/2025  | 08/05/2025  | ✔️     | 08/05/2025   |
-| Vitor Mendonça Braga   |             | 04/05/2025  | 8/05/2025  | ✔️     | 07/05/2025   |
+| Vitor Mendonça Braga   | CRUD de acessos de usuários, CRUD de clientes e Login| 27/05/2025  | 5/06/2025  | ✔️     | 4/06/2025    |
 
 Legenda:  
 ✔️: terminado 
