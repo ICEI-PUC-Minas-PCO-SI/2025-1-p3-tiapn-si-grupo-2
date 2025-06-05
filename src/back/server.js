@@ -66,4 +66,18 @@ app.delete('/clientes/:id', (req, res) =>{
     })
 })
 
-
+app.post('/clientes', (req, res) =>{    
+    const { Nome, CPF_CNPJ, EmailContato, TelefoneContato, Logradouro, CEP, Cidade, Bairro, Numero, UF } = req.body;
+    
+    db.query(
+        'INSERT INTO clientes (Nome, CPF_CNPJ, EmailContato, TelefoneContato, Logradouro, CEP, Cidade, Bairro, Numero, UF) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
+        [Nome, CPF_CNPJ, EmailContato, TelefoneContato, Logradouro, CEP, Cidade, Bairro, Numero, UF], 
+        (err, result) => {
+            if(err){
+                console.log(err);
+                return res.status(500).json({ error: 'Erro ao inserir cliente', details: err.message });
+            }
+            res.json({ message: 'Cliente inserido com sucesso', id: result.insertId });
+        }
+    )
+})

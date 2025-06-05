@@ -1,0 +1,66 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Production build files
+dist/
+build/
+**/dist
+**/build
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs
+*.log
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Vite specific
+.vite/
+
+# Package manager specific
+.npm
+.yarn
+.pnp.*
+yarn.lock
+package-lock.json
+
+# Optional: Database files
+*.sqlite
+*.db
+
+# Optional: Backup files
+*.bak
+*.backup
