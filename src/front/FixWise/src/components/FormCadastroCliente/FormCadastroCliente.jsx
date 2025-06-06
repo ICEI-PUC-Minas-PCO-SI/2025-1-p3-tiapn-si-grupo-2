@@ -59,7 +59,6 @@ const FormCadastroCliente = () => {
         formData.cpfCnpj.trim().length > 0 ||
         formData.nome.trim().length > 0
       ) {
-        console.log(formData);
         const response = await axios.post(
           "http://localhost:3000/clientes",
           formData
