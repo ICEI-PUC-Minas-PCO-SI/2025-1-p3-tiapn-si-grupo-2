@@ -128,7 +128,7 @@ _Atualizado em: 04/06/2025_
 | Daniel de Queiroz      | | 21/04/2025  | 08/05/2025  | ✔️    | 01/05/2025   |
 | Daniel Heringer Verner Silva        | Banco de Dados | 31/05/2025  | 05/06/2025  | ✔️     | 31/05/2025 |
 | Daniel Heringer Verner Silva        | FuncionarioController.js/funcionarioRoutes.js (BackEnd) | 04/06/2025  | 05/06/2025  | ✔️     | 04/06/2025 |
-| João Vitor Roveda      |                                   | 01/05/2025  | 08/05/2025  | ✔️     | 08/05/2025   |
+| João Vitor Roveda      |  Implementação do backend de serviços, ordem de serviços e parcialmente os clientes                                 | 01/05/2025  | 04/06/2025  | ✔️     | 04/06/2025   |
 | Vitor Mendonça Braga   | CRUD de acessos de usuários, CRUD de clientes e Login| 27/05/2025  | 5/06/2025  | ✔️     | 4/06/2025    |
 
 Legenda:  
