@@ -27,7 +27,7 @@ const ItemSideBarDropdown = (props) => {
       {props.isOpen && isOpen && (
         <ul className="ml-6 mt-1">
           {props.listItemsDropdown.map((item, index) => (
-            <Link to={item.route}>
+            <Link to={"/" + item.route}>
 
               <li
                 key={index}

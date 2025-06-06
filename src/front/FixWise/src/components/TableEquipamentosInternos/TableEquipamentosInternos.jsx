@@ -5,7 +5,7 @@ import { CiEdit, CiTrash } from "react-icons/ci";
 import ModalDeleteAcesso from "../ModalDeleteCliente/ModalDeleteCliente";
 import ModalEditAcesso from "../ModalEditCliente/ModalEditCliente";
 
-const TableAcessos = () => {
+const TableEquipamentosInternos = () => {
   const [clientes, setClientes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [modalEditIsOpen, setModalEditIsOpen] = useState(false);
@@ -51,7 +51,7 @@ const TableAcessos = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="mb-6 p-2 border border-gray-300 rounded-md w-full max-w-md shadow-sm"
         />
-        <Link to={"/cadastro-clientes"}>
+        <Link to={"/cadastro-equipamentos"}>
           <button className="p-2 bg-black text-white rounded-md hover:cursor-pointer">
             Cadastrar
           </button>
@@ -141,4 +141,4 @@ const TableAcessos = () => {
   );
 };
 
-export default TableAcessos;
+export default TableEquipamentosInternos;

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ModalDeleteCliente = ({ onClose, idUser }) => {
+const ModalDeleteCliente = ({ onClose, idUser, setClientes, clientes }) => {
   const handleSubmit = (userId) => {
     fetch(`http://localhost:3000/clientes/${userId}`, {
       method: "DELETE",
@@ -10,8 +10,7 @@ const ModalDeleteCliente = ({ onClose, idUser }) => {
       .catch((err) => console.log(err))
       .finally(() => {
         onClose();
-        console.log(userId);
-        window.location.reload();
+        setClientes(clientes.filter((clientes) => clientes.idCliente !== idUser))
       });
   };
 

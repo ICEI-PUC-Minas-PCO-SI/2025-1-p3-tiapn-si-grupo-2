@@ -21,7 +21,7 @@ const ListCardsTotalItems = () => {
   return (
     <div className='flex justify-between mt-10'>
       <CardsTotalItems title="Total de Clientes" tagItem={IoPersonOutline} number={numberClientes}/>
-      <CardsTotalItems title="Produtos Cadastrados" tagItem={CiBoxes} number="0"/>
+      <CardsTotalItems title="Produtos Cadastrados" tagItem={CiBoxes} number="1"/>
       <CardsTotalItems title="Manutenções Ativas" tagItem={GrVmMaintenance} number="6"/>
       <CardsTotalItems title="Alertas" tagItem={IoPersonOutline} number="0"/>
     </div>

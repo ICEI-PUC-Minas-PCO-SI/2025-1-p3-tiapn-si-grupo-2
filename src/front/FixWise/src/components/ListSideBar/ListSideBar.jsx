@@ -22,33 +22,6 @@ const ListSideBar = (props) => {
           <ItemSideBarDropdown
           isOpen={props.isOpen}
             tagItem={FiDatabase}
-            nameItem="Cadastros"
-            listItemsDropdown={[
-              { 
-                name: "Cliente", 
-                route: "/cadastro-clientes",
-                tagItem: IoPersonOutline
-              },
-              {
-                name: "Acessos",
-                route: "/cadastro-acessos",
-                tagItem: IoKeyOutline
-              },
-              {
-                name: "Produtos",
-                route: "/cadastro-equipamentos",
-                tagItem: CiBoxes
-              },
-              {
-                name: "Manutenção",
-                route: "/cadastro-manutencao",
-                tagItem: GrVmMaintenance
-              },
-            ]}
-          />
-          <ItemSideBarDropdown
-          isOpen={props.isOpen}
-            tagItem={FiDatabase}
             nameItem="Ativos"
             listItemsDropdown={[
               {
@@ -70,6 +43,13 @@ const ListSideBar = (props) => {
             nameItem="Manutenções Ativas"
             route="/manutencoes"
           />
+           <ItemSideBar
+            isOpen={props.isOpen}
+            tagItem={IoKeyOutline}
+            nameItem="Acessos"
+            route="/acessos"
+          />
+          
           
         </ul>
         <ItemSideBar isOpen={props.isOpen} tagItem={CiLogout} nameItem="Sair" route="/login"/>

@@ -10,6 +10,7 @@ import EquipamentosInternos from './pages/EquipametosInternos/EquipamentosIntern
 import Clientes from './pages/Clientes/Clientes'
 import Manutencoes from './pages/Manutencoes/Manutencoes'
 import Login from './pages/Login/Login'
+import Acessos from './pages/Acessos/Acessos'
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='/clientes' element={<Clientes />} />
         <Route path='/manutencoes' element={<Manutencoes />} />
         <Route path='/login' element={<Login />} />
+        <Route  path='/acessos' element={<Acessos />}/>
       </Routes>
     </>
   )
