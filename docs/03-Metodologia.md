@@ -63,6 +63,16 @@ Essa configuração de branches foi estabelecida em concordância com os membros
 - Jornada do usuário: Vitor Mendonça
 - Diagrama de fluxo: Vitor Mendonça
 
+#### Sprint 4
+
+- _Scrum Master_:  Vitor Mendonça
+- Banco de Dados: Daniel Heringer Verner Silva
+- BackEnd: Caio Martins, Daniel Heringer e João Roveda
+- FrontEnd: Arthur Lima, Daniel de Queiroz e Vitor Mendonça
+- Slides de apresentação:: Vitor Mendonça
+
+
+
 ### Quadro de tarefas
 
 #### Sprint 1
@@ -108,6 +118,18 @@ _Atualizado em: 08/05/2025_
 | João Vitor Roveda      |       Wireframes e userflow                                | 01/05/2025  | 08/05/2025  | ✔️     | 08/05/2025   |
 | Vitor Mendonça Braga   | Jornada do usuário e diagrama de fluxo                 | 04/05/2025  | 8/05/2025  | ✔️     | 07/05/2025   |
 
+#### Sprint 4
+_Atualizado em: 04/06/2025_
+
+| Responsável            | Tarefa/Requisito                                 | Iniciado em | Prazo       | Status | Terminado em |
+| :--------------------- | :----------------------------------------------- | :---------: | :---------: | :----: | :----------: |
+| Arthur Lima Camargos   | Feature para preenchimento automatico do ClientForm a partir de um CNPJ | 28/05/2025  | 04/05/2025  | ✔️     | 08/05/2025   |
+| Caio Martins           |Implementação das rotas e controllers do backend, juntamente com a criação dos artefatos relacionados a cliente, equipamento e serviços, estabelecendo a conexão com o banco de dados por meio do backend.| 30/5/2025  | 05/06/2025  | ✔️     | 05/06/2025   |
+| Daniel de Queiroz      | CRUD de equipamentos | 28/05/2025  | 05/06/2025  | ✔️    | 05/06/2025   |
+| Daniel Heringer Verner Silva        | Banco de Dados | 31/05/2025  | 05/06/2025  | ✔️     | 31/05/2025 |
+| Daniel Heringer Verner Silva        | FuncionarioController.js/funcionarioRoutes.js (BackEnd) | 04/06/2025  | 05/06/2025  | ✔️     | 04/06/2025 |
+| João Vitor Roveda      |  Implementação do backend de serviços, ordem de serviços e parcialmente os clientes                                 | 01/05/2025  | 04/06/2025  | ✔️     | 04/06/2025   |
+| Vitor Mendonça Braga   | CRUD de acessos de usuários, CRUD de clientes e Login| 27/05/2025  | 5/06/2025  | ✔️     | 4/06/2025    |
 
 Legenda:  
 ✔️: terminado 
