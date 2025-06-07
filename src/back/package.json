@@ -1,17 +1,17 @@
 {
-  "name": "back",
+  "name": "src",
   "version": "1.0.0",
-  "description": "",
-  "main": "db.js",
+  "description": "> Aqui devem ficar os arquivos-fonte do projeto: HTML, CSS, JavaScript, imagens e outros necessários para o funcionamento do sistema.",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "dev": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
+    "bcrypt": "^6.0.0",
     "express": "^5.1.0",
     "mysql2": "^3.14.1"
   }
