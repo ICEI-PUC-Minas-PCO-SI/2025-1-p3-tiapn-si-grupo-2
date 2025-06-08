@@ -1,31 +1,32 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router";
-import { CiEdit, CiTrash } from "react-icons/ci";
 import Swal from 'sweetalert2'
 import ModalEquipamento from "../ModalEquipamento/ModalEquipamento";
+import { IoTrashOutline, IoCreateOutline } from "react-icons/io5";
 
-export default function TableEquipamentos({onEdit, setOnEdit}) {
+export default function TableEquipamentos({ onEdit, setOnEdit }) {
   const [equipamentos, setEquipamentos] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [modalEditIsOpen, setModalEditIsOpen] = useState(false);
   const [modalRemoveIsOpen, setModalRemoveIsOpen] = useState(false);
   const [idUser, setIdUser] = useState(null);
 
-    const getEquipamentos = async () => {
-      try {
-        const res = await axios.get("http://localhost:8080/equipamento");
-        setEquipamentos(res.data);
-      } catch (error) {
-        console.error("Erro ao buscar equipamentos:", error);
-      }
-    };
+  const getEquipamentos = async () => {
+    try {
+      const res = await axios.get("http://localhost:3010/equipamento");
+      setEquipamentos(res.data.equipamento);
+
+    } catch (error) {
+      console.error("Erro ao buscar equipamentos:", error);
+    }
+  };
 
   useEffect(() => {
     getEquipamentos();
   }, [setEquipamentos]);
 
-  const toggleModalEdit = (equip) =>{
+  const toggleModalEdit = (equip) => {
     console.log(equip);
     setOnEdit(equip);
 
@@ -33,84 +34,143 @@ export default function TableEquipamentos({onEdit, setOnEdit}) {
     setModalEditIsOpen(!modalEditIsOpen)
   }
 
-  const toggleModalRemove = async (id) =>{
-    await axios.delete(`http://localhost:8080/equipamento/${id}`).then(({ data }) => {
-        const newArray = equipamentos.filter((equip) => equip.idEquipamento !== id)
-        setEquipamentos(newArray);
-        // setClientes(newArray);
-        Swal.fire('Sucesso', 'Equipamento excluído!', 'success')
-        // toast.success('Cliente deletado com sucesso');
+  const toggleModalRemove = async (id) => {
+    await axios.delete(`http://localhost:3010/equipamento/${id}`).then(({ data }) => {
+      const newArray = equipamentos.filter((equip) => equip.idEquipamento !== id)
+      setEquipamentos(newArray);
+      // setClientes(newArray);
+      Swal.fire('Sucesso', 'Equipamento excluído!', 'success')
+      // toast.success('Cliente deletado com sucesso');
     }).catch(({ data }) => Swal.fire('Erro ao excluir', data.message));
   }
 
-  const acessosFiltrados = equipamentos.filter((cadastro) =>
+  console.log(equipamentos)
+
+  const equipamentosFiltrados = equipamentos.filter((cadastro) =>
     `${cadastro.Nome} ${cadastro.Tipo} ${cadastro.Marca}`
       .toLowerCase()
       .includes(searchTerm.toLowerCase())
   );
 
   return (
-    <div className="mt-20 overflow-x-auto rounded-md px-4">
-      <div className="flex justify-between items-center">
+    <>
+      {/* <div className="flex w-full justify-between sm:w-auto mb-2">
         <input
           type="text"
           placeholder="Buscar por nome, tipo ou marca..."
+          className="input input-bordered"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="mb-6 p-2 border border-gray-300 rounded-md w-full max-w-md shadow-sm"
         />
+   
         <Link to={"/cadastro-equipamentos"}>
-            <button className="p-2 bg-black text-white rounded-md hover:cursor-pointer">Cadastrar</button>
+            <button className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg hover:opacity-90 cursor-pointer transition">
+                <IoAddOutline size={20} />
+                Cadastrar
+            </button>
         </Link>
+      </div> */}
+
+      <div className="bg-white shadow overflow-hidden rounded-lg">
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">#</th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Nome</th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Tipo</th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Marca</th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Cliente</th>
+                <th scope="col" className="px-6 py-3 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">Ações</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {
+                equipamentos.map(
+                  (cadastro, index) => (
+                    <tr key={cadastro.idEquipamento} className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {cadastro.idEquipamento}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-sm font-medium text-gray-900">{cadastro.Nome}</div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {cadastro.Tipo}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {cadastro.Marca}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {cadastro.cliente}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="flex justify-center items-center space-x-2">
+                          <button className="text-blue-600 hover:text-blue-900 p-1 rounded-full hover:bg-blue-50">
+                            <IoCreateOutline className="h-5 w-5"/>
+                          </button>
+
+                          <button className="text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50">
+                            <IoTrashOutline className="h-5 w-5"/>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  )
+                )
+              }
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <table className="w-full rounded-md overflow-hidden shadow-md">
-        <thead>
-          <tr className="bg-gray-900 text-white text-left text-sm uppercase">
-            <th className="p-4">ID</th>
-            <th className="p-4">Nome</th>
-            <th className="p-4">Tipo</th>
-            <th className="p-4">Marca</th>
-            <th className="p-4">Cliente</th>
-            <th className="p-4">Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {equipamentos.map((cadastro, index) => (
-            <tr
-              key={cadastro.idEquipamento}
-              className={index % 2 === 0 ? "bg-white" : "bg-[#edeeec]"}
-            >
-              <td className="p-4">{cadastro.idEquipamento}</td>
-              <td className="p-4">{cadastro.Nome}</td>
-              <td className="p-4">{cadastro.Tipo}</td>
-              <td className="p-4">{cadastro.Marca}</td>
-              <td className="p-4">{cadastro.cliente.Nome}</td>
-              <td className="p-4">
-                <div className="flex gap-3 text-xl text-gray-600">
-                  <button title="Editar">
-                    <CiEdit className="hover:cursor-pointer text-2xl" onClick={() => toggleModalEdit(cadastro)} />
-                  </button>
-                  <button title="Excluir">
-                    <CiTrash className="hover:cursor-pointer text-red-600 text-2xl" onClick={() => toggleModalRemove(cadastro.idEquipamento)} />
-                  </button>
-                </div>
-              </td>
-              
-            </tr>
-            
-          ))}
+      {/* Paginação (opcional) */}
+        {equipamentosFiltrados.length > 0 && (
+          <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 rounded-b-lg">
+            <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm text-gray-700">
+                  Mostrando <span className="font-medium">1</span> a <span className="font-medium">10</span> de{' '}
+                  <span className="font-medium">{equipamentosFiltrados.length}</span> resultados
+                </p>
+              </div>
+              <div>
+                <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                  <a
+                    href="#"
+                    className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  >
+                    <span className="sr-only">Anterior</span>
+                    &lt;
+                  </a>
+                  <a
+                    href="#"
+                    aria-current="page"
+                    className="z-10 bg-blue-50 border-blue-500 text-blue-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                  >
+                    1
+                  </a>
+                  <a
+                    href="#"
+                    className="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                  >
+                    2
+                  </a>
+                  <a
+                    href="#"
+                    className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  >
+                    <span className="sr-only">Próxima</span>
+                    &gt;
+                  </a>
+                </nav>
+              </div>
+            </div>
+          </div>
+        )}
 
-          {acessosFiltrados.length === 0 && (
-            <tr>
-              <td colSpan="6" className="text-center p-6 text-gray-500">
-                Nenhum resultado encontrado.
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-      {modalEditIsOpen && <ModalEquipamento onEdit={onEdit} setOnEdit={setOnEdit} getEquipamentos={getEquipamentos} onClose={toggleModalEdit}  />}     
-    </div>
+      {modalEditIsOpen && <ModalEquipamento onEdit={onEdit} setOnEdit={setOnEdit} getEquipamentos={getEquipamentos} onClose={toggleModalEdit} />}
+    </>
+
   );
 };

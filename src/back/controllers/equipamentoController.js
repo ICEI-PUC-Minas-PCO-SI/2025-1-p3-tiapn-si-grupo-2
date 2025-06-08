@@ -69,7 +69,7 @@ exports.deletarEquipamento = (req, res) => {
 exports.buscarEquipamentos = (req, res) => {
   const { nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Clienteid, id } = req.query;
 
-  let sql = 'SELECT equipamento.*,  FROM equipamento WHERE 1=1';
+  let sql = 'SELECT equipamento.*, cliente.Nome cliente FROM equipamento INNER JOIN cliente on (cliente.idCliente = equipamento.Cliente_idCliente) WHERE 1=1';
   const params = [];
 
   if (nome) {

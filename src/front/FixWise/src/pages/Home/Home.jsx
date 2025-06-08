@@ -5,10 +5,7 @@ import MainContent from '../../components/Dashboard/Dashboard'
 
 const Home = () => {
   return (
-    <div className='flex  min-h-screen'>
-        <Sidebar />
-        <MainContent />
-    </div>
+    <MainContent />
   )
 }
 

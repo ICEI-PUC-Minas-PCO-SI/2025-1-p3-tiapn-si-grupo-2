@@ -9,6 +9,7 @@ import SelectForm from '../SelectForm/SelectForm'
 import SelectCliente from '../Select/SelectCliente'
 import DataForm from '../DataForm/DataForm'
 import Swal from 'sweetalert2'
+import { IoCheckmark } from 'react-icons/io5' 
 
 const FormCadastroEquipamentos = ({ onEdit, setOnEdit, getEquipamentos }) => {
   const ref = useRef();
@@ -24,8 +25,10 @@ const FormCadastroEquipamentos = ({ onEdit, setOnEdit, getEquipamentos }) => {
     const dataSaida = equip.saida.value != '' ? new Date(equip.saida.value) : null;
 
     console.log(equip.cliente.value)
-    if (!equip.cliente) {
-      console.log('cliente', equip.cliente);
+    if (equip.cliente.value == '') {
+      Swal.fire(
+        'Atenção', 'Informe o cliente!', 'warning'
+      )
       return;
     }
 
@@ -79,9 +82,9 @@ const FormCadastroEquipamentos = ({ onEdit, setOnEdit, getEquipamentos }) => {
 
   const getClientes = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/cliente");
+      const res = await axios.get("http://localhost:3010/cliente");
 
-      setClientes(res.data.sort((a, b) => (a.Nome > b.Nome ? 1 : -1)));
+      setClientes(res.data.clientes.sort((a, b) => (a.Nome > b.Nome ? 1 : -1)));
     } catch (error) {
       Swal.fire('Erro', error)
     }
@@ -99,40 +102,95 @@ const FormCadastroEquipamentos = ({ onEdit, setOnEdit, getEquipamentos }) => {
       equip.nome.value = onEdit.Nome;
       equip.Tipo.value = onEdit.Tipo;
       equip.cliente.value = onEdit.Cliente_idCliente;
-      equip.marca.value = onEdit.Marca; 
+      equip.marca.value = onEdit.Marca;
       equip.serial.value = onEdit.SerialNumber;
       if (onEdit.DataEntrada)
         equip.entrada.value = onEdit.DataEntrada;
       if (onEdit.DataSaida)
-        equip.saida.value = onEdit.DataSaida; 
+        equip.saida.value = onEdit.DataSaida;
       equip.observacoes.value = onEdit.Observacoes;
     }
   }), [onEdit];
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="py-4 flex flex-col gap-5" ref={ref}>
-        <div className="grid grid-cols-3 gap-y-5 gap-x-0 mt-5 place-items-left">
-          {/* <InputForm name="cliente" content="Cliente" /> */}
-          <SelectCliente name="cliente" titulo="Cliente" options={clientes} />
-          <InputForm name="nome" content="Nome" />
-          <SelectForm selectTitle="Tipo" selectFormList={["Solda", "Hidráulica", "Içamento e Carga", "Elétrica", "Torque", "Roscas", "Tubos"]} />
-          <InputForm name="marca" content="Marca" />
-          {/* <InputForm name="status" content="Status" /> */}
-          <InputForm name="serial" content="Serial Number" />
-          <DataForm name="entrada" content="Data Entrada" />
-          <DataForm name="saida" content="Data Saída" />
+    <>
+      <form onSubmit={handleSubmit} ref={ref} className="bg-white shadow overflow-hidden rounded-lg p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <div className="col-span-2 mb-4">
+              <h2 className="text-sl font-semibold text-gray-700 border-b pb-2">Informações básicas</h2>
+            </div>
+
+            <div>
+              <label htmlFor="cliente" className="block text-sm font-medium text-gray-700 mb-1">Cliente *</label>
+              <SelectCliente name="cliente" titulo="Cliente" options={clientes} />
+            </div>
+
+            <div>
+              <label htmlFor="nome" className="block text-sm font-medium text-gray-700 mb-1">Nome *</label>
+              <InputForm name="nome" content="Nome" />
+            </div>
+
+            <div>
+              <label htmlFor="Tipo" className="block text-sm font-medium text-gray-700 mb-1">Tipo *</label>
+              <SelectForm selectTitle="Tipo" selectFormList={["Solda", "Hidráulica", "Içamento e Carga", "Elétrica", "Torque", "Roscas", "Tubos"]} />
+            </div>
+
+            <div>
+              <label htmlFor="Tipo" className="block text-sm font-medium text-gray-700 mb-1">Data Saída</label>
+              <DataForm name="saida" content="Data Saída" />
+            </div>            
+          </div>
+
+          <div className="space-y-4">
+            <div className="col-span-2 mb-4">
+              <h2 className="text-sl font-semibold text-gray-700 border-b pb-2">Detalhes Técnicos</h2>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Marca</label>
+              <InputForm name="marca" content="Marca" />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Serial Number</label>
+              <InputForm name="serial" content="Serial Number" />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Data Entrada</label>
+              <DataForm name="entrada" content="Data Entrada" />
+            </div>
+          </div>
+
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-gray-700 mb-1">Observações</label>
+            <TextAreaForm name="observacoes" content="Observações" />
+          </div>
         </div>
-        <div className="flex flex-col gap-5">
-          {/* <TextAreaForm content="Descrição" /> */}
-          <TextAreaForm name="observacoes" content="Observações" />
-        </div>
-        <div className="flex gap-5 mt-5">
-          <Link to="/"><BotaoCancelar /></Link>
-          <BotaoSalvar />
-        </div>
+
+        <div className="mt-8 flex justify-end space-x-3">
+            <Link to={'/equipamentos'}>
+              <button 
+                type="button"
+                className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                Cancelar
+              </button>
+            </Link>
+            
+
+            <button 
+              type="submit"
+              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              <IoCheckmark className="-ml-1 mr-2 h-5 w-5" />
+              Salvar Equipamento
+            </button>
+          </div>
       </form>
-    </div>
+    </>
+
   )
 }
 
