@@ -15,6 +15,21 @@ exports.criarEquipamento = (req, res) => {
     });
   }
 
+  
+  // Verifica se já existe um equipamento com o mesmo serialnumber
+  const sqlVerifica = `SELECT * FROM equipamento WHERE SerialNumber = ? LIMIT 1`;
+  db.query(sqlVerifica, [SerialNumber], (err, results) => {
+    if (err) {
+      return res.status(500).json({ erro: 'Erro ao verificar equipamento existente', detalhes: err.message });
+    }
+
+    if (results.length > 0) {
+      return res.status(409).json({
+        erro: 'Equipamento já cadastrado',
+        detalhes: 'Já existe um equipamento com o mesmo Serial Number'
+      });
+    }
+
   const sql = `INSERT INTO equipamento 
     (Nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Descricao, Observacoes,Cliente_idCliente) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
@@ -34,6 +49,7 @@ exports.criarEquipamento = (req, res) => {
         dados: { Nome, Tipo: Tipo || 'Não informado' }
       });
     });
+});
 };
 
 exports.atualizarEquipamento = (req, res) => {
