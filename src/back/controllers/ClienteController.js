@@ -42,6 +42,7 @@ exports.buscarClientes = (req, res) => {
     sql += ' AND Numero = ?';
     params.push(numero);
   }
+  
   if (uf) {
     sql += ' AND UF = ?';
     params.push(uf);

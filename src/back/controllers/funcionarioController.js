@@ -36,6 +36,8 @@ exports.getFuncionarioById = (req, res) => {
 };
 
 exports.createFuncionario = async (req, res) => {
+  const saltRounds = 10;
+
   if (!req.body || Object.keys(req.body).length === 0) {
     return res.status(400).json({ erro: 'Corpo da requisição ausente ou inválido' });
   }
@@ -58,7 +60,7 @@ exports.createFuncionario = async (req, res) => {
     }
 
     // Criptografa a senha com bcrypt (10 salt rounds é seguro)
-    const hashedPassword = await bcrypt.hash(Senha, 10);
+    const hashedPassword = await bcrypt.hash(Senha, saltRounds);
 
     const [result] = await db.promise().query(
       'INSERT INTO Funcionario (Nome, Senha, TipoUsuario) VALUES (?, ?, ?)',

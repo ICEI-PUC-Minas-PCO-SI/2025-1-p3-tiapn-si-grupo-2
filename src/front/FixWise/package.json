@@ -7,10 +7,12 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "flowbite-react patch"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.7",
+    "flowbite-react": "^0.11.7",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
@@ -31,3 +33,4 @@
     "vite-plugin-svgr": "^4.3.0"
   }
 }
+

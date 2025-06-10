@@ -2,30 +2,31 @@ import React from "react";
 import ItemSideBar from "../ItemSideBar/ItemSideBar";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { FiDatabase } from "react-icons/fi";
-import { IoPersonOutline } from "react-icons/io5";
 import { GrVmMaintenance } from "react-icons/gr";
-import { CiSettings } from "react-icons/ci";
+import { CiLogout } from "react-icons/ci";
 import ItemSideBarDropdown from "../ItemSideBarDropdown/ItemSideBarDropdown";
-import { IoKeyOutline } from "react-icons/io5";
+import { IoKeyOutline, IoHomeSharp, IoConstructSharp, IoPersonSharp, IoLogOutSharp, IoPeopleSharp } from "react-icons/io5";
 import { CiBoxes } from "react-icons/ci";
-import { IoHomeOutline } from "react-icons/io5";
 import { IoIosLogOut } from "react-icons/io";
 
-
-const ListSideBar = () => {
+const ListSideBar = (props) => {
   return (
     <>
       <div className="flex flex-col justify-between h-11/12">
         <ul>
-          <ItemSideBar tagItem={LuLayoutDashboard} nameItem="Dashboard" route="/"/>
+          <ItemSideBar isOpen={props.isOpen} tagItem={IoHomeSharp} nameItem="Home" route="/" />
+          <ItemSideBar isOpen={props.isOpen} tagItem={IoPersonSharp} nameItem="Clientes" route="/clientes" />
+          <ItemSideBar isOpen={props.isOpen} tagItem={IoConstructSharp} nameItem="Equipamentos" route="/equipamentos" />
+          <ItemSideBar isOpen={props.isOpen} tagItem={IoPeopleSharp} nameItem="Funcionários" route="/funcionarios" />
           <ItemSideBarDropdown
+            isOpen={props.isOpen}
             tagItem={FiDatabase}
             nameItem="Cadastros"
             listItemsDropdown={[
-              { 
-                name: "Cliente", 
+              {
+                name: "Cliente",
                 route: "/cadastro-clientes",
-                tagItem: IoPersonOutline
+                tagItem: IoPersonSharp
               },
               {
                 name: "Acessos",
@@ -33,8 +34,8 @@ const ListSideBar = () => {
                 tagItem: IoKeyOutline
               },
               {
-                name: "Produtos",
-                route: "/cadastro-equipamentos",
+                name: "Equipamentos",
+                route: "/equipamentos",
                 tagItem: CiBoxes
               },
               {
@@ -44,7 +45,8 @@ const ListSideBar = () => {
               },
             ]}
           />
-          <ItemSideBarDropdown
+          {/* <ItemSideBarDropdown
+            isOpen={props.isOpen}
             tagItem={FiDatabase}
             nameItem="Ativos"
             listItemsDropdown={[
@@ -60,14 +62,16 @@ const ListSideBar = () => {
               },
             ]}
           />
-          <ItemSideBar tagItem={IoPersonOutline} nameItem="Clientes" route="/clientes"/>
+           */}
           <ItemSideBar
+            isOpen={props.isOpen}
             tagItem={GrVmMaintenance}
             nameItem="Manutenções Ativas"
             route="/manutencoes"
           />
+
         </ul>
-        <ItemSideBar tagItem={CiSettings} nameItem="Configurações" route="/configuracoes" />
+        <ItemSideBar isOpen={props.isOpen} tagItem={IoLogOutSharp} nameItem="Sair" route="/login" />
       </div>
     </>
   );
