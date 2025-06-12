@@ -56,7 +56,11 @@ function App() {
             element: <Equipamentos /> 
           },
           {
-            path: '/cadastro-equipamentos',
+            path: '/equipamentos/novo',
+            element: <CadastroEquipamentos/>
+          },
+          {
+            path: '/equipamentos/editar/:id',
             element: <CadastroEquipamentos/>
           }
         ]

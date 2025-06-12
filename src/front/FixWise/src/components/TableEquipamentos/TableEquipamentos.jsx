@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router";
+import { useNavigate } from "react-router";
 import Swal from 'sweetalert2'
 import ModalEquipamento from "../ModalEquipamento/ModalEquipamento";
 import { IoTrashOutline, IoCreateOutline } from "react-icons/io5";
 
 export default function TableEquipamentos({ onEdit, setOnEdit }) {
+  const navigate = useNavigate();
   const [equipamentos, setEquipamentos] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [modalEditIsOpen, setModalEditIsOpen] = useState(false);
@@ -20,6 +22,12 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
     } catch (error) {
       console.error("Erro ao buscar equipamentos:", error);
     }
+  };
+
+  const handleEdit = (equipamento) => {
+    navigate(`/equipamentos/editar/${equipamento.idEquipamento}`, {
+      state: { equipamento }
+    });
   };
 
   useEffect(() => {
@@ -106,7 +114,7 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex justify-center items-center space-x-2">
-                          <button className="text-blue-600 hover:text-blue-900 p-1 rounded-full hover:bg-blue-50">
+                          <button className="text-blue-600 hover:text-blue-900 p-1 rounded-full hover:bg-blue-50" onClick={() => handleEdit(cadastro)}>
                             <IoCreateOutline className="h-5 w-5"/>
                           </button>
 

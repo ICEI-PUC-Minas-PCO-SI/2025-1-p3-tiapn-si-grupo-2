@@ -39,11 +39,15 @@ exports.criarEquipamento = (req, res) => {
 exports.atualizarEquipamento = (req, res) => {
   const { id } = req.params;
   const { Nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Descricao,
-    Observacoes, Clienteid } = req.body;
+    Observacoes, Cliente_idCliente } = req.body;
+
+  console.log(req);
 
   db.query("UPDATE equipamento SET Nome = ?, Tipo = ?, Marca = ?, SerialNumber = ?, Status = ?, DataEntrada = ?, DataSaida = ?, Descricao = ?, Observacoes = ?,Cliente_idCliente = ? WHERE idEquipamento = ?",
-    [Nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Descricao, Observacoes, Clienteid, id],
+    [Nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Descricao, Observacoes, Cliente_idCliente, id],
     (err, result) => {
+      console.log(err);
+
       if (err) return res.status(500).json({ erro: 'Erro ao atualizar equipamento', detalhes: err.message });
 
       if (result.affectedRows === 0) {
@@ -67,7 +71,7 @@ exports.deletarEquipamento = (req, res) => {
 };
 
 exports.buscarEquipamentos = (req, res) => {
-  const { nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Clienteid, id } = req.query;
+  const { nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Cliente_idCliente, id } = req.query;
 
   let sql = 'SELECT equipamento.*, cliente.Nome cliente FROM equipamento INNER JOIN cliente on (cliente.idCliente = equipamento.Cliente_idCliente) WHERE 1=1';
   const params = [];
@@ -100,9 +104,9 @@ exports.buscarEquipamentos = (req, res) => {
     sql += ' AND DataSaida = ?';
     params.push(DataSaida);
   }
-  if (Clienteid) {
-    sql += ' AND Cliente_idcliente = ?';
-    params.push(Clienteid);
+  if (Cliente_idCliente) {
+    sql += ' AND Cliente_idCliente = ?';
+    params.push(Cliente_idCliente);
   }
   if (id) {
     sql += ' AND idEquipamento = ?';
