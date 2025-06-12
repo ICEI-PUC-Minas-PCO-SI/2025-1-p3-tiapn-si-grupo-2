@@ -8,17 +8,7 @@ import { Link } from "react-router-dom";
 
 export default function Equipamentos() {
     const [equipamentos, setEquipamentos] = useState([]);
-    const [onEdit, setOnEdit] = useState(null);
-    // const [isModalOpen, setIsModalOpen] = useState(false);
-
-    // const handleOpenModal = () => {
-    //     setIsModalOpen(true);
-    // };
-
-    // const handleCloseModal = () => {
-    //     setIsModalOpen(false);
-    // };
-
+ 
     const getEquipamentos = async () => {
         try {
             const res = await axios.get("http://localhost:3010/equipamentos");
@@ -28,12 +18,6 @@ export default function Equipamentos() {
         } catch (error) {
             console.log(error)
         }
-    }
-
-    const Form = () => {
-        return (
-            <FormCadastroEquipamentos onEdit={onEdit} setOnEdit={setOnEdit} getClientes={getClientes} />
-        )
     }
 
     useEffect(() => {

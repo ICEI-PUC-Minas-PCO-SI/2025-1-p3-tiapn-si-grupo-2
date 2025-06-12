@@ -52,15 +52,16 @@ const FormCadastroEquipamentos = () => {
     if (!isLoading && isEditing && state?.equipamento) {
       const equipamento = state.equipamento;
       console.log('Equipamento recebido:', equipamento);
-      
+
       setFormData({
         cliente: equipamento.Cliente_idCliente?.toString() || '',
         nome: equipamento.Nome || '',
         Tipo: equipamento.Tipo || '',
         marca: equipamento.Marca || '',
         serial: equipamento.SerialNumber || '',
-        entrada: equipamento.DataEntrada || '',
-        saida: equipamento.DataSaida || '',
+        entrada: formatDateForInput(equipamento.DataEntrada) || '',
+        saida: formatDateForInput(equipamento.DataSaida) || '',
+        descricao: equipamento.Descricao || '',
         observacoes: equipamento.Observacoes || ''
       });
     }
@@ -89,14 +90,15 @@ const FormCadastroEquipamentos = () => {
         Tipo: formData.Tipo,
         Marca: formData.marca,
         SerialNumber: formData.serial,
-        DataEntrada: formData.entrada ? formData.entrada : null,
-        DataSaida: formData.saida ? formData.saida : null,
-        Observacoes: formData.observacoes
+        DataEntrada: formData.entrada ? formatDateForInput(formData.entrada) : null,
+        DataSaida: formData.saida ? formatDateForInput(formData.saida) : null,
+        Observacoes: formData.observacoes,
+        Descricao: formData.descricao
       };
 
       if (isEditing) {
         payload.idEquipamento = id;
-        await axios.put(`http://localhost:3010/equipamento/${id}` , payload);
+        await axios.put(`http://localhost:3010/equipamento/${id}`, payload);
         Swal.fire('Sucesso', 'Registro atualizado com sucesso', 'success');
       } else {
         await axios.post('http://localhost:3010/equipamento', payload);
@@ -108,6 +110,31 @@ const FormCadastroEquipamentos = () => {
       Swal.fire('Erro', error.response?.data?.message || error.message, 'error');
     }
   };
+
+  function formatDateForInput(dateString) {
+    if (!dateString) return '';
+
+    // Se já estiver no formato YYYY-MM-DD
+    if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+      return dateString;
+    }
+
+    // Se for uma string ISO (com timezone)
+    if (dateString.includes('T')) {
+      return dateString.split('T')[0];
+    }
+
+    // Se for um objeto Date ou timestamp
+    const date = new Date(dateString);
+    if (!isNaN(date.getTime())) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+
+    return '';
+  }
 
   if (isLoading) {
     return <div>Carregando...</div>;
@@ -124,10 +151,10 @@ const FormCadastroEquipamentos = () => {
 
           <div>
             <label htmlFor="cliente" className="block text-sm font-medium text-gray-700 mb-1">Cliente *</label>
-            <SelectCliente 
-              name="cliente" 
-              titulo="Cliente" 
-              options={clientes} 
+            <SelectCliente
+              name="cliente"
+              titulo="Cliente"
+              options={clientes}
               value={formData.cliente}
               onChange={handleChange}
             />
@@ -135,9 +162,9 @@ const FormCadastroEquipamentos = () => {
 
           <div>
             <label htmlFor="nome" className="block text-sm font-medium text-gray-700 mb-1">Nome *</label>
-            <InputForm 
-              name="nome" 
-              content="Nome" 
+            <InputForm
+              name="nome"
+              content="Nome"
               value={formData.nome}
               onChange={handleChange}
             />
@@ -145,8 +172,8 @@ const FormCadastroEquipamentos = () => {
 
           <div>
             <label htmlFor="Tipo" className="block text-sm font-medium text-gray-700 mb-1">Tipo *</label>
-            <SelectForm 
-              selectTitle="Tipo" 
+            <SelectForm
+              selectTitle="Tipo"
               selectFormList={["Solda", "Hidráulica", "Içamento e Carga", "Elétrica", "Torque", "Roscas", "Tubos"]}
               value={formData.Tipo}
               onChange={handleChange}
@@ -156,13 +183,13 @@ const FormCadastroEquipamentos = () => {
 
           <div>
             <label htmlFor="saida" className="block text-sm font-medium text-gray-700 mb-1">Data Saída</label>
-            <DataForm 
-              name="saida" 
-              content="Data Saída" 
+            <DataForm
+              name="saida"
+              content="Data Saída"
               value={formData.saida}
               onChange={handleChange}
             />
-          </div>            
+          </div>
         </div>
 
         {/* Coluna 2 */}
@@ -173,9 +200,9 @@ const FormCadastroEquipamentos = () => {
 
           <div>
             <label htmlFor="marca" className="block text-sm font-medium text-gray-700 mb-1">Marca</label>
-            <InputForm 
-              name="marca" 
-              content="Marca" 
+            <InputForm
+              name="marca"
+              content="Marca"
               value={formData.marca}
               onChange={handleChange}
             />
@@ -183,9 +210,9 @@ const FormCadastroEquipamentos = () => {
 
           <div>
             <label htmlFor="serial" className="block text-sm font-medium text-gray-700 mb-1">Serial Number</label>
-            <InputForm 
-              name="serial" 
-              content="Serial Number" 
+            <InputForm
+              name="serial"
+              content="Serial Number"
               value={formData.serial}
               onChange={handleChange}
             />
@@ -193,9 +220,9 @@ const FormCadastroEquipamentos = () => {
 
           <div>
             <label htmlFor="entrada" className="block text-sm font-medium text-gray-700 mb-1">Data Entrada</label>
-            <DataForm 
-              name="entrada" 
-              content="Data Entrada" 
+            <DataForm
+              name="entrada"
+              content="Data Entrada"
               value={formData.entrada}
               onChange={handleChange}
             />
@@ -203,10 +230,20 @@ const FormCadastroEquipamentos = () => {
         </div>
 
         <div className="md:col-span-2">
+          <label htmlFor="descricao" className="block text-sm font-medium text-gray-700 mb-1">Descrição</label>
+          <TextAreaForm
+            name="descricao"
+            content="Descrição"
+            value={formData.descricao}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="md:col-span-2">
           <label htmlFor="observacoes" className="block text-sm font-medium text-gray-700 mb-1">Observações</label>
-          <TextAreaForm 
-            name="observacoes" 
-            content="Observações" 
+          <TextAreaForm
+            name="observacoes"
+            content="Observações"
             value={formData.observacoes}
             onChange={handleChange}
           />
@@ -215,15 +252,15 @@ const FormCadastroEquipamentos = () => {
 
       <div className="mt-8 flex justify-end space-x-3">
         <Link to={'/equipamentos'}>
-          <button 
+          <button
             type="button"
             className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Cancelar
           </button>
         </Link>
-        
-        <button 
+
+        <button
           type="submit"
           className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         >
