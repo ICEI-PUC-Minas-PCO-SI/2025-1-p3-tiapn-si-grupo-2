@@ -103,13 +103,12 @@ exports.criarCliente = (req, res) => {
 
     // Se não existir, faz o INSERT
     const sql = `INSERT INTO Cliente 
-      (Nome, CPF_CNPJ, EmailContato, TelefoneContato, Logradouro, CEP, Cidade, Bairro, Numero, UF, descricao, observacoes) 
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+      (Nome, CPF_CNPJ, EmailContato, TelefoneContato, Logradouro, CEP, Cidade, Bairro, Numero, UF) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     db.query(sql, [
       nome, cpf_cnpj, email || null, telefone || null,
-      logradouro, cep, cidade, bairro, numero, uf,
-      descricao || null, obeservacoes || null
+      logradouro, cep, cidade, bairro, numero, uf
     ], (err, result) => {
       if (err) {
         return res.status(500).json({ erro: 'Erro ao inserir cliente', detalhes: err.message });

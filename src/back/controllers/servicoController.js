@@ -117,4 +117,4 @@ exports.buscarServicos = (req, res) => {
 
     res.json({ sucesso: true, total: results.length, servicos: results });
   });
-};
+}
