@@ -52,6 +52,14 @@ function App() {
             element: <Clientes />
           },
           {
+            path: '/clientes/novo',
+            element: <CadastroCliente />
+          },
+          {
+            path: '/clientes/editar/:id',
+            element: <CadastroCliente/>
+          },
+          {
             path: '/equipamentos', 
             element: <Equipamentos /> 
           },

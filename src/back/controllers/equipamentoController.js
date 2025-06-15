@@ -6,9 +6,9 @@ exports.criarEquipamento = (req, res) => {
   }
 
   const { Nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Descricao,
-    Observacoes, Clienteid } = req.body;
+    Observacoes, Cliente_idCliente } = req.body;
 
-  if (!Nome || !Tipo || !Marca || !SerialNumber || !Clienteid) {
+  if (!Nome || !Tipo || !Marca || !SerialNumber || !Cliente_idCliente) {
     return res.status(400).json({
       erro: 'Campos obrigatórios faltando',
       campos_obrigatorios: ['Nome', 'Tipo', 'Marca', 'SerialNumber', 'Cliente_idCliente']
@@ -16,12 +16,12 @@ exports.criarEquipamento = (req, res) => {
   }
 
   const sql = `INSERT INTO equipamento 
-    (Nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Descricao, Observacoes,Cliente_idCliente) 
+    (Nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Descricao, Observacoes, Cliente_idCliente) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
   db.query(sql,
     [Nome, Tipo, Marca || null, SerialNumber, Status, DataEntrada, DataSaida, Descricao || null,
-      Observacoes || null, Clienteid],
+      Observacoes || null, Cliente_idCliente],
     (err, result) => {
       if (err) {
         return res.status(500).json({ erro: 'Erro interno no servidor', detalhes: err.message });
@@ -61,7 +61,8 @@ exports.atualizarEquipamento = (req, res) => {
 exports.deletarEquipamento = (req, res) => {
   const idEquipamento = parseInt(req.params.id);
   if (!idEquipamento) return res.status(400).json({ erro: 'ID do Equipamento não fornecido' });
-
+  console.log(idEquipamento);
+  
   db.query('DELETE FROM equipamento WHERE idEquipamento = ?', [idEquipamento], (err, result) => {
     if (err) return res.status(500).json({ erro: 'Erro ao deletar Equipamento', detalhes: err.message });
     if (result.affectedRows === 0) return res.status(404).json({ erro: 'Equipamento não encontrado' });

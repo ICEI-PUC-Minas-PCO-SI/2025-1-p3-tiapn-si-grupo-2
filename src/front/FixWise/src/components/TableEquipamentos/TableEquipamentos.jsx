@@ -1,18 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router";
 import { useNavigate } from "react-router";
 import Swal from 'sweetalert2'
 import ModalEquipamento from "../ModalEquipamento/ModalEquipamento";
 import { IoTrashOutline, IoCreateOutline } from "react-icons/io5";
 
-export default function TableEquipamentos({ onEdit, setOnEdit }) {
+export default function TableEquipamentos({ onEdit, setOnEdit }) { 
   const navigate = useNavigate();
   const [equipamentos, setEquipamentos] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [modalEditIsOpen, setModalEditIsOpen] = useState(false);
-  const [modalRemoveIsOpen, setModalRemoveIsOpen] = useState(false);
-  const [idUser, setIdUser] = useState(null);
 
   const getEquipamentos = async () => {
     try {
@@ -34,22 +30,51 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
     getEquipamentos();
   }, [setEquipamentos]);
 
-  const toggleModalEdit = (equip) => {
-    console.log(equip);
-    setOnEdit(equip);
+  const handleDelete = async (idEquipamento, navigate) => {
+    const result = await Swal.fire({
+      title: 'Tem certeza?',
+      text: "Você não poderá reverter esta ação!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, deletar!',
+      cancelButtonText: 'Cancelar',
+      background: '#fff'
+    });
 
-    setIdUser(equip.idEquipamento);
-    setModalEditIsOpen(!modalEditIsOpen)
-  }
+    if (result.isConfirmed) {
+      try {
+        // Faz a requisição para deletar
+        const response = await axios.delete(`http://localhost:3010/equipamento/${idEquipamento}`);
+        
+        console.log(response);
+        // Mostra mensagem de sucesso
+        await Swal.fire({
+          title: 'Deletado!',
+          text: 'O equipamento foi removido com sucesso.',
+          icon: 'success',
+          confirmButtonColor: '#3085d6',
+          background: '#fff'
+        });
 
-  const toggleModalRemove = async (id) => {
-    await axios.delete(`http://localhost:3010/equipamento/${id}`).then(({ data }) => {
-      const newArray = equipamentos.filter((equip) => equip.idEquipamento !== id)
-      setEquipamentos(newArray);
-      // setClientes(newArray);
-      Swal.fire('Sucesso', 'Equipamento excluído!', 'success')
-      // toast.success('Cliente deletado com sucesso');
-    }).catch(({ data }) => Swal.fire('Erro ao excluir', data.message));
+        // Redireciona ou atualiza a lista
+        getEquipamentos();
+        // navigate('/equipamentos');
+        // Ou: window.location.reload(); se preferir recarregar a página
+        
+      } catch (error) {
+        // Mostra mensagem de erro
+        await Swal.fire({
+          title: 'Erro!',
+          text: error.response?.data?.message || 'Ocorreu um erro ao deletar o equipamento',
+          icon: 'error',
+          confirmButtonColor: '#3085d6',
+          background: '#fff'
+        });
+      }
+    }
+
   }
 
   console.log(equipamentos)
@@ -62,23 +87,6 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
 
   return (
     <>
-      {/* <div className="flex w-full justify-between sm:w-auto mb-2">
-        <input
-          type="text"
-          placeholder="Buscar por nome, tipo ou marca..."
-          className="input input-bordered"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-   
-        <Link to={"/cadastro-equipamentos"}>
-            <button className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg hover:opacity-90 cursor-pointer transition">
-                <IoAddOutline size={20} />
-                Cadastrar
-            </button>
-        </Link>
-      </div> */}
-
       <div className="bg-white shadow overflow-hidden rounded-lg">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
@@ -118,7 +126,7 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
                             <IoCreateOutline className="h-5 w-5"/>
                           </button>
 
-                          <button className="text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50">
+                          <button className="text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50" onClick={() => handleDelete(cadastro.idEquipamento, navigate)}>
                             <IoTrashOutline className="h-5 w-5"/>
                           </button>
                         </div>
@@ -177,7 +185,7 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
           </div>
         )}
 
-      {modalEditIsOpen && <ModalEquipamento onEdit={onEdit} setOnEdit={setOnEdit} getEquipamentos={getEquipamentos} onClose={toggleModalEdit} />}
+  
     </>
 
   );

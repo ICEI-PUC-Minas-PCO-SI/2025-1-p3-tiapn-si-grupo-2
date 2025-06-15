@@ -1,29 +1,10 @@
-import { useState, useEffect } from "react";
-import FormCadastroEquipamentos from "../../components/FormCadastroEquipamentos/FormCadastroEquipamentos.jsx";
 import { ReactComponent as PlusIcon } from '../../assets/add-outline.svg'
-import { IoAddOutline, IoSearch, IoConstructOutline, IoChevronForward, IoFunnelOutline } from "react-icons/io5";
+import { IoSearch, IoFunnelOutline } from "react-icons/io5";
 import axios from "axios"
 import TableEquipamentos from "../../components/TableEquipamentos/TableEquipamentos.jsx";
 import { Link } from "react-router-dom";
 
 export default function Equipamentos() {
-    const [equipamentos, setEquipamentos] = useState([]);
- 
-    const getEquipamentos = async () => {
-        try {
-            const res = await axios.get("http://localhost:3010/equipamentos");
-
-            setEquipamentos(res.data.sort((a, b) => (a.Nome > b.Nome ? 1 : -1)));
-
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    useEffect(() => {
-        getEquipamentos();
-    }, [setEquipamentos]);
-
     return (
         <>
             <div className="p-6 bg-gray-50 min-h-screen">

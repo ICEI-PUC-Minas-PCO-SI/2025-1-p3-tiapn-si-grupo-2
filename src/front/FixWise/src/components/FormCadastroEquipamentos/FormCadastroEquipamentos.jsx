@@ -12,7 +12,7 @@ import SelectCliente from '../Select/SelectCliente'
 import DataForm from '../DataForm/DataForm'
 
 const FormCadastroEquipamentos = () => {
-  const { state } = useLocation();
+  const { state } = useLocation(); 
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -84,6 +84,7 @@ const FormCadastroEquipamentos = () => {
     }
 
     try {
+      
       const payload = {
         Cliente_idCliente: +formData.cliente,
         Nome: formData.nome,
@@ -95,9 +96,10 @@ const FormCadastroEquipamentos = () => {
         Observacoes: formData.observacoes,
         Descricao: formData.descricao
       };
-
+      console.log(payload);
       if (isEditing) {
         payload.idEquipamento = id;
+        
         await axios.put(`http://localhost:3010/equipamento/${id}`, payload);
         Swal.fire('Sucesso', 'Registro atualizado com sucesso', 'success');
       } else {
@@ -251,7 +253,7 @@ const FormCadastroEquipamentos = () => {
       </div>
 
       <div className="mt-8 flex justify-end space-x-3">
-        <Link to={'/equipamentos'}>
+        <Link to={'/clientes'}>
           <button
             type="button"
             className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
