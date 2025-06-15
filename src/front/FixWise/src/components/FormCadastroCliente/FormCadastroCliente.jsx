@@ -70,8 +70,13 @@ const FormCadastroCliente = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.cliente) {
-      Swal.fire('Atenção', 'Informe o cliente!', 'warning');
+    if (!formData.nome) {
+      Swal.fire('Atenção', 'Informe o nome!', 'warning');
+      return;
+    }
+
+    if (!formData.cpfCnpj) {
+      Swal.fire('Atenção', 'Informe o cpf ou o cnpj!', 'warning');
       return;
     }
 
