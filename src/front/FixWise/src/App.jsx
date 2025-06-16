@@ -13,6 +13,7 @@ import Manutencoes from './pages/Manutencoes/Manutencoes'
 import Login from './pages/Login/Login'
 import Equipamentos from './pages/Equipamentos/Equipamentos'
 import Sidebar from './components/Sidebar/Sidebar'
+import Funcionarios from './pages/Funcionarios/Funcionarios'
 
 function App() {
 
@@ -70,6 +71,10 @@ function App() {
           {
             path: '/equipamentos/editar/:id',
             element: <CadastroEquipamentos/>
+          },
+          {
+            path: '/funcionarios',
+            element: <Funcionarios />
           }
         ]
       }

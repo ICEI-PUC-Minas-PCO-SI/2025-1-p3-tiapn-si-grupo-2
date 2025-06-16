@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import Swal from 'sweetalert2'
-import ModalEquipamento from "../ModalEquipamento/ModalEquipamento";
 import { IoTrashOutline, IoCreateOutline } from "react-icons/io5";
 
 export default function TableEquipamentos({ onEdit, setOnEdit }) { 
@@ -76,8 +75,6 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
     }
 
   }
-
-  console.log(equipamentos)
 
   const equipamentosFiltrados = equipamentos.filter((cadastro) =>
     `${cadastro.Nome} ${cadastro.Tipo} ${cadastro.Marca}`

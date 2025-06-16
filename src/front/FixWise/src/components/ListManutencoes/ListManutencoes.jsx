@@ -1,34 +1,51 @@
-import React from 'react'
+import  { useState, useEffect } from 'react'
 import ManutencoesPendentes from '../ManutencoesPendentes/ManutencoesPendentes'
 import { IoCog, IoCalendar, IoHammer, IoAlertSharp } from 'react-icons/io5'
+import axios from 'axios'
 
 const ListManutencoes = () => {
-  const dadosManutencoes = [
-    {
-      id: 'MT-2023-0015',
-      equipamento: 'Prensa Hidráulica',
-      tecnico: 'Carlos Silva',
-      dataChegada: '2023-05-15',
-      status: 'Pendente',
-      prioridade: 'Alta'
-    },
-    {
-      id: 'MT-2023-0018',
-      equipamento: 'Serra Elétrica',
-      tecnico: 'Ana Oliveira',
-      dataChegada: '2023-05-18',
-      status: 'Pendente',
-      prioridade: 'Média'
-    },
-    {
-      id: 'MT-2023-0022',
-      equipamento: 'Solda MIG',
-      tecnico: 'Pedro Santos',
-      dataChegada: '2023-05-20',
-      status: 'Pendente',
-      prioridade: 'Baixa'
+  const [manutencoes, setManutencoes] = useState([])
+  // const dadosManutencoes = [
+  //   {
+  //     id: 'MT-2023-0015',
+  //     equipamento: 'Prensa Hidráulica',
+  //     tecnico: 'Carlos Silva',
+  //     dataChegada: '2023-05-15',
+  //     status: 'Pendente',
+  //     prioridade: 'Alta'
+  //   },
+  //   {
+  //     id: 'MT-2023-0018',
+  //     equipamento: 'Serra Elétrica',
+  //     tecnico: 'Ana Oliveira',
+  //     dataChegada: '2023-05-18',
+  //     status: 'Pendente',
+  //     prioridade: 'Média'
+  //   },
+  //   {
+  //     id: 'MT-2023-0022',
+  //     equipamento: 'Solda MIG',
+  //     tecnico: 'Pedro Santos',
+  //     dataChegada: '2023-05-20',
+  //     status: 'Pendente',
+  //     prioridade: 'Baixa'
+  //   }
+  // ]
+
+  const getManutencoes = async () => {
+    try {
+      const res = await axios.get("http://localhost:3010/cadastromanutencao/manutencoes-pendentes");
+      console.log('manutencoes pendentes', res)
+      setManutencoes(res.data.manutencoes);
+    } catch (error) {
+      console.error("Erro ao buscar manutenções:", error);
     }
-  ]
+  }
+
+  useEffect(() => {
+    getManutencoes();
+  }, [setManutencoes]);
+
   return (
     <>
       <div className="w-full overflow-auto">
@@ -54,45 +71,29 @@ const ListManutencoes = () => {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {
-              dadosManutencoes.map((manutencao) => (
+              manutencoes.map((manutencao) => (
                 <tr key={manutencao.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <IoHammer className="flex-shrink-0 h-4 w-4 text-blue-500 mr-2" />
-                      <span className="font-medium text-gray-900">{manutencao.id}</span>
+                      <span className="font-medium text-gray-900">{manutencao.idManutencao}</span>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{manutencao.equipamento}</div>
-                    <div className="text-xs text-gray-500">
-                      {manutencao.prioridade === 'Alta' && (
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                          Alta Prioridade
-                        </span>
-                      )}
-                      {manutencao.prioridade === 'Média' && (
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                          Média Prioridade
-                        </span>
-                      )}
-                      {manutencao.prioridade === 'Baixa' && (
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                          Baixa Prioridade
-                        </span>
-                      )}
-                    </div>
+                    <div className="text-sm text-gray-900">{manutencao.nomeEquipamento}</div>
+                    
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <IoCog className="flex-shrink-0 h-4 w-4 text-gray-400 mr-2" />
-                      <span className="text-sm text-gray-900">{manutencao.tecnico}</span>
+                      <span className="text-sm text-gray-900">{manutencao.nomeFuncionario}</span>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <IoCalendar className="flex-shrink-0 h-4 w-4 text-gray-400 mr-2" />
                       <span className="text-sm text-gray-900">
-                        {new Date(manutencao.dataChegada).toLocaleDateString('pt-BR')}
+                        {new Date(manutencao.DataEntrada).toLocaleDateString('pt-BR')}
                       </span>
                     </div>
                   </td>

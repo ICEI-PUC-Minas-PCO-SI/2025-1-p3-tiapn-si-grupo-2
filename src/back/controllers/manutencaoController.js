@@ -5,7 +5,7 @@ exports.criarmanutencao = (req, res) => {
     return res.status(400).json({ erro: 'Corpo da requisição ausente ou inválido' });
   }
 
-  const {equipamento_id, dataentrada, datasaida, responsavel, status, Descricao, Observacoes} = req.body;
+  const { equipamento_id, dataentrada, datasaida, responsavel, status, Descricao, Observacoes } = req.body;
 
   if (!equipamento_id || !dataentrada || !responsavel) {
     return res.status(400).json({
@@ -115,7 +115,6 @@ exports.atualizarManutencao = (req, res) => {
   });
 };
 
-
 exports.deletarManutencao = (req, res) => {
   const idManutencao = parseInt(req.params.id);
   if (!idManutencao) return res.status(400).json({ erro: 'ID da manutenção não fornecido' });
@@ -129,7 +128,7 @@ exports.deletarManutencao = (req, res) => {
 };
 
 exports.buscarManutencao = (req, res) => {
-  const {equipamento_id, dataentrada, datasaida, responsavel, status} = req.query;
+  const { equipamento_id, dataentrada, datasaida, responsavel, status } = req.query;
 
   let sql = 'SELECT * FROM cadastromanutencao WHERE 1=1';
   const params = [];
@@ -167,3 +166,18 @@ exports.buscarManutencao = (req, res) => {
     res.json({ sucesso: true, total: results.length, equipamento: results });
   });
 };
+
+exports.listaManutencoesPendentes = (req, res) => {
+  const params = [];
+  const sql = 'select M.idManutencao, M.DataEntrada, M.status, E.Nome nomeEquipamento, F.Nome nomeFuncionario from cadastromanutencao M ' +
+              'INNER JOIN FUNCIONARIO F ON (F.idUsuario = M.ResponsavelManutencao) ' +
+              'INNER JOIN EQUIPAMENTO E ON (E.idEquipamento = M.Equipamento_idEquipamento) WHERE M.STATUS = "Pendente"';
+
+  db.query(sql, params, (err, results) => {
+    if (err) {
+      return res.status(500).json({ erro: 'Erro interno no servidor', detalhes: err.message });
+    }
+
+    res.json({ sucesso: true, total: results.length, manutencoes: results });
+  })
+}

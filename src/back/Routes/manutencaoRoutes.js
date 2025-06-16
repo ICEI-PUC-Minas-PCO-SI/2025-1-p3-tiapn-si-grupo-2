@@ -4,6 +4,7 @@ const manutencaoController = require('../controllers/manutencaoController');
 
 // GET /manutenção/ todos e com filtros de pesquisa
 router.get('/', manutencaoController.buscarManutencao);
+router.get('/manutencoes-pendentes', manutencaoController.listaManutencoesPendentes);
 
 // POST /manutenção
 router.post('/', manutencaoController.criarmanutencao);
