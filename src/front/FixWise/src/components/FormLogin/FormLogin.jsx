@@ -24,7 +24,7 @@ const FormLogin = () => {
           dataToSend
         );
         response.data.sucesso
-          ? navigate("/")
+          ? navigate("/home")
           : Swal.fire({
               title: "Erro!",
               text: "Matrícula ou senha incorretos!",

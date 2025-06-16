@@ -18,7 +18,7 @@ const ListSideBar = (props) => {
     <>
       <div className="flex flex-col justify-between h-11/12">
         <ul>
-          <ItemSideBar isOpen={props.isOpen} tagItem={LuLayoutDashboard} nameItem="Dashboard" route="/"/>
+          <ItemSideBar isOpen={props.isOpen} tagItem={LuLayoutDashboard} nameItem="Dashboard" route="/home"/>
           <ItemSideBarDropdown
           isOpen={props.isOpen}
             tagItem={FiDatabase}
@@ -52,7 +52,7 @@ const ListSideBar = (props) => {
           
           
         </ul>
-        <ItemSideBar isOpen={props.isOpen} tagItem={CiLogout} nameItem="Sair" route="/login"/>
+        <ItemSideBar isOpen={props.isOpen} tagItem={CiLogout} nameItem="Sair" route="/"/>
       </div>
     </>
   );

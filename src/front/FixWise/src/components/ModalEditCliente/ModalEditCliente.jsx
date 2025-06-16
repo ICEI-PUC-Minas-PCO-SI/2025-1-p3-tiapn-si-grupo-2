@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import Swal from "sweetalert2";
 
 const ModalEditCliente = ({ onClose, idUser, setClientes, clientes }) => {
   const [dadosCliente, setDadosCliente] = useState(null);
@@ -36,8 +37,19 @@ const ModalEditCliente = ({ onClose, idUser, setClientes, clientes }) => {
         formData
       );
       console.log("Cliente atualizado:", response.data);
-
-     window.location.reload()
+      await Swal.fire({
+        title: "Sucesso!",
+        text: "Cliente atualizado com sucesso!",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+      onClose();
+      setClientes((prevClientes) =>
+        prevClientes.map((cliente) =>
+          cliente.idCliente === idUser ? { ...cliente, ...formData } : cliente
+        )
+      );
+      window.location.reload()
       onClose();
     } catch (error) {
       console.error("Erro ao atualizar cliente:", error);
@@ -55,7 +67,7 @@ const ModalEditCliente = ({ onClose, idUser, setClientes, clientes }) => {
         const cliente = Array.isArray(data) ? data[0] : data;
 
         setDadosCliente(cliente);
-        console.log(cliente)
+        console.log(cliente);
         setFormData({
           cpfCnpj: cliente.CPF_CNPJ || "",
           nome: cliente.Nome || "",
@@ -140,12 +152,15 @@ const ModalEditCliente = ({ onClose, idUser, setClientes, clientes }) => {
           />
         </form>
         <div className="flex justify-end gap-3 pt-4">
-          <button onClick={onClose} className="w-20 ring p-1 rounded">
+          <button
+            onClick={onClose}
+            className="w-20 ring p-1 rounded cursor-pointer"
+          >
             Cancelar
           </button>
           <button
             onClick={() => handleSubmit(idUser)}
-            className="w-20 p-1 bg-gray-900 text-white rounded"
+            className="w-20 p-1 bg-gray-900 text-white rounded cursor-pointer"
           >
             Salvar
           </button>

@@ -11,22 +11,24 @@ import Clientes from './pages/Clientes/Clientes'
 import Manutencoes from './pages/Manutencoes/Manutencoes'
 import Login from './pages/Login/Login'
 import Acessos from './pages/Acessos/Acessos'
+import Equipamentos from './pages/Equipamentos/Equipamentos'
 
 function App() {
 
   return (
     <>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/home' element={<Home />} />
         <Route path='/cadastro-clientes' element={<CadastroCliente />} />
         <Route path='/cadastro-acessos' element={<CadastroAcessos/>} />
         <Route path='/cadastro-equipamentos' element={<CadastroEquipamentos />} />
+        <Route path='/equipamentos' element={<Equipamentos />} />
         <Route path='/cadastro-manutencao' element={<CadastroManutencao />} />
         <Route path='/internos' element={<EquipamentosInternos />} />
         <Route path='/externos' element={<EquipamentosExternos />} />
         <Route path='/clientes' element={<Clientes />} />
         <Route path='/manutencoes' element={<Manutencoes />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<Login />} />
         <Route  path='/acessos' element={<Acessos />}/>
       </Routes>
     </>

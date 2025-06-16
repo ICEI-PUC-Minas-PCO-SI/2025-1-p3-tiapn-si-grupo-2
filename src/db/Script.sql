@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS `Cliente` (
   `Bairro` VARCHAR(50) NULL,
   `Numero` VARCHAR(10) NULL,
   `UF` VARCHAR(2) NULL,
+  `Complemento` VARCHAR(40);
   `Descricao` TEXT NULL,
   `Observacoes` TEXT NULL,
   PRIMARY KEY (`idCliente`)
