@@ -13,6 +13,7 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
     try {
       const res = await axios.get("http://localhost:3010/equipamento");
       setEquipamentos(res.data.equipamento);
+      console.log(res.data.equipamento)
     } catch (error) {
       console.error("Erro ao buscar equipamentos:", error);
     }

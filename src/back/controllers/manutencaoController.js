@@ -130,7 +130,10 @@ exports.deletarManutencao = (req, res) => {
 exports.buscarManutencao = (req, res) => {
   const { equipamento_id, dataentrada, datasaida, responsavel, status } = req.query;
 
-  let sql = 'SELECT * FROM cadastromanutencao WHERE 1=1';
+  // let sql = "SELECT cadastromanutencao.*, funcionario.Nome funcionario FROM cadastromanutencao INNER JOIN funcionario on (funcionario.idUsuario = cadastromanutencao.ResponsavelManutencao) WHERE 1=1"
+  let sql = "SELECT cadastromanutencao.*, funcionario.Nome AS nomeResponsavel, equipamento.Nome AS nomeEquipamento, cliente.Nome AS nomeCliente FROM cadastromanutencao INNER JOIN funcionario ON funcionario.idUsuario = cadastromanutencao.ResponsavelManutencao INNER JOIN equipamento ON equipamento.idEquipamento = cadastromanutencao.Equipamento_idEquipamento INNER JOIN cliente ON cliente.idCliente = equipamento.Cliente_idCliente WHERE 1=1"
+  
+  
   const params = [];
 
   if (equipamento_id) {
@@ -163,7 +166,7 @@ exports.buscarManutencao = (req, res) => {
       return res.status(404).json({ erro: 'Nenhuma manutenção encontrada com os filtros informados' });
     }
 
-    res.json({ sucesso: true, total: results.length, equipamento: results });
+    res.json({ sucesso: true, total: results.length, manutencoes: results });
   });
 };
 

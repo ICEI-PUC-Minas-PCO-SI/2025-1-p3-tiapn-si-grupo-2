@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { format } from "date-fns";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { IoTrashOutline, IoCreateOutline, IoSearch, IoFunnelOutline } from "react-icons/io5";
@@ -12,14 +13,14 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
   const getManutencoes = async () => {
     try {
       const res = await axios.get("http://localhost:3010/cadastromanutencao");
-      console.log(res.data)
+      setManutencoes(res.data.manutencoes)
     } catch (error) {
       console.error("Erro ao buscar manutencoes:", error);
     }
   };
 
   const handleEdit = (manutecoes) => {
-    navigate(`/manutencoes/editar/${manutecoes.idManutecao}`, {
+    navigate(`/manutencoes/editar/${manutecoes.idManutencao}`, {
       state: { manutecoes },
     });
   };
@@ -28,7 +29,11 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
     getManutencoes();
   }, [setManutencoes]);
 
-  const handleDelete = async (idManutecao, navigate) => {
+  useEffect(() => {
+    
+  })
+
+  const handleDelete = async (idManutencao, navigate) => {
     const result = await Swal.fire({
       title: "Tem certeza?",
       text: "Você não poderá reverter esta ação!",
@@ -45,7 +50,7 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
       try {
         // Faz a requisição para deletar
         const response = await axios.delete(
-          `http://localhost:3010/cadastromanutencao/${idManutecao}`
+          `http://localhost:3010/cadastromanutencao/${idManutencao}`
         );
 
         console.log(response);
@@ -78,9 +83,9 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
   };
 
   const manutencoesFiltradas = manutecoes.filter((cadastro) =>
-    cadastro.Nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    cadastro.Tipo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    cadastro.Marca.toLowerCase().includes(searchTerm.toLowerCase())
+    cadastro.nomeResponsavel.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    cadastro.Status.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    cadastro.nomeEquipamento.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -122,25 +127,37 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
                 >
-                  Nome
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
-                >
-                  Tipo
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
-                >
-                  Marca
+                  Equipamento
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
                 >
                   Cliente
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
+                >
+                 Responsável 
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
+                >
+                  Data Entrada
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
+                >
+                  Data Prazo
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
+                >
+                  Status
                 </th>
                 <th
                   scope="col"
@@ -152,26 +169,33 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {manutencoesFiltradas.map((cadastro, index) => (
+                
                 <tr
-                  key={cadastro.idManutecao}
+                  key={cadastro.idManutencao}
                   className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
                 >
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.idManutecao}
+                    {cadastro.idManutencao}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900">
-                      {cadastro.Nome}
+                      {cadastro.nomeEquipamento}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.Tipo}
+                    {cadastro.nomeCliente}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.Marca}
+                    {cadastro.nomeResponsavel}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.cliente}
+                    {format(new Date(cadastro.DataEntrada), "dd/MM/yyyy")}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {format(new Date(cadastro.DataSaida), "dd/MM/yyyy")}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {cadastro.Status}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex justify-center items-center space-x-2">
@@ -185,7 +209,7 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
                       <button
                         className="text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50"
                         onClick={() =>
-                          handleDelete(cadastro.idManutecao, navigate)
+                          handleDelete(cadastro.idManutencao, navigate)
                         }
                       >
                         <IoTrashOutline className="h-5 w-5" />
