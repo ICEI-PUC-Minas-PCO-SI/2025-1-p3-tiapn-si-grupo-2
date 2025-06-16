@@ -10,6 +10,7 @@ import TextAreaForm from "../TextAreaForm/TextAreaForm";
 import SelectForm from "../SelectForm/SelectForm";
 import DataForm from "../DataForm/DataForm";
 import SelectEquipamentos from "../SelectEquipamentos/SelectEquipamentos";
+import SelectFuncionarios from "../SelectFuncionarios/SelectFuncionarios";
 
 const FormCadastroManutencao = () => {
   const { state } = useLocation();
@@ -26,9 +27,9 @@ const FormCadastroManutencao = () => {
     observacoes: "",
   });
 
-  console.log(formData.equipamento);
 
   const [equipamentos, setEquipamentos] = useState([]);
+  const [funcionarios, setFuncionarios] = useState([]);
   const [manutencoes, setManutencoes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const isEditing = !!id;
@@ -38,7 +39,6 @@ const FormCadastroManutencao = () => {
     const getEquipamentos = async () => {
       try {
         const res = await axios.get("http://localhost:3010/equipamento");
-        console.log(res.data);
         setEquipamentos(
           res.data.equipamento.sort((a, b) => (a.Nome > b.Nome ? 1 : -1))
         );
@@ -52,6 +52,21 @@ const FormCadastroManutencao = () => {
     getEquipamentos();
   }, []);
 
+  useEffect(() =>{
+    const getFuncionarios = async() =>{
+      try{
+        const response = await axios.get("http://localhost:3010/funcionario")
+      setFuncionarios(response.data.funcionarios.sort((a, b) => (a.Nome > b.Nome ? 1 : -1)))
+      }
+      catch(error){
+        Swal.fire("Erro", error.message);
+        setIsLoading(false);
+      }
+    }
+
+    getFuncionarios()
+  }, [])
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -59,6 +74,7 @@ const FormCadastroManutencao = () => {
       [name]: value,
     }));
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,7 +88,7 @@ const FormCadastroManutencao = () => {
       const payload = {
         equipamento_id: +formData.equipamento,
         dataentrada: formData.dataEntrada,
-        datasaida: formData.dataSaida,
+        dataprazo: formData.dataPrazo,
         responsavel: formData.responsavel,
         status: formData.status,
         Observacoes: formData.observacoes,
@@ -209,9 +225,10 @@ const FormCadastroManutencao = () => {
             >
               Responsável
             </label>
-            <InputForm
+            <SelectFuncionarios
               name="responsavel"
-              content="Responsável"
+              titulo="responsavel"
+              options={funcionarios}
               value={formData.responsavel}
               onChange={handleChange}
             />
@@ -228,6 +245,7 @@ const FormCadastroManutencao = () => {
               name="status"
               value={formData.status}
               className="w-full h-10 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
+              onChange={handleChange}
             >
               <option value="">Selecione um status</option>
               <option value="Pendente">Pendente</option>

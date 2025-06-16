@@ -5,7 +5,7 @@ exports.criarmanutencao = (req, res) => {
     return res.status(400).json({ erro: 'Corpo da requisição ausente ou inválido' });
   }
 
-  const { equipamento_id, dataentrada, datasaida, responsavel, status, Descricao, Observacoes } = req.body;
+  const { equipamento_id, dataentrada, dataprazo, responsavel, status, Descricao, Observacoes } = req.body;
 
   if (!equipamento_id || !dataentrada || !responsavel) {
     return res.status(400).json({
@@ -42,7 +42,7 @@ exports.criarmanutencao = (req, res) => {
         VALUES (?, ?, ?, ?, ?, ?, ?)`;
 
       db.query(sql,
-        [equipamento_id, dataentrada, datasaida || null, responsavel, status || null, Descricao || null, Observacoes || null],
+        [equipamento_id, dataentrada, dataprazo || null, responsavel, status || null, Descricao || null, Observacoes || null],
         (err, result) => {
           if (err) {
             return res.status(500).json({ erro: 'Erro interno no servidor (inserção)', detalhes: err.message });
@@ -55,7 +55,7 @@ exports.criarmanutencao = (req, res) => {
             dados: {
               equipamento_id,
               dataentrada,
-              datasaida: datasaida || null,
+              dataprazo: dataprazo || null,
               responsavel,
               status: status || 'Não informado',
               Descricao: Descricao || 'Não informado',
