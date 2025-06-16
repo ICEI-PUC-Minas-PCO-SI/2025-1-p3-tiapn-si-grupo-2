@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.7",
+    "@tanstack/react-query": "^5.80.7",
     "axios": "^1.10.0",
     "flowbite-react": "^0.11.7",
     "react": "^19.1.0",

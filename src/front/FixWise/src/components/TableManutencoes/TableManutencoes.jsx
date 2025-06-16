@@ -4,31 +4,31 @@ import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { IoTrashOutline, IoCreateOutline, IoSearch, IoFunnelOutline } from "react-icons/io5";
 
-export default function TableEquipamentos({ onEdit, setOnEdit }) {
+export default function TableManutencoes({ onEdit, setOnEdit }) {
   const navigate = useNavigate();
-  const [equipamentos, setEquipamentos] = useState([]);
+  const [manutecoes, setManutencoes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const getEquipamentos = async () => {
+  const getManutencoes = async () => {
     try {
-      const res = await axios.get("http://localhost:3010/equipamento");
-      setEquipamentos(res.data.equipamento);
+      const res = await axios.get("http://localhost:3010/cadastromanutencao");
+      console.log(res.data)
     } catch (error) {
-      console.error("Erro ao buscar equipamentos:", error);
+      console.error("Erro ao buscar manutencoes:", error);
     }
   };
 
-  const handleEdit = (equipamento) => {
-    navigate(`/equipamentos/editar/${equipamento.idEquipamento}`, {
-      state: { equipamento },
+  const handleEdit = (manutecoes) => {
+    navigate(`/manutencoes/editar/${manutecoes.idManutecao}`, {
+      state: { manutecoes },
     });
   };
 
   useEffect(() => {
-    getEquipamentos();
-  }, [setEquipamentos]);
+    getManutencoes();
+  }, [setManutencoes]);
 
-  const handleDelete = async (idEquipamento, navigate) => {
+  const handleDelete = async (idManutecao, navigate) => {
     const result = await Swal.fire({
       title: "Tem certeza?",
       text: "Você não poderá reverter esta ação!",
@@ -45,21 +45,21 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
       try {
         // Faz a requisição para deletar
         const response = await axios.delete(
-          `http://localhost:3010/equipamento/${idEquipamento}`
+          `http://localhost:3010/cadastromanutencao/${idManutecao}`
         );
 
         console.log(response);
         // Mostra mensagem de sucesso
         await Swal.fire({
           title: "Deletado!",
-          text: "O equipamento foi removido com sucesso.",
+          text: "A manutencao foi removida com sucesso.",
           icon: "success",
           confirmButtonColor: "#3085d6",
           background: "#fff",
         });
 
         // Redireciona ou atualiza a lista
-        getEquipamentos();
+        getManutencoes()
         // navigate('/equipamentos');
         // Ou: window.location.reload(); se preferir recarregar a página
       } catch (error) {
@@ -68,7 +68,7 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
           title: "Erro!",
           text:
             error.response?.data?.message ||
-            "Ocorreu um erro ao deletar o equipamento",
+            "Ocorreu um erro ao deletar a manutencao",
           icon: "error",
           confirmButtonColor: "#3085d6",
           background: "#fff",
@@ -77,7 +77,7 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
     }
   };
 
-  const equipamentosFiltrados = equipamentos.filter((cadastro) =>
+  const manutencoesFiltradas = manutecoes.filter((cadastro) =>
     cadastro.Nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
     cadastro.Tipo.toLowerCase().includes(searchTerm.toLowerCase()) ||
     cadastro.Marca.toLowerCase().includes(searchTerm.toLowerCase())
@@ -151,13 +151,13 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {equipamentosFiltrados.map((cadastro, index) => (
+              {manutencoesFiltradas.map((cadastro, index) => (
                 <tr
-                  key={cadastro.idEquipamento}
+                  key={cadastro.idManutecao}
                   className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
                 >
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.idEquipamento}
+                    {cadastro.idManutecao}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900">
@@ -185,7 +185,7 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
                       <button
                         className="text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50"
                         onClick={() =>
-                          handleDelete(cadastro.idEquipamento, navigate)
+                          handleDelete(cadastro.idManutecao, navigate)
                         }
                       >
                         <IoTrashOutline className="h-5 w-5" />
@@ -200,7 +200,7 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
       </div>
 
       {/* Paginação (opcional) */}
-      {equipamentosFiltrados.length > 0 && (
+      {manutencoesFiltradas.length > 0 && (
         <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 rounded-b-lg">
           <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
@@ -208,7 +208,7 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
                 Mostrando <span className="font-medium">1</span> a{" "}
                 <span className="font-medium">10</span> de{" "}
                 <span className="font-medium">
-                  {equipamentosFiltrados.length}
+                  {manutencoesFiltradas.length}
                 </span>{" "}
                 resultados
               </p>

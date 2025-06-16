@@ -82,10 +82,11 @@ exports.criarCliente = (req, res) => {
     return res.status(400).json({ erro: 'Corpo da requisição ausente ou inválido' });
   }
 
-  const { nome, cpf_cnpj, email, telefone, logradouro, cep, cidade, bairro, numero, uf, descricao, obeservacoes } = req.body;
+  const { nome, cpf_cnpj, email, telefone, logradouro, cep, cidade, bairro, numero, uf, descricao, observacoes } = req.body;
 
   if (!nome || !cpf_cnpj || !logradouro || !cep || !cidade || !bairro || !numero || !uf) {
     return res.status(400).json({
+      
       erro: 'Campos obrigatórios faltando',
       campos_obrigatorios: ['nome', 'cpf_cnpj', 'logradouro', 'cep', 'cidade', 'bairro', 'numero', 'uf']
     });
@@ -96,7 +97,7 @@ exports.criarCliente = (req, res) => {
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
   db.query(sql,
-    [nome, cpf_cnpj, email || null, telefone || null, logradouro, cep, cidade, bairro, numero, uf, descricao || null, obeservacoes || null],
+    [nome, cpf_cnpj, email || null, telefone || null, logradouro, cep, cidade, bairro, numero, uf, descricao || null, observacoes || null],
     (err, result) => {
       if (err) {
         return res.status(500).json({ erro: 'Erro interno no servidor', detalhes: err.message });
@@ -113,13 +114,13 @@ exports.criarCliente = (req, res) => {
 
 exports.atualizarCliente = (req, res) => {
   const { id } = req.params;
-  const { cpf_cnpj, nome, email, telefone, logradouro, cep, cidade, bairro, numero, uf } = req.body;
+  const { cpf_cnpj, nome, email, telefone, logradouro, cep, cidade, bairro, numero, uf, descricao, observacoes } = req.body;
 
-  db.query("UPDATE cliente SET nome = ?, cpf_cnpj = ?, emailcontato = ?, telefone = ?, logradouro = ?, cep = ?, cidade = ?, bairro = ?, numero = ?, uf = ? WHERE idCliente = ?",
-    [nome, cpf_cnpj, email, telefone, logradouro, cep, cidade, bairro, numero, uf, id],
+  db.query("UPDATE cliente SET nome = ?, cpf_cnpj = ?, emailContato = ?, TelefoneContato = ?, logradouro = ?, cep = ?, cidade = ?, bairro = ?, numero = ?, uf = ?, descricao = ?, observacoes = ? WHERE idCliente = ?",
+    [nome, cpf_cnpj, email, telefone, logradouro, cep, cidade, bairro, numero, uf, descricao, observacoes, id],
     (err, results) => {
       if (err) return res.status(500).json({ erro: 'Erro ao atualizar cliente', detalhes: err.message });
-      res.json({ sucesso: true, mensagem: 'Cliente atualizado com sucesso' });
+      res.json({ req_body: req.body, sucesso: true, mensagem: 'Cliente atualizado com sucesso' });
     });
 };
 

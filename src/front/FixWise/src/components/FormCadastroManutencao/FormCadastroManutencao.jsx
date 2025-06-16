@@ -1,34 +1,293 @@
-import React from 'react'
-import InputForm from '../InputForm/InputForm'
-import TextAreaForm from '../TextAreaForm/TextAreaForm'
-import { Link } from 'react-router-dom'
-import BotaoCancelar from '../BotaoCancelar/BotaoCancelar'
-import BotaoSalvar from '../BotaoSalvar/BotaoSalvar'
-import DataForm from '../DataForm/DataForm'
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useLocation, useParams, useNavigate, Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { IoCheckmark } from "react-icons/io5";
+
+// Importe seus componentes personalizados
+import InputForm from "../InputForm/InputForm";
+import TextAreaForm from "../TextAreaForm/TextAreaForm";
+import SelectForm from "../SelectForm/SelectForm";
+import DataForm from "../DataForm/DataForm";
+import SelectEquipamentos from "../SelectEquipamentos/SelectEquipamentos";
 
 const FormCadastroManutencao = () => {
-  return (
-    <div>
-      <form action="" className="py-4 flex flex-col gap-5">
-        <div className="grid grid-cols-3 gap-5 mt-5 ">
-          <InputForm content="Cliente" />
-          <InputForm content="Equipamento" />
-          <DataForm content="Data Entrada" />
-          <DataForm content="Data Saída" />
-          <InputForm content="Responsável pela Manutenção" />
-          <InputForm content="Status" />        
-        </div>
-        <div className="flex flex-col gap-5">
-        <TextAreaForm content="Descrição"/>
-        <TextAreaForm content="Observações"/>
-        </div>
-        <div className="flex gap-5 mt-5">
-        <Link to="/"><BotaoCancelar /></Link>
-            <BotaoSalvar />
-        </div>
-      </form>
-    </div>
-  )
-}
+  const { state } = useLocation();
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-export default FormCadastroManutencao
+  const [formData, setFormData] = useState({
+    equipamento: "",
+    dataEntrada: "",
+    dataPrazo: "",
+    responsavel: "",
+    status: "",
+    descricao: "",
+    observacoes: "",
+  });
+
+  console.log(formData.equipamento);
+
+  const [equipamentos, setEquipamentos] = useState([]);
+  const [manutencoes, setManutencoes] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const isEditing = !!id;
+
+  // Carrega equipamentos
+  useEffect(() => {
+    const getEquipamentos = async () => {
+      try {
+        const res = await axios.get("http://localhost:3010/equipamento");
+        console.log(res.data);
+        setEquipamentos(
+          res.data.equipamento.sort((a, b) => (a.Nome > b.Nome ? 1 : -1))
+        );
+        setIsLoading(false);
+      } catch (error) {
+        Swal.fire("Erro", error.message);
+        setIsLoading(false);
+      }
+    };
+
+    getEquipamentos();
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!formData.equipamento) {
+      Swal.fire("Atenção", "Informe o equipamento!", "warning");
+      return;
+    }
+
+    try {
+      const payload = {
+        equipamento_id: +formData.equipamento,
+        dataentrada: formData.dataEntrada,
+        datasaida: formData.dataSaida,
+        responsavel: formData.responsavel,
+        status: formData.status,
+        Observacoes: formData.observacoes,
+        Descricao: formData.descricao,
+      };
+      console.log(payload);
+      if (isEditing) {
+        payload.idEquipamento = id;
+
+        await axios.put(
+          `http://localhost:3010/cadastromanutencao/${id}`,
+          payload
+        );
+        Swal.fire("Sucesso", "Registro atualizado com sucesso", "success");
+      } else {
+        console.log(payload);
+        await axios.post("http://localhost:3010/cadastromanutencao", payload);
+
+        Swal.fire("Sucesso", "Registro incluído com sucesso", "success");
+      }
+
+      navigate("/manutencoes");
+    } catch (error) {
+      Swal.fire(
+        "Erro",
+        error.response?.data?.message || error.message,
+        "error"
+      );
+    }
+  };
+
+  function formatDateForInput(dateString) {
+    if (!dateString) return "";
+
+    // Se já estiver no formato YYYY-MM-DD
+    if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+      return dateString;
+    }
+
+    // Se for uma string ISO (com timezone)
+    if (dateString.includes("T")) {
+      return dateString.split("T")[0];
+    }
+
+    // Se for um objeto Date ou timestamp
+    const date = new Date(dateString);
+    if (!isNaN(date.getTime())) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    return "";
+  }
+
+  if (isLoading) {
+    return <div>Carregando...</div>;
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white shadow overflow-hidden rounded-lg p-6"
+    >
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Coluna 1 */}
+        <div className="space-y-4">
+          <div className="col-span-2 mb-4">
+            <h2 className="text-sl font-semibold text-gray-700 border-b pb-2">
+              Informações básicas
+            </h2>
+          </div>
+
+          <div>
+            <label
+              htmlFor="equipamentos"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Equipamento *
+            </label>
+            <SelectEquipamentos
+              name="equipamento"
+              titulo="equipamento"
+              options={equipamentos}
+              value={formData.equipamento}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="entrada"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Data Entrada
+            </label>
+            <DataForm
+              name="dataEntrada"
+              content="Data Entrada"
+              value={formData.dataEntrada}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="dataPrazo"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Data Prazo
+            </label>
+            <DataForm
+              name="dataPrazo"
+              content="Data Prazo"
+              value={formData.dataPrazo}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
+        {/* Coluna 2 */}
+        <div className="space-y-4">
+          <div className="col-span-2 mb-4">
+            <h2 className="text-sl font-semibold text-gray-700 border-b pb-2">
+              Detalhes Técnicos
+            </h2>
+          </div>
+
+          <div>
+            <label
+              htmlFor="responsavel"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Responsável
+            </label>
+            <InputForm
+              name="responsavel"
+              content="Responsável"
+              value={formData.responsavel}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="serial"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Status
+            </label>
+            <select
+              name="status"
+              value={formData.status}
+              className="w-full h-10 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
+            >
+              <option value="">Selecione um status</option>
+              <option value="Pendente">Pendente</option>
+              <option value="Iniciada">Iniciada</option>
+              <option value="Finalizada">Finalizada</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="md:col-span-2">
+          <label
+            htmlFor="descricao"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
+            Descrição
+          </label>
+          <TextAreaForm
+            name="descricao"
+            content="Descrição"
+            value={formData.descricao}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="md:col-span-2">
+          <label
+            htmlFor="observacoes"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
+            Observações
+          </label>
+          <TextAreaForm
+            name="observacoes"
+            content="Observações"
+            value={formData.observacoes}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+
+      <div className="mt-8 flex justify-end space-x-3">
+        <Link to={"/manutencoes"}>
+          <button
+            type="button"
+            className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            Cancelar
+          </button>
+        </Link>
+
+        <button
+          type="submit"
+          className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          <IoCheckmark className="-ml-1 mr-2 h-5 w-5" />
+          Salvar Equipamento
+        </button>
+      </div>
+    </form>
+  );
+};
+
+export default FormCadastroManutencao;
