@@ -14,6 +14,8 @@ exports.criarmanutencao = (req, res) => {
     });
   }
 
+
+
   // 1. Verifica se o equipamento existe
   const sqlCheckEquipamento = 'SELECT idEquipamento FROM equipamento WHERE idEquipamento = ?';
   db.query(sqlCheckEquipamento, [equipamento_id], (err, equipamentoResults) => {
@@ -41,29 +43,45 @@ exports.criarmanutencao = (req, res) => {
         (Equipamento_idEquipamento, DataEntrada, DataSaida, ResponsavelManutencao, Status, Descricao, Observacoes) 
         VALUES (?, ?, ?, ?, ?, ?, ?)`;
 
-      db.query(sql,
-        [equipamento_id, dataentrada, dataprazo || null, responsavel, status || null, Descricao || null, Observacoes || null],
-        (err, result) => {
-          if (err) {
-            return res.status(500).json({ erro: 'Erro interno no servidor (inserção)', detalhes: err.message });
-          }
-
-          res.status(201).json({
-            sucesso: true,
-            mensagem: 'Manutenção cadastrada com sucesso',
-            id: result.insertId,
-            dados: {
-              equipamento_id,
-              dataentrada,
-              dataprazo: dataprazo || null,
-              responsavel,
-              status: status || 'Não informado',
-              Descricao: Descricao || 'Não informado',
-              Observacoes: Observacoes || 'Nenhuma observação'
-            }
-          });
+      db.query("SELECT Nome FROM equipamento where idEquipamento = ?", [equipamento_id], (err, results) => {
+        if (err) {
+          return console.log(err);
         }
-      );
+        const nomeEquipamento = results[0].Nome;
+        const historico = "INSERT INTO historicoatividades (atividade, data_registro, tabelaAfetada) values (?,?,?)"
+        const atividade = `Novo cadastro de manutenção para o equipamento: ${nomeEquipamento}`;
+        const tabelaAfetada = "Manutenção";
+        const dataRegistro = new Date();
+
+        db.query(sql,
+          [equipamento_id, dataentrada, dataprazo || null, responsavel, status || null, Descricao || null, Observacoes || null],
+          (err, result) => {
+            if (err) {
+              return res.status(500).json({ erro: 'Erro interno no servidor (inserção)', detalhes: err.message });
+            }
+
+            res.status(201).json({
+              sucesso: true,
+              mensagem: 'Manutenção cadastrada com sucesso',
+              id: result.insertId,
+              dados: {
+                equipamento_id,
+                dataentrada,
+                dataprazo: dataprazo || null,
+                responsavel,
+                status: status || 'Não informado',
+                Descricao: Descricao || 'Não informado',
+                Observacoes: Observacoes || 'Nenhuma observação'
+              }
+            });
+
+            db.query(historico, [atividade, dataRegistro, tabelaAfetada], (err, results) => {
+
+
+            })
+          }
+        );
+      })
     });
   });
 };
@@ -80,7 +98,13 @@ exports.atualizarManutencao = (req, res) => {
     Observacoes
   } = req.body;
 
-  const sql = `
+  db.query("SELECT Nome FROM equipamento where idEquipamento = ?", [equipamento_id], (err, results) => {
+    const nomeEquipamento = results[0].Nome;
+    const historico = "INSERT INTO historicoatividades (atividade, data_registro, tabelaAfetada) values (?,?,?)"
+    const atividade = `Atualização da manutenção do equipamento: ${nomeEquipamento}`;
+    const tabelaAfetada = "Manutenção";
+    const dataRegistro = new Date();
+    const sql = `
     UPDATE cadastromanutencao 
     SET 
       DataEntrada = ?, 
@@ -93,38 +117,66 @@ exports.atualizarManutencao = (req, res) => {
     WHERE idManutencao = ?
   `;
 
-  db.query(sql, [
-    dataentrada,
-    dataprazo || null,
-    responsavel,
-    status || null,
-    Descricao || null,
-    Observacoes || null,
-    equipamento_id,   // ✅ estava faltando antes!
-    id
-  ], (err, result) => {
-    if (err) {
-      return res.status(500).json({ erro: 'Erro ao atualizar manutenção', detalhes: err.message });
-    }
+    db.query(sql, [
+      dataentrada,
+      dataprazo || null,
+      responsavel,
+      status || null,
+      Descricao || null,
+      Observacoes || null,
+      equipamento_id,   // ✅ estava faltando antes!
+      id
+    ], (err, result) => {
+      if (err) {
+        return res.status(500).json({ erro: 'Erro ao atualizar manutenção', detalhes: err.message });
+      }
 
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ erro: 'Manutenção não encontrada' });
-    }
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ erro: 'Manutenção não encontrada' });
+      }
 
-    res.json({ sucesso: true, mensagem: 'Manutenção atualizada com sucesso' });
-  });
+      res.json({ sucesso: true, mensagem: 'Manutenção atualizada com sucesso' });
+
+      db.query(historico, [atividade, dataRegistro, tabelaAfetada], (err, results) => {
+
+
+      })
+    });
+
+  })
+
+
 };
 
 exports.deletarManutencao = (req, res) => {
   const idManutencao = parseInt(req.params.id);
   if (!idManutencao) return res.status(400).json({ erro: 'ID da manutenção não fornecido' });
 
-  db.query('DELETE FROM cadastromanutencao WHERE idManutencao = ?', [idManutencao], (err, result) => {
-    if (err) return res.status(500).json({ erro: 'Erro ao deletar manutenção', detalhes: err.message });
-    if (result.affectedRows === 0) return res.status(404).json({ erro: 'manutenção não encontrada' });
+  db.query("SELECT idEquipamento from equipamento INNER JOIN cadastromanutencao on equipamento.idEquipamento = cadastromanutencao.Equipamento_idEquipamento WHERE cadastromanutencao.idManutencao = ?", [idManutencao], (err, results) => {
+    const equipamento_id = results[0].idEquipamento;
+    db.query("SELECT Nome from equipamento where idEquipamento = ?", [equipamento_id], (err, results) => {
+      const nomeEquipamento = results[0].Nome;
+      const historico = "INSERT INTO historicoatividades (atividade, data_registro, tabelaAfetada) values (?,?,?)"
+      const atividade = `Manutenção deletada do equipamento: ${nomeEquipamento}`;
+      const tabelaAfetada = "Manutenção";
+      const dataRegistro = new Date();
 
-    res.json({ sucesso: true, mensagem: 'Manutenção deletada com sucesso' });
-  });
+      db.query('DELETE FROM cadastromanutencao WHERE idManutencao = ?', [idManutencao], (err, result) => {
+        if (err) return res.status(500).json({ erro: 'Erro ao deletar manutenção', detalhes: err.message });
+        if (result.affectedRows === 0) return res.status(404).json({ erro: 'manutenção não encontrada' });
+
+        res.json({ sucesso: true, mensagem: 'Manutenção deletada com sucesso' });
+        db.query(historico, [atividade, dataRegistro, tabelaAfetada], (err, results) => {
+
+
+        })
+      });
+    })
+  })
+
+
+
+
 };
 
 exports.buscarManutencao = (req, res) => {
@@ -132,8 +184,8 @@ exports.buscarManutencao = (req, res) => {
 
   // let sql = "SELECT cadastromanutencao.*, funcionario.Nome funcionario FROM cadastromanutencao INNER JOIN funcionario on (funcionario.idUsuario = cadastromanutencao.ResponsavelManutencao) WHERE 1=1"
   let sql = "SELECT cadastromanutencao.*, funcionario.Nome AS nomeResponsavel, equipamento.Nome AS nomeEquipamento, cliente.Nome AS nomeCliente FROM cadastromanutencao INNER JOIN funcionario ON funcionario.idUsuario = cadastromanutencao.ResponsavelManutencao INNER JOIN equipamento ON equipamento.idEquipamento = cadastromanutencao.Equipamento_idEquipamento INNER JOIN cliente ON cliente.idCliente = equipamento.Cliente_idCliente WHERE 1=1"
-  
-  
+
+
   const params = [];
 
   if (equipamento_id) {
@@ -173,8 +225,8 @@ exports.buscarManutencao = (req, res) => {
 exports.listaManutencoesPendentes = (req, res) => {
   const params = [];
   const sql = 'select M.idManutencao, M.DataEntrada, M.status, E.Nome nomeEquipamento, F.Nome nomeFuncionario from cadastromanutencao M ' +
-              'INNER JOIN FUNCIONARIO F ON (F.idUsuario = M.ResponsavelManutencao) ' +
-              'INNER JOIN EQUIPAMENTO E ON (E.idEquipamento = M.Equipamento_idEquipamento) WHERE M.STATUS = "Pendente"';
+    'INNER JOIN FUNCIONARIO F ON (F.idUsuario = M.ResponsavelManutencao) ' +
+    'INNER JOIN EQUIPAMENTO E ON (E.idEquipamento = M.Equipamento_idEquipamento) WHERE M.STATUS = "Pendente"';
 
   db.query(sql, params, (err, results) => {
     if (err) {

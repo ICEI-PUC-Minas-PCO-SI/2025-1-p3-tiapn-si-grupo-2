@@ -5,32 +5,6 @@ import axios from 'axios'
 
 const ListManutencoes = () => {
   const [manutencoes, setManutencoes] = useState([])
-  // const dadosManutencoes = [
-  //   {
-  //     id: 'MT-2023-0015',
-  //     equipamento: 'Prensa Hidráulica',
-  //     tecnico: 'Carlos Silva',
-  //     dataChegada: '2023-05-15',
-  //     status: 'Pendente',
-  //     prioridade: 'Alta'
-  //   },
-  //   {
-  //     id: 'MT-2023-0018',
-  //     equipamento: 'Serra Elétrica',
-  //     tecnico: 'Ana Oliveira',
-  //     dataChegada: '2023-05-18',
-  //     status: 'Pendente',
-  //     prioridade: 'Média'
-  //   },
-  //   {
-  //     id: 'MT-2023-0022',
-  //     equipamento: 'Solda MIG',
-  //     tecnico: 'Pedro Santos',
-  //     dataChegada: '2023-05-20',
-  //     status: 'Pendente',
-  //     prioridade: 'Baixa'
-  //   }
-  // ]
 
   const getManutencoes = async () => {
     try {
@@ -71,7 +45,7 @@ const ListManutencoes = () => {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {
-              manutencoes.map((manutencao) => (
+              manutencoes.length > 0 ? manutencoes.map((manutencao) => (
                 <tr key={manutencao.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
@@ -106,7 +80,9 @@ const ListManutencoes = () => {
                     </div>
                   </td>
                 </tr>
-              ))
+              )) : <td colSpan="7" className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                Nenhuma manutenção pendente encontrada
+              </td>
             }
           </tbody>
         </table>

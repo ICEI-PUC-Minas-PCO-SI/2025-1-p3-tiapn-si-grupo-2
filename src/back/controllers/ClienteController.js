@@ -50,7 +50,7 @@ exports.buscarClientes = (req, res) => {
     sql += ' AND Numero = ?';
     params.push(numero);
   }
-  
+
   if (uf) {
     sql += ' AND UF = ?';
     params.push(uf);
@@ -86,7 +86,7 @@ exports.criarCliente = (req, res) => {
 
   if (!nome || !cpf_cnpj || !logradouro || !cep || !cidade || !bairro || !numero || !uf) {
     return res.status(400).json({
-      
+
       erro: 'Campos obrigatórios faltando',
       campos_obrigatorios: ['nome', 'cpf_cnpj', 'logradouro', 'cep', 'cidade', 'bairro', 'numero', 'uf']
     });
@@ -95,6 +95,11 @@ exports.criarCliente = (req, res) => {
   const sql = `INSERT INTO Cliente 
     (Nome, CPF_CNPJ, EmailContato, TelefoneContato, Logradouro, CEP, Cidade, Bairro, Numero, UF, descricao, observacoes) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+  const historico = "INSERT INTO historicoatividades (atividade, data_registro, tabelaAfetada) values (?,?,?)"
+  const atividade = `Novo cadastro de cliente: ${nome}`;
+  const tabelaAfetada = "Cliente";
+  const dataRegistro = new Date();
 
   db.query(sql,
     [nome, cpf_cnpj, email || null, telefone || null, logradouro, cep, cidade, bairro, numero, uf, descricao || null, observacoes || null],
@@ -109,6 +114,10 @@ exports.criarCliente = (req, res) => {
         id: result.insertId,
         dados: { nome, email: email || 'Não informado' }
       });
+      db.query(historico, [atividade, dataRegistro, tabelaAfetada], (err, results) => {
+
+
+      })
     });
 };
 
@@ -116,11 +125,22 @@ exports.atualizarCliente = (req, res) => {
   const { id } = req.params;
   const { cpf_cnpj, nome, email, telefone, logradouro, cep, cidade, bairro, numero, uf, descricao, observacoes } = req.body;
 
+  const historico = "INSERT INTO historicoatividades (atividade, data_registro, tabelaAfetada) values (?,?,?)"
+  const atividade = `Atualização do cliente: ${nome}`;
+  const tabelaAfetada = "Cliente";
+  const dataRegistro = new Date();
+
+
+
   db.query("UPDATE cliente SET nome = ?, cpf_cnpj = ?, emailContato = ?, TelefoneContato = ?, logradouro = ?, cep = ?, cidade = ?, bairro = ?, numero = ?, uf = ?, descricao = ?, observacoes = ? WHERE idCliente = ?",
     [nome, cpf_cnpj, email, telefone, logradouro, cep, cidade, bairro, numero, uf, descricao, observacoes, id],
     (err, results) => {
       if (err) return res.status(500).json({ erro: 'Erro ao atualizar cliente', detalhes: err.message });
       res.json({ req_body: req.body, sucesso: true, mensagem: 'Cliente atualizado com sucesso' });
+      db.query(historico, [atividade, dataRegistro, tabelaAfetada], (err, results) => {
+
+
+      })
     });
 };
 
@@ -128,10 +148,27 @@ exports.deletarCliente = (req, res) => {
   const clienteId = parseInt(req.params.id);
   if (!clienteId) return res.status(400).json({ erro: 'ID do cliente não fornecido' });
 
-  db.query('DELETE FROM Cliente WHERE idCliente = ?', [clienteId], (err, result) => {
-    if (err) return res.status(500).json({ erro: 'Erro ao deletar cliente', detalhes: err.message });
-    if (result.affectedRows === 0) return res.status(404).json({ erro: 'Cliente não encontrado' });
+  db.query('SELECT Nome from cliente where idCliente = ?', [clienteId], (err, results) => {
+    if (err) {
+      console.log(err)
+    }
+    const nomeCliente = results[0].Nome
+    db.query('DELETE FROM Cliente WHERE idCliente = ?', [clienteId], (err, result) => {
+      if (err) return res.status(500).json({ erro: 'Erro ao deletar cliente', detalhes: err.message });
+      const historico = "INSERT INTO historicoatividades (atividade, data_registro, tabelaAfetada) values (?,?,?)"
+      const atividade = `Cliete deletado: ${nomeCliente}`;
+      const tabelaAfetada = "Cliente";
+      const dataRegistro = new Date();
+      if (result.affectedRows === 0) return res.status(404).json({ erro: 'Cliente não encontrado' });
 
-    res.json({ sucesso: true, mensagem: 'Cliente deletado com sucesso' });
-  });
+      res.json({ sucesso: true, mensagem: 'Cliente deletado com sucesso' });
+      db.query(historico, [atividade, dataRegistro, tabelaAfetada], (err, results) => {
+
+
+      })
+
+    });
+  })
+
+
 };

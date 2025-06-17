@@ -2,6 +2,7 @@ import ListCardsTotalItems from '../ListCardsTotalItems/ListCardsTotalItems'
 import CardManutencoesPendentes from '../CardManutencoesPendentes/CardManutencoesPendentes'
 import { IoCalendar } from 'react-icons/io5'
 import { useState, useEffect } from 'react'
+import HistoricoAtividades from '../HistoricoAtividades/HistoricoAtividades'
 
 const Dashboard = () => {
   const [saudacao, setSaudacao] = useState(getSaudacao());
@@ -58,6 +59,7 @@ const Dashboard = () => {
           </div>
 
           <CardManutencoesPendentes />
+          <HistoricoAtividades />
         </div>
       </div>
     </>
