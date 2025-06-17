@@ -73,7 +73,7 @@ exports.atualizarManutencao = (req, res) => {
   const {
     equipamento_id,
     dataentrada,
-    datasaida,
+    dataprazo,
     responsavel,
     status,
     Descricao,
@@ -95,7 +95,7 @@ exports.atualizarManutencao = (req, res) => {
 
   db.query(sql, [
     dataentrada,
-    datasaida || null,
+    dataprazo || null,
     responsavel,
     status || null,
     Descricao || null,

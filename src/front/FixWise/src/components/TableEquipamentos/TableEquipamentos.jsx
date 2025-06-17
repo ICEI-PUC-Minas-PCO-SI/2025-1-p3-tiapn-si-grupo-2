@@ -152,7 +152,7 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {equipamentosFiltrados.map((cadastro, index) => (
+              {equipamentosFiltrados.length > 0 ? equipamentosFiltrados.map((cadastro, index) => (
                 <tr
                   key={cadastro.idEquipamento}
                   className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
@@ -194,7 +194,9 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
                     </div>
                   </td>
                 </tr>
-              ))}
+              )) : <td colSpan="7" className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                Nenhum equipamento encontrado
+              </td>}
             </tbody>
           </table>
         </div>

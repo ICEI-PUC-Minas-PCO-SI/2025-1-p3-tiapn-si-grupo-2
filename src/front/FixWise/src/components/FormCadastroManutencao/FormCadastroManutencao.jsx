@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useParams, useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { IoCheckmark } from "react-icons/io5";
+import { format } from 'date-fns';
 
 // Importe seus componentes personalizados
 import InputForm from "../InputForm/InputForm";
@@ -16,6 +17,7 @@ const FormCadastroManutencao = () => {
   const { state } = useLocation();
   const { id } = useParams();
   const navigate = useNavigate();
+
 
   const [formData, setFormData] = useState({
     equipamento: "",
@@ -33,6 +35,31 @@ const FormCadastroManutencao = () => {
   const [manutencoes, setManutencoes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const isEditing = !!id;
+
+  function formatDateForInput(dateString) {
+    if (!dateString) return '';
+
+    // Se já estiver no formato YYYY-MM-DD
+    if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+      return dateString;
+    }
+
+    // Se for uma string ISO (com timezone)
+    if (dateString.includes('T')) {
+      return dateString.split('T')[0];
+    }
+
+    // Se for um objeto Date ou timestamp
+    const date = new Date(dateString);
+    if (!isNaN(date.getTime())) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+
+    return '';
+  }
 
   // Carrega equipamentos
   useEffect(() => {
@@ -52,13 +79,13 @@ const FormCadastroManutencao = () => {
     getEquipamentos();
   }, []);
 
-  useEffect(() =>{
-    const getFuncionarios = async() =>{
-      try{
+  useEffect(() => {
+    const getFuncionarios = async () => {
+      try {
         const response = await axios.get("http://localhost:3010/funcionario")
-      setFuncionarios(response.data.funcionarios.sort((a, b) => (a.Nome > b.Nome ? 1 : -1)))
+        setFuncionarios(response.data.funcionarios.sort((a, b) => (a.Nome > b.Nome ? 1 : -1)))
       }
-      catch(error){
+      catch (error) {
         Swal.fire("Erro", error.message);
         setIsLoading(false);
       }
@@ -66,6 +93,25 @@ const FormCadastroManutencao = () => {
 
     getFuncionarios()
   }, [])
+
+  useEffect(() => {
+    if (!isLoading && isEditing && state?.manutecoes) {
+      const manutencao = state.manutecoes;
+      console.log('Equipamento recebido:', manutencao);
+
+      setFormData({
+        equipamento: manutencao.Equipamento_idEquipamento?.toString() || '',
+        dataEntrada: formatDateForInput(manutencao.DataEntrada) || '',
+        dataPrazo: formatDateForInput(manutencao.DataSaida) || '',
+        responsavel: manutencao.ResponsavelManutencao,
+        status: manutencao.Status,
+        descricao: manutencao.Descricao,
+        observacoes: manutencao.Observacoes,
+      });
+
+      console.log(formData.dataPrazo)
+    }
+  }, [isLoading, isEditing, state]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

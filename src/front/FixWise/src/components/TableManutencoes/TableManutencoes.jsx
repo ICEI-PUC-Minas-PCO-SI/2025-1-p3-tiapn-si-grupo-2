@@ -30,7 +30,7 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
   }, [setManutencoes]);
 
   useEffect(() => {
-    
+
   })
 
   const handleDelete = async (idManutencao, navigate) => {
@@ -83,10 +83,12 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
   };
 
   const manutencoesFiltradas = manutecoes.filter((cadastro) =>
-    cadastro.nomeResponsavel.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    cadastro.nomeCliente.toLowerCase().includes(searchTerm.toLowerCase()) ||
     cadastro.Status.toLowerCase().includes(searchTerm.toLowerCase()) ||
     cadastro.nomeEquipamento.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  console.log(manutecoes)
 
   return (
     <>
@@ -101,7 +103,7 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
                 <input
                   type="text"
                   className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  placeholder="Buscar por nome, tipo ou marca"
+                  placeholder="Buscar por equipamento, cliente ou status"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -139,7 +141,7 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
                 >
-                 Responsável 
+                  Responsável
                 </th>
                 <th
                   scope="col"
@@ -168,8 +170,8 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {manutencoesFiltradas.map((cadastro, index) => (
-                
+              {manutencoesFiltradas.length > 0 ? manutencoesFiltradas.map((cadastro, index) => (
+
                 <tr
                   key={cadastro.idManutencao}
                   className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
@@ -217,7 +219,11 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
                     </div>
                   </td>
                 </tr>
-              ))}
+              )) : <tr>
+                <td colSpan="7" className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                  Nenhuma manutenção encontrada
+                </td>
+              </tr>}
             </tbody>
           </table>
         </div>
