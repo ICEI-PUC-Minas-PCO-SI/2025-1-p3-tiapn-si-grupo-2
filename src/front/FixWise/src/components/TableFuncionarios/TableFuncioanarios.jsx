@@ -7,6 +7,7 @@ import { IoTrashOutline, IoCreateOutline } from "react-icons/io5";
 export default function TableFuncionarios() {
     const navigate = useNavigate();
     const [funcionarios, setFuncionarios] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
 
     const getFuncionarios = async () => {
         try {

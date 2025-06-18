@@ -14,6 +14,7 @@ import Login from './pages/Login/Login'
 import Equipamentos from './pages/Equipamentos/Equipamentos'
 import Sidebar from './components/Sidebar/Sidebar'
 import Funcionarios from './pages/Funcionarios/Funcionarios'
+import CadastroFuncionarios from './pages/CadastroFuncionarios/CadastroFuncionarios'
 
 function App() {
 
@@ -75,6 +76,14 @@ function App() {
           {
             path: '/funcionarios',
             element: <Funcionarios />
+          },
+          {
+            path: '/funcionarios/novo',
+            element: <CadastroFuncionarios />
+          },
+          {
+            path: '/funcionarios/editar/:id',
+            element: <CadastroFuncionarios />
           }
         ]
       }
