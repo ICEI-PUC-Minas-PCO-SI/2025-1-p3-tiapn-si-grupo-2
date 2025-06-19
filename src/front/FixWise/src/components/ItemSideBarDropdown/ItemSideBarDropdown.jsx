@@ -14,19 +14,20 @@ const ItemSideBarDropdown = (props) => {
     <div>
       <div
         onClick={handleDropDown}
-        className="flex items-center justify-between gap-4 p-2 hover:bg-white hover:text-black hover:cursor-pointer rounded-sm font-medium"
+        className={`flex items-center ${props.isOpen ? "justify-between" : "justify-center"} gap-4 p-2 hover:bg-white hover:text-black hover:cursor-pointer rounded-sm font-medium`}
       >
         <div className="flex items-center gap-4">
           <props.tagItem />
-          {props.nameItem}
+          {props.isOpen ? props.nameItem : "" }
         </div>
-        {isOpen ? <FaAngleUp /> : <FaAngleDown />}
+        {props.isOpen &&(
+         isOpen ? <FaAngleUp /> : <FaAngleDown />)}
       </div>
 
-      {isOpen && (
+      {props.isOpen && isOpen && (
         <ul className="ml-6 mt-1">
           {props.listItemsDropdown.map((item, index) => (
-            <Link to={item.route}>
+            <Link to={"/" + item.route}>
 
               <li
                 key={index}

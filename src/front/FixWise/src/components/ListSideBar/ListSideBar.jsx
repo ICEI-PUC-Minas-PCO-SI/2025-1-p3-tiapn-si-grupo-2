@@ -4,7 +4,7 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { FiDatabase } from "react-icons/fi";
 import { IoPersonOutline } from "react-icons/io5";
 import { GrVmMaintenance } from "react-icons/gr";
-import { CiSettings } from "react-icons/ci";
+import { CiLogout } from "react-icons/ci";
 import ItemSideBarDropdown from "../ItemSideBarDropdown/ItemSideBarDropdown";
 import { IoKeyOutline } from "react-icons/io5";
 import { CiBoxes } from "react-icons/ci";
@@ -12,39 +12,15 @@ import { IoHomeOutline } from "react-icons/io5";
 import { IoIosLogOut } from "react-icons/io";
 
 
-const ListSideBar = () => {
+
+const ListSideBar = (props) => {
   return (
     <>
       <div className="flex flex-col justify-between h-11/12">
         <ul>
-          <ItemSideBar tagItem={LuLayoutDashboard} nameItem="Dashboard" route="/"/>
+          <ItemSideBar isOpen={props.isOpen} tagItem={LuLayoutDashboard} nameItem="Dashboard" route="/home"/>
           <ItemSideBarDropdown
-            tagItem={FiDatabase}
-            nameItem="Cadastros"
-            listItemsDropdown={[
-              { 
-                name: "Cliente", 
-                route: "/cadastro-clientes",
-                tagItem: IoPersonOutline
-              },
-              {
-                name: "Acessos",
-                route: "/cadastro-acessos",
-                tagItem: IoKeyOutline
-              },
-              {
-                name: "Produtos",
-                route: "/cadastro-equipamentos",
-                tagItem: CiBoxes
-              },
-              {
-                name: "Manutenção",
-                route: "/cadastro-manutencao",
-                tagItem: GrVmMaintenance
-              },
-            ]}
-          />
-          <ItemSideBarDropdown
+          isOpen={props.isOpen}
             tagItem={FiDatabase}
             nameItem="Ativos"
             listItemsDropdown={[
@@ -60,14 +36,23 @@ const ListSideBar = () => {
               },
             ]}
           />
-          <ItemSideBar tagItem={IoPersonOutline} nameItem="Clientes" route="/clientes"/>
+          <ItemSideBar isOpen={props.isOpen} tagItem={IoPersonOutline} nameItem="Clientes" route="/clientes"/>
           <ItemSideBar
+            isOpen={props.isOpen}
             tagItem={GrVmMaintenance}
             nameItem="Manutenções Ativas"
             route="/manutencoes"
           />
+           <ItemSideBar
+            isOpen={props.isOpen}
+            tagItem={IoKeyOutline}
+            nameItem="Acessos"
+            route="/acessos"
+          />
+          
+          
         </ul>
-        <ItemSideBar tagItem={CiSettings} nameItem="Configurações" route="/configuracoes" />
+        <ItemSideBar isOpen={props.isOpen} tagItem={CiLogout} nameItem="Sair" route="/"/>
       </div>
     </>
   );

@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS `Cliente` (
   `Bairro` VARCHAR(50) NULL,
   `Numero` VARCHAR(10) NULL,
   `UF` VARCHAR(2) NULL,
+  `Complemento` VARCHAR(40);
   `Descricao` TEXT NULL,
   `Observacoes` TEXT NULL,
   PRIMARY KEY (`idCliente`)
@@ -63,11 +64,13 @@ CREATE TABLE IF NOT EXISTS `CadastroAcesso` (
   `idAcesso` INT NOT NULL AUTO_INCREMENT,
   `CPF` VARCHAR(14) NOT NULL,
   `Nome` VARCHAR(100) NOT NULL,
-  `Matricula` VARCHAR(20) NOT NULL,
+  `Matricula` VARCHAR(20) NOT NULL UNIQUE,
   `NivelAcesso` VARCHAR(20) NOT NULL,
+  `Descricao` TEXT,
+  `Observacoes` TEXT,
+  `Senha` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`idAcesso`)
 ) ENGINE=InnoDB;
-
 -- ================================
 -- TABELA: Servico
 -- ================================
