@@ -1,8 +1,8 @@
-const db = require('../db');
+const { getConnection } = require('../db');
 const bcrypt = require('bcrypt');
 
 // Buscar todos os funcionários com filtros opcionais
-exports.getFuncionarios = (req, res) => {
+exports.getFuncionarios = async (req, res) => {
   const { nome, tipo } = req.query;
 
   let sql = 'SELECT * FROM Funcionario WHERE 1=1';
@@ -18,30 +18,35 @@ exports.getFuncionarios = (req, res) => {
     params.push(tipo);
   }
 
-  db.query(sql, params, (err, results) => {
-    if (err) return res.status(500).json({ erro: 'Erro ao buscar funcionários', detalhes: err.message });
+  try {
+    const db = getConnection();
+    const [results] = await db.query(sql, params);
     res.json({ sucesso: true, total: results.length, funcionarios: results });
-  });
+  } catch (err) {
+    res.status(500).json({ erro: 'Erro ao buscar funcionários', detalhes: err.message });
+  }
 };
 
 // Buscar funcionário por ID
-exports.getFuncionarioById = (req, res) => {
+exports.getFuncionarioById = async (req, res) => {
   const { id } = req.params;
 
-  db.query('SELECT * FROM Funcionario WHERE idUsuario = ?', [id], (err, results) => {
-    if (err) return res.status(500).json({ erro: 'Erro ao buscar funcionário', detalhes: err.message });
-    if (results.length === 0) return res.status(404).json({ erro: 'Funcionário não encontrado' });
+  try {
+    const db = getConnection();
+    const [results] = await db.query('SELECT * FROM Funcionario WHERE idUsuario = ?', [id]);
+
+    if (results.length === 0) {
+      return res.status(404).json({ erro: 'Funcionário não encontrado' });
+    }
+
     res.json(results[0]);
-  });
+  } catch (err) {
+    res.status(500).json({ erro: 'Erro ao buscar funcionário', detalhes: err.message });
+  }
 };
 
+// Criar funcionário
 exports.createFuncionario = async (req, res) => {
-  const saltRounds = 10;
-
-  if (!req.body || Object.keys(req.body).length === 0) {
-    return res.status(400).json({ erro: 'Corpo da requisição ausente ou inválido' });
-  }
-
   const { Nome, Senha, TipoUsuario } = req.body;
 
   if (!Nome || !Senha || !TipoUsuario) {
@@ -52,17 +57,21 @@ exports.createFuncionario = async (req, res) => {
   }
 
   try {
-    // Verifica se já existe um funcionário com o mesmo nome
-    const [existingUser] = await db.promise().query('SELECT * FROM Funcionario WHERE Nome = ?', [Nome]);
+    const db = getConnection();
+
+    const [existingUser] = await db.query('SELECT * FROM Funcionario WHERE Nome = ?', [Nome]);
 
     if (existingUser.length > 0) {
       return res.status(409).json({ erro: 'Já existe um funcionário com esse nome' });
     }
 
-    // Criptografa a senha com bcrypt (10 salt rounds é seguro)
-    const hashedPassword = await bcrypt.hash(Senha, saltRounds);
-
-    const [result] = await db.promise().query(
+    const hashedPassword = await bcrypt.hash(Senha, 10);
+    
+    if (![1, 2].includes(Number(TipoUsuario))) {
+  return res.status(400).json({ erro: 'TipoUsuario inválido. Use 1 (Funcionário) ou 2 (Administrador).' });
+}
+  
+    const [result] = await db.query(
       'INSERT INTO Funcionario (Nome, Senha, TipoUsuario) VALUES (?, ?, ?)',
       [Nome, hashedPassword, TipoUsuario]
     );
@@ -79,8 +88,7 @@ exports.createFuncionario = async (req, res) => {
   }
 };
 
-// Future do projeto
-
+// Login funcionário
 exports.loginFuncionario = async (req, res) => {
   const { Nome, Senha } = req.body;
 
@@ -89,7 +97,8 @@ exports.loginFuncionario = async (req, res) => {
   }
 
   try {
-    const [results] = await db.promise().query('SELECT * FROM Funcionario WHERE Nome = ?', [Nome]);
+    const db = getConnection();
+    const [results] = await db.query('SELECT * FROM Funcionario WHERE Nome = ?', [Nome]);
 
     if (results.length === 0) {
       return res.status(401).json({ erro: 'Funcionário não encontrado' });
@@ -110,7 +119,6 @@ exports.loginFuncionario = async (req, res) => {
   }
 };
 
-
 // Atualizar funcionário por ID
 exports.atualizarFuncionario = async (req, res) => {
   const { id } = req.params;
@@ -124,10 +132,11 @@ exports.atualizarFuncionario = async (req, res) => {
   }
 
   try {
-    // Criptografa a nova senha
+    const db = getConnection();
+
     const hashedPassword = await bcrypt.hash(Senha, 10);
 
-    const [result] = await db.promise().query(
+    const [result] = await db.query(
       'UPDATE Funcionario SET Nome = ?, Senha = ?, TipoUsuario = ? WHERE idUsuario = ?',
       [Nome, hashedPassword, TipoUsuario, id]
     );
@@ -143,15 +152,21 @@ exports.atualizarFuncionario = async (req, res) => {
   }
 };
 
-
 // Deletar funcionário por ID
-exports.deleteFuncionario = (req, res) => {
+exports.deleteFuncionario = async (req, res) => {
   const { id } = req.params;
 
-  db.query('DELETE FROM Funcionario WHERE idUsuario = ?', [id], (err, result) => {
-    if (err) return res.status(500).json({ erro: 'Erro ao deletar funcionário', detalhes: err.message });
-    if (result.affectedRows === 0) return res.status(404).json({ erro: 'Funcionário não encontrado' });
+  try {
+    const db = getConnection();
+    const [result] = await db.query('DELETE FROM Funcionario WHERE idUsuario = ?', [id]);
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ erro: 'Funcionário não encontrado' });
+    }
 
     res.json({ sucesso: true, mensagem: 'Funcionário deletado com sucesso' });
-  });
+
+  } catch (err) {
+    res.status(500).json({ erro: 'Erro ao deletar funcionário', detalhes: err.message });
+  }
 };
