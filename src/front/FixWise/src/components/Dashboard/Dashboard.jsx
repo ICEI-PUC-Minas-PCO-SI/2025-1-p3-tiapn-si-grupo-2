@@ -3,6 +3,7 @@ import CardManutencoesPendentes from '../CardManutencoesPendentes/CardManutencoe
 import { IoCalendar } from 'react-icons/io5'
 import { useState, useEffect } from 'react'
 import HistoricoAtividades from '../HistoricoAtividades/HistoricoAtividades'
+import GraficoManutencoesPorMes from '../GraficoManutencoesPorMes/GraficoManutencoesPorMes'
 
 const Dashboard = () => {
   const [saudacao, setSaudacao] = useState(getSaudacao());
@@ -55,11 +56,11 @@ const Dashboard = () => {
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">
             <ListCardsTotalItems />
-            
           </div>
 
           <CardManutencoesPendentes />
           <HistoricoAtividades />
+          <GraficoManutencoesPorMes />
         </div>
       </div>
     </>

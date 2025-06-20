@@ -24,7 +24,7 @@ export default function FormCadastroFuncionarios() {
     useEffect(() => {
         if (isEditing && state?.funcionario) {
             const funcionario = state.funcionario;
-            console.log('cliente recebido:', cliente);
+            // console.log('cliente recebido:', cliente);
 
             setFormData({
                 nome: funcionario.Nome || '',

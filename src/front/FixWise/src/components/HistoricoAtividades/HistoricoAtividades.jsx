@@ -4,8 +4,6 @@ import {format, formatDistanceToNow} from 'date-fns'
 import {ptBR} from 'date-fns/locale/pt-BR'
 import { IoPricetag, IoAlertCircle, IoPerson, IoCog, IoAlarm } from 'react-icons/io5'
 
-
-
 const HistoricoAtividades = () => {
 
   const [historicoAtividades, setHistoricoAtividades] = useState([]);
@@ -29,7 +27,7 @@ const HistoricoAtividades = () => {
       <div>
         <ul className='p-5'>
           {historicoFiltrado.map((atividade) => (
-            <li className='flex gap-5 items-start my-2'>
+            <li key={atividade.id} className='flex gap-5 items-start my-2'>
               <div className='bg-gray-100 p-2 rounded-full'>
                 {atividade.tabelaAfetada === "Cliente" ? (
                   <IoPerson className='text-2xl' />

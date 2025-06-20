@@ -46,7 +46,7 @@ const ListManutencoes = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             {
               manutencoes.length > 0 ? manutencoes.map((manutencao) => (
-                <tr key={manutencao.id} className="hover:bg-gray-50">
+                <tr key={manutencao.idManutencao} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <IoHammer className="flex-shrink-0 h-4 w-4 text-blue-500 mr-2" />
@@ -80,9 +80,9 @@ const ListManutencoes = () => {
                     </div>
                   </td>
                 </tr>
-              )) : <td colSpan="7" className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+              )) : <tr><td colSpan="7" className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                 Nenhuma manutenção pendente encontrada
-              </td>
+              </td></tr>
             }
           </tbody>
         </table>

@@ -22,19 +22,22 @@ function App() {
   const Layout = () => {
     return (
       <>
-      <div className="flex min-h-screen">
-        <Sidebar />
-        <div className="flex flex-col px-8 py-6 w-full">
-          <Outlet />
+        <div className="flex min-h-screen">
+          <Sidebar />
+          <div className="flex flex-col px-8 py-6 w-full">
+            <Outlet />
+          </div>
         </div>
-      </div>
       </>
     );
   }
 
   const router = createBrowserRouter(
     [
-      
+      {
+        path: '/login',
+        element: <LoginPage />
+      },
       {
         path: '/',
         element: <Layout />,
@@ -43,10 +46,7 @@ function App() {
             path: '/',
             element: <Home />
           },
-          {
-            path: '/login',
-            element: <LoginPage />
-          },
+
           {
             path: '/manutencoes',
             element: <Manutencoes />
@@ -61,27 +61,27 @@ function App() {
           },
           {
             path: '/clientes/editar/:id',
-            element: <CadastroCliente/>
+            element: <CadastroCliente />
           },
           {
-            path: '/equipamentos', 
-            element: <Equipamentos /> 
+            path: '/equipamentos',
+            element: <Equipamentos />
           },
           {
             path: '/equipamentos/novo',
-            element: <CadastroEquipamentos/>
+            element: <CadastroEquipamentos />
           },
           {
             path: '/equipamentos/editar/:id',
-            element: <CadastroEquipamentos/>
+            element: <CadastroEquipamentos />
           },
           {
             path: '/manutencoes/editar/:id',
-            element: <CadastroManutencao/>
+            element: <CadastroManutencao />
           },
           {
             path: '/manutencoes/novo',
-            element: <CadastroManutencao/>
+            element: <CadastroManutencao />
           },
           {
             path: '/funcionarios',

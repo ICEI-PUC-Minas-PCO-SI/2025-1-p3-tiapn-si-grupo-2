@@ -14,8 +14,6 @@ exports.criarmanutencao = (req, res) => {
     });
   }
 
-
-
   // 1. Verifica se o equipamento existe
   const sqlCheckEquipamento = 'SELECT idEquipamento FROM equipamento WHERE idEquipamento = ?';
   db.query(sqlCheckEquipamento, [equipamento_id], (err, equipamentoResults) => {
@@ -234,5 +232,17 @@ exports.listaManutencoesPendentes = (req, res) => {
     }
 
     res.json({ sucesso: true, total: results.length, manutencoes: results });
+  })
+}
+
+exports.listaManutencoesPorMes = (req, res) => {
+  const sql = 'SELECT COUNT(*) quant, date_format(dataentrada, "%Y%m") Mes FROM cadastromanutencao group by mes order by mes';
+
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({erro: 'Erro interno no servidor', detalhes: err.message})
+    }
+
+    res.json({sucesso: true, manutencoes: results});
   })
 }

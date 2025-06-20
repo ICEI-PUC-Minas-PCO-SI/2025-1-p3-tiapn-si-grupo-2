@@ -16,14 +16,14 @@ const CardsTotalItems = (props) => {
           </div>
         </div>
       </div>
-      <div className="bg-gray-50 px-5 py-3">
+      {/* <div className="bg-gray-50 px-5 py-3">
         <div className="text-sm">
           <span className={`font-medium ${props.changeType === 'increase' ? 'text-green-600' : 'text-red-600'}`}>
             {props.change}
           </span>{' '}
           <span className="text-gray-500">em relação ao mês passado</span>
         </div>
-      </div>
+      </div> */}
     </div>
     // <div>
     //   <div className="p-4 rounded-md w-2xs flex flex-col justify-between h-30 shadow-md hover:cursor-pointer">
