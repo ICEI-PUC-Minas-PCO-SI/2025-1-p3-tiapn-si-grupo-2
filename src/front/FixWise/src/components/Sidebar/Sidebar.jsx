@@ -1,7 +1,3 @@
-import { ReactComponent as HomeIcon } from "../../assets/home-outline.svg";
-import { ReactComponent as ConstructIcon } from "../../assets/construct-outline.svg";
-import { ReactComponent as PeopleIcon } from "../../assets/people-outline.svg";
-import { ReactComponent as PersonIcon } from "../../assets/person-outline.svg";
 import ListSideBar from "../ListSideBar/ListSideBar";
 import { IoMenu } from "react-icons/io5";
 import { useState } from "react";

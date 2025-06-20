@@ -19,7 +19,6 @@ const ListSideBar = (props) => {
           <ItemSideBar isOpen={props.isOpen} tagItem={IoConstructSharp} nameItem="Equipamentos" route="/equipamentos" />
           <ItemSideBar isOpen={props.isOpen} tagItem={IoPeopleSharp} nameItem="Funcionários" route="/funcionarios" />
           
-          
           <ItemSideBar
             isOpen={props.isOpen}
             tagItem={GrVmMaintenance}
