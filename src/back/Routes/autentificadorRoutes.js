@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const funcionarioController = require('../controllers/funcionarioController');
+const autentificadorController = require('../controllers/AutentificadorController');
 
-// Rota de login
-router.post('/login', funcionarioController.loginFuncionario);
+
+router.post('/login', autentificadorController.loginFuncionario);
 
 module.exports = router;

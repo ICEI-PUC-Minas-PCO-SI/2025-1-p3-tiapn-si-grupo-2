@@ -1,25 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/funcionarioController');
 const funcionarioController = require('../controllers/funcionarioController');
 
+const autenticarToken = require('../middlewares/authMiddleware');
+const verificarAdmin = require('../middlewares/verificarAdmin');
 
-// Listar funcionários (com filtros opcionais via query params)
-router.get('/', controller.getFuncionarios);
+// 🔐 Protege quem pode criar funcionários
+router.post('/', autenticarToken, verificarAdmin, funcionarioController.createFuncionario);
 
-// Buscar funcionário por ID
-router.get('/:id', controller.getFuncionarioById);
+// 🔐 Apenas admin pode atualizar e deletar
+router.put('/:id', autenticarToken, verificarAdmin, funcionarioController.atualizarFuncionario);
+router.delete('/:id', autenticarToken, verificarAdmin, funcionarioController.deleteFuncionario);
 
-// Criar novo funcionário
-router.post('/', controller.createFuncionario);
-
-// Atualizar funcionário por ID
-router.put('/:id', controller.atualizarFuncionario);
-
-// Deletar funcionário por ID
-router.delete('/:id', controller.deleteFuncionario);
-
-router.post('/login', funcionarioController.loginFuncionario);
-
+// 🔓 Rotas abertas para qualquer usuário autenticado
+router.get('/', autenticarToken, funcionarioController.getFuncionarios);
+router.get('/:id', autenticarToken, funcionarioController.getFuncionarioById);
 
 module.exports = router;

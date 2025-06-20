@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
-const db = require('../db');
-require('../controllers/funcionarioController');
+const { getConnection } = require('../db');
+const jwt = require('jsonwebtoken');
 
 exports.loginFuncionario = async (req, res) => {
   const { Nome, Senha } = req.body;
@@ -10,7 +10,9 @@ exports.loginFuncionario = async (req, res) => {
   }
 
   try {
-    const [rows] = await db.promise().query(
+    const db = getConnection();
+
+    const [rows] = await db.query(
       'SELECT * FROM Funcionario WHERE Nome = ?',
       [Nome]
     );
@@ -26,9 +28,23 @@ exports.loginFuncionario = async (req, res) => {
       return res.status(401).json({ erro: 'Senha incorreta' });
     }
 
-    res.json({
+    // 🔐 Gera token JWT
+    const token = jwt.sign(
+      {
+        idUsuario: funcionario.idUsuario,
+        TipoUsuario: funcionario.TipoUsuario,
+      },
+      process.env.JWT_SECRET || 'chave-secreta-padrao',
+      {
+        subject: funcionario.idUsuario.toString(),
+        expiresIn: '30m'
+      }
+    );
+
+    return res.json({
       sucesso: true,
       mensagem: 'Login bem-sucedido',
+      token,
       funcionario: {
         idUsuario: funcionario.idUsuario,
         Nome: funcionario.Nome,
@@ -37,6 +53,6 @@ exports.loginFuncionario = async (req, res) => {
     });
 
   } catch (err) {
-    res.status(500).json({ erro: 'Erro interno', detalhes: err.message });
+    return res.status(500).json({ erro: 'Erro interno', detalhes: err.message });
   }
 };

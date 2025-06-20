@@ -1,21 +1,26 @@
-const express = require('express');
-const cors = require('cors');
+const app = require('./app');
+const db = require('./db');
 
-const fixwise = express();
+const PORT = process.env.PORT || 3010;
 
-// Middlewares
-fixwise.use(cors());
-fixwise.use(express.json());
+async function startServer() {
+  try {
+    await db.connect();
 
-module.exports = fixwise;
+    app.listen(PORT, () => {
+      console.log(`✅ Servidor rodando na porta ${PORT}`);
+    });
 
-const express = require('express');
-const app = express();
-const funcionarioRoutes = require('./Routes/funcionarioRoutes');
+    process.on('SIGINT', async () => {
+      console.log('\n🛑 Encerrando servidor...');
+      await db.disconnect();
+      process.exit(0);
+    });
 
-app.use(express.json());
-app.use('/funcionarios', funcionarioRoutes);
+  } catch (error) {
+    console.error('❌ Erro ao iniciar o servidor:', error);
+    process.exit(1);
+  }
+}
 
-app.listen(3000, () => {
-  console.log('Servidor rodando na porta 3000');
-});
+startServer();
