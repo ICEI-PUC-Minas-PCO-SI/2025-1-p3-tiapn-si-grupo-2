@@ -148,3 +148,13 @@ exports.deletarCliente = (req, res) => {
     res.json({ sucesso: true, mensagem: 'Cliente deletado com sucesso' });
   });
 };
+
+const validarCampos = require('../utils/validarCampos');
+
+const camposFaltando = validarCampos(req.body, ['Nome', 'Senha', 'TipoUsuario']);
+if (camposFaltando) {
+  return res.status(400).json({
+    erro: 'Campos obrigatórios faltando',
+    campos_faltando: camposFaltando
+  });
+}

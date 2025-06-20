@@ -1,8 +1,13 @@
 {
   "dependencies": {
     "@tailwindcss/vite": "^4.1.7",
+    "@tanstack/react-query": "^5.80.10",
     "@toolpad/core": "^0.15.0",
+    "axios": "^1.10.0",
     "flowbite-react": "^0.11.7",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.6.2",
+    "sweetalert2": "^11.22.0",
     "tailwindcss": "^4.1.7"
   },
   "scripts": {

@@ -170,3 +170,13 @@ exports.deleteFuncionario = async (req, res) => {
     res.status(500).json({ erro: 'Erro ao deletar funcionário', detalhes: err.message });
   }
 };
+
+const validarCampos = require('../utils/validarCampos');
+
+const camposFaltando = validarCampos(req.body, ['Nome', 'Senha', 'TipoUsuario']);
+if (camposFaltando) {
+  return res.status(400).json({
+    erro: 'Campos obrigatórios faltando',
+    campos_faltando: camposFaltando
+  });
+}
