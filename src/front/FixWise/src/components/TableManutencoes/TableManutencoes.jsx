@@ -1,35 +1,39 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { format } from "date-fns";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { IoTrashOutline, IoCreateOutline, IoSearch, IoFunnelOutline } from "react-icons/io5";
 
-export default function TableEquipamentos({ onEdit, setOnEdit }) {
+export default function TableManutencoes({ onEdit, setOnEdit }) {
   const navigate = useNavigate();
-  const [equipamentos, setEquipamentos] = useState([]);
+  const [manutecoes, setManutencoes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const getEquipamentos = async () => {
+  const getManutencoes = async () => {
     try {
-      const res = await axios.get("http://localhost:3010/equipamento");
-      setEquipamentos(res.data.equipamento);
-      console.log(res.data.equipamento)
+      const res = await axios.get("http://localhost:3010/cadastromanutencao");
+      setManutencoes(res.data.manutencoes)
     } catch (error) {
-      console.error("Erro ao buscar equipamentos:", error);
+      console.error("Erro ao buscar manutencoes:", error);
     }
   };
 
-  const handleEdit = (equipamento) => {
-    navigate(`/equipamentos/editar/${equipamento.idEquipamento}`, {
-      state: { equipamento },
+  const handleEdit = (manutecoes) => {
+    navigate(`/manutencoes/editar/${manutecoes.idManutencao}`, {
+      state: { manutecoes },
     });
   };
 
   useEffect(() => {
-    getEquipamentos();
-  }, [setEquipamentos]);
+    getManutencoes();
+  }, [setManutencoes]);
 
-  const handleDelete = async (idEquipamento, navigate) => {
+  useEffect(() => {
+
+  })
+
+  const handleDelete = async (idManutencao, navigate) => {
     const result = await Swal.fire({
       title: "Tem certeza?",
       text: "Você não poderá reverter esta ação!",
@@ -46,21 +50,21 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
       try {
         // Faz a requisição para deletar
         const response = await axios.delete(
-          `http://localhost:3010/equipamento/${idEquipamento}`
+          `http://localhost:3010/cadastromanutencao/${idManutencao}`
         );
 
         console.log(response);
         // Mostra mensagem de sucesso
         await Swal.fire({
           title: "Deletado!",
-          text: "O equipamento foi removido com sucesso.",
+          text: "A manutencao foi removida com sucesso.",
           icon: "success",
           confirmButtonColor: "#3085d6",
           background: "#fff",
         });
 
         // Redireciona ou atualiza a lista
-        getEquipamentos();
+        getManutencoes()
         // navigate('/equipamentos');
         // Ou: window.location.reload(); se preferir recarregar a página
       } catch (error) {
@@ -69,7 +73,7 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
           title: "Erro!",
           text:
             error.response?.data?.message ||
-            "Ocorreu um erro ao deletar o equipamento",
+            "Ocorreu um erro ao deletar a manutencao",
           icon: "error",
           confirmButtonColor: "#3085d6",
           background: "#fff",
@@ -78,11 +82,13 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
     }
   };
 
-  const equipamentosFiltrados = equipamentos.filter((cadastro) =>
-    cadastro.Nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    cadastro.Tipo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    cadastro.Marca.toLowerCase().includes(searchTerm.toLowerCase())
+  const manutencoesFiltradas = manutecoes.filter((cadastro) =>
+    cadastro.nomeCliente.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    cadastro.Status.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    cadastro.nomeEquipamento.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  console.log(manutecoes)
 
   return (
     <>
@@ -97,7 +103,7 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
                 <input
                   type="text"
                   className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  placeholder="Buscar por nome, tipo ou marca"
+                  placeholder="Buscar por equipamento, cliente ou status"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -123,25 +129,37 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
                 >
-                  Nome
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
-                >
-                  Tipo
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
-                >
-                  Marca
+                  Equipamento
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
                 >
                   Cliente
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
+                >
+                  Responsável
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
+                >
+                  Data Entrada
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
+                >
+                  Data Prazo
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
+                >
+                  Status
                 </th>
                 <th
                   scope="col"
@@ -152,27 +170,34 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {equipamentosFiltrados.length > 0 ? equipamentosFiltrados.map((cadastro, index) => (
+              {manutencoesFiltradas.length > 0 ? manutencoesFiltradas.map((cadastro, index) => (
+
                 <tr
-                  key={cadastro.idEquipamento}
+                  key={cadastro.idManutencao}
                   className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
                 >
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.idEquipamento}
+                    {cadastro.idManutencao}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900">
-                      {cadastro.Nome}
+                      {cadastro.nomeEquipamento}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.Tipo}
+                    {cadastro.nomeCliente}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.Marca}
+                    {cadastro.nomeResponsavel}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.cliente}
+                    {format(new Date(cadastro.DataEntrada), "dd/MM/yyyy")}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {format(new Date(cadastro.DataSaida), "dd/MM/yyyy")}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {cadastro.Status}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex justify-center items-center space-x-2">
@@ -186,7 +211,7 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
                       <button
                         className="text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50"
                         onClick={() =>
-                          handleDelete(cadastro.idEquipamento, navigate)
+                          handleDelete(cadastro.idManutencao, navigate)
                         }
                       >
                         <IoTrashOutline className="h-5 w-5" />
@@ -194,16 +219,18 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
                     </div>
                   </td>
                 </tr>
-              )) : <td colSpan="7" className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                Nenhum equipamento encontrado
-              </td>}
+              )) : <tr>
+                <td colSpan="7" className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                  Nenhuma manutenção encontrada
+                </td>
+              </tr>}
             </tbody>
           </table>
         </div>
       </div>
 
       {/* Paginação (opcional) */}
-      {equipamentosFiltrados.length > 0 && (
+      {manutencoesFiltradas.length > 0 && (
         <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 rounded-b-lg">
           <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
@@ -211,7 +238,7 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
                 Mostrando <span className="font-medium">1</span> a{" "}
                 <span className="font-medium">10</span> de{" "}
                 <span className="font-medium">
-                  {equipamentosFiltrados.length}
+                  {manutencoesFiltradas.length}
                 </span>{" "}
                 resultados
               </p>

@@ -76,6 +76,14 @@ function App() {
             element: <CadastroEquipamentos/>
           },
           {
+            path: '/manutencoes/editar/:id',
+            element: <CadastroManutencao/>
+          },
+          {
+            path: '/manutencoes/novo',
+            element: <CadastroManutencao/>
+          },
+          {
             path: '/funcionarios',
             element: <Funcionarios />
           },

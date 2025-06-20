@@ -27,6 +27,8 @@ const FormCadastroEquipamentos = () => {
     observacoes: ''
   });
 
+  console.log(formData.cliente)
+
   const [clientes, setClientes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const isEditing = !!id;
@@ -36,8 +38,9 @@ const FormCadastroEquipamentos = () => {
     const getClientes = async () => {
       try {
         const res = await axios.get("http://localhost:3010/cliente");
-        setClientes(res.data.clientes.sort((a, b) => (a.Nome > b.Nome ? 1 : -1)));
+        await setClientes(res.data.clientes.sort((a, b) => (a.Nome > b.Nome ? 1 : -1)));
         setIsLoading(false);
+        console.log(res.data.clientes.sort((a, b) => (a.Nome > b.Nome ? 1 : -1)))
       } catch (error) {
         Swal.fire('Erro', error.message);
         setIsLoading(false);
@@ -253,7 +256,7 @@ const FormCadastroEquipamentos = () => {
       </div>
 
       <div className="mt-8 flex justify-end space-x-3">
-        <Link to={'/clientes'}>
+        <Link to={'/equipamentos'}>
           <button
             type="button"
             className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"

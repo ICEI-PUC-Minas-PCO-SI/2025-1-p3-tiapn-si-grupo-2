@@ -50,7 +50,7 @@ exports.buscarClientes = (req, res) => {
     sql += ' AND Numero = ?';
     params.push(numero);
   }
-  
+
   if (uf) {
     sql += ' AND UF = ?';
     params.push(uf);
@@ -82,10 +82,11 @@ exports.criarCliente = (req, res) => {
     return res.status(400).json({ erro: 'Corpo da requisição ausente ou inválido' });
   }
 
-  const { nome, cpf_cnpj, email, telefone, logradouro, cep, cidade, bairro, numero, uf, descricao, obeservacoes } = req.body;
+  const { nome, cpf_cnpj, email, telefone, logradouro, cep, cidade, bairro, numero, uf, descricao, observacoes } = req.body;
 
   if (!nome || !cpf_cnpj || !logradouro || !cep || !cidade || !bairro || !numero || !uf) {
     return res.status(400).json({
+
       erro: 'Campos obrigatórios faltando',
       campos_obrigatorios: ['nome', 'cpf_cnpj', 'logradouro', 'cep', 'cidade', 'bairro', 'numero', 'uf']
     });
@@ -95,8 +96,13 @@ exports.criarCliente = (req, res) => {
     (Nome, CPF_CNPJ, EmailContato, TelefoneContato, Logradouro, CEP, Cidade, Bairro, Numero, UF, descricao, observacoes) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
+  const historico = "INSERT INTO historicoatividades (atividade, data_registro, tabelaAfetada) values (?,?,?)"
+  const atividade = `Novo cadastro de cliente: ${nome}`;
+  const tabelaAfetada = "Cliente";
+  const dataRegistro = new Date();
+
   db.query(sql,
-    [nome, cpf_cnpj, email || null, telefone || null, logradouro, cep, cidade, bairro, numero, uf, descricao || null, obeservacoes || null],
+    [nome, cpf_cnpj, email || null, telefone || null, logradouro, cep, cidade, bairro, numero, uf, descricao || null, observacoes || null],
     (err, result) => {
       if (err) {
         return res.status(500).json({ erro: 'Erro interno no servidor', detalhes: err.message });
@@ -108,18 +114,33 @@ exports.criarCliente = (req, res) => {
         id: result.insertId,
         dados: { nome, email: email || 'Não informado' }
       });
+      db.query(historico, [atividade, dataRegistro, tabelaAfetada], (err, results) => {
+
+
+      })
     });
 };
 
 exports.atualizarCliente = (req, res) => {
   const { id } = req.params;
-  const { cpf_cnpj, nome, email, telefone, logradouro, cep, cidade, bairro, numero, uf } = req.body;
+  const { cpf_cnpj, nome, email, telefone, logradouro, cep, cidade, bairro, numero, uf, descricao, observacoes } = req.body;
 
-  db.query("UPDATE cliente SET nome = ?, cpf_cnpj = ?, emailcontato = ?, telefone = ?, logradouro = ?, cep = ?, cidade = ?, bairro = ?, numero = ?, uf = ? WHERE idCliente = ?",
-    [nome, cpf_cnpj, email, telefone, logradouro, cep, cidade, bairro, numero, uf, id],
+  const historico = "INSERT INTO historicoatividades (atividade, data_registro, tabelaAfetada) values (?,?,?)"
+  const atividade = `Atualização do cliente: ${nome}`;
+  const tabelaAfetada = "Cliente";
+  const dataRegistro = new Date();
+
+
+
+  db.query("UPDATE cliente SET nome = ?, cpf_cnpj = ?, emailContato = ?, TelefoneContato = ?, logradouro = ?, cep = ?, cidade = ?, bairro = ?, numero = ?, uf = ?, descricao = ?, observacoes = ? WHERE idCliente = ?",
+    [nome, cpf_cnpj, email, telefone, logradouro, cep, cidade, bairro, numero, uf, descricao, observacoes, id],
     (err, results) => {
       if (err) return res.status(500).json({ erro: 'Erro ao atualizar cliente', detalhes: err.message });
-      res.json({ sucesso: true, mensagem: 'Cliente atualizado com sucesso' });
+      res.json({ req_body: req.body, sucesso: true, mensagem: 'Cliente atualizado com sucesso' });
+      db.query(historico, [atividade, dataRegistro, tabelaAfetada], (err, results) => {
+
+
+      })
     });
 };
 
@@ -127,10 +148,27 @@ exports.deletarCliente = (req, res) => {
   const clienteId = parseInt(req.params.id);
   if (!clienteId) return res.status(400).json({ erro: 'ID do cliente não fornecido' });
 
-  db.query('DELETE FROM Cliente WHERE idCliente = ?', [clienteId], (err, result) => {
-    if (err) return res.status(500).json({ erro: 'Erro ao deletar cliente', detalhes: err.message });
-    if (result.affectedRows === 0) return res.status(404).json({ erro: 'Cliente não encontrado' });
+  db.query('SELECT Nome from cliente where idCliente = ?', [clienteId], (err, results) => {
+    if (err) {
+      console.log(err)
+    }
+    const nomeCliente = results[0].Nome
+    db.query('DELETE FROM Cliente WHERE idCliente = ?', [clienteId], (err, result) => {
+      if (err) return res.status(500).json({ erro: 'Erro ao deletar cliente', detalhes: err.message });
+      const historico = "INSERT INTO historicoatividades (atividade, data_registro, tabelaAfetada) values (?,?,?)"
+      const atividade = `Cliete deletado: ${nomeCliente}`;
+      const tabelaAfetada = "Cliente";
+      const dataRegistro = new Date();
+      if (result.affectedRows === 0) return res.status(404).json({ erro: 'Cliente não encontrado' });
 
-    res.json({ sucesso: true, mensagem: 'Cliente deletado com sucesso' });
-  });
+      res.json({ sucesso: true, mensagem: 'Cliente deletado com sucesso' });
+      db.query(historico, [atividade, dataRegistro, tabelaAfetada], (err, results) => {
+
+
+      })
+
+    });
+  })
+
+
 };
