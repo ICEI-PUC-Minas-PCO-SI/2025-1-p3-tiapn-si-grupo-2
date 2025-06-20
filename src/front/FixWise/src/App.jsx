@@ -15,6 +15,7 @@ import Equipamentos from './pages/Equipamentos/Equipamentos'
 import Sidebar from './components/Sidebar/Sidebar'
 import Funcionarios from './pages/Funcionarios/Funcionarios'
 import CadastroFuncionarios from './pages/CadastroFuncionarios/CadastroFuncionarios'
+import LoginPage from './pages/Login/Login'
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
 
   const router = createBrowserRouter(
     [
+      
       {
         path: '/',
         element: <Layout />,
@@ -43,7 +45,7 @@ function App() {
           },
           {
             path: '/login',
-            element: <Login />
+            element: <LoginPage />
           },
           {
             path: '/manutencoes',
