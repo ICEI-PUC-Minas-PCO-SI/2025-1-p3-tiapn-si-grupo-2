@@ -2,20 +2,34 @@
 CREATE DATABASE IF NOT EXISTS `fixwise` DEFAULT CHARACTER SET utf8;
 USE `fixwise`;
 
--- ================================
--- TABELA: Cliente
--- ================================
-CREATE TABLE IF NOT EXISTS `Cliente` (
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema fixwise
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema fixwise
+-- -----------------------------------------------------
+CREATE DATABASE IF NOT EXISTS `fixwise` DEFAULT CHARACTER SET utf8 ;
+USE `fixwise` ;
+
+-- -----------------------------------------------------
+-- Table `fixwise`.`Cliente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fixwise`.`Cliente` (
   `idCliente` INT NOT NULL AUTO_INCREMENT,
-  `Nome` VARCHAR(100) NOT NULL,
-  `CPF_CNPJ` VARCHAR(18) NOT NULL,
-  `EmailContato` VARCHAR(100) NULL,
-  `TelefoneContato` VARCHAR(20) NULL,
-  `Logradouro` VARCHAR(100) NULL,
-  `CEP` VARCHAR(10) NULL,
-  `Cidade` VARCHAR(50) NULL,
-  `Bairro` VARCHAR(50) NULL,
-  `Numero` VARCHAR(10) NULL,
+  `Nome` VARCHAR(45) NOT NULL,
+  `CPF_CNPJ` VARCHAR(14) NOT NULL,
+  `EmailContato` VARCHAR(45) NULL,
+  `TelefoneContato` VARCHAR(15) NULL,
+  `Logradouro` VARCHAR(45) NULL,
+  `CEP` VARCHAR(9) NULL,
+  `Cidade` VARCHAR(45) NULL,
+  `Bairro` VARCHAR(45) NULL,
+  `Numero` INT NULL,
   `UF` VARCHAR(2) NULL,
   `Complemento` VARCHAR(40);
   `Descricao` TEXT NULL,
@@ -23,20 +37,15 @@ CREATE TABLE IF NOT EXISTS `Cliente` (
   PRIMARY KEY (`idCliente`)
 ) ENGINE=InnoDB;
 
--- ================================
--- TABELA: Equipamento
--- ================================
-CREATE TABLE IF NOT EXISTS `Equipamento` (
+
+-- -----------------------------------------------------
+-- Table `fixwise`.`Equipamento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fixwise`.`Equipamento` (
   `idEquipamento` INT NOT NULL AUTO_INCREMENT,
-  `Nome` VARCHAR(100) NULL,
-  `Tipo` VARCHAR(50) NULL,
-  `Marca` VARCHAR(50) NULL,
-  `SerialNumber` VARCHAR(45) NOT NULL,
-  `Status` VARCHAR(20) NULL,
-  `DataEntrada` DATE NULL,
-  `DataSaida` DATE NULL,
-  `Descricao` TEXT NULL,
-  `Observacoes` TEXT NULL,
+  `Nome` VARCHAR(45) NULL,
+  `Descricao` VARCHAR(45) NULL,
+  `Status` VARCHAR(10) NULL,
   `Cliente_idCliente` INT NOT NULL,
   PRIMARY KEY (`idEquipamento`),
   CONSTRAINT `fk_Equipamento_Cliente`
@@ -57,26 +66,24 @@ CREATE TABLE IF NOT EXISTS `Funcionario` (
   PRIMARY KEY (`idUsuario`)
 ) ENGINE=InnoDB;
 
--- ================================
--- TABELA: CadastroAcesso
--- ================================
-CREATE TABLE IF NOT EXISTS `CadastroAcesso` (
-  `idAcesso` INT NOT NULL AUTO_INCREMENT,
-  `CPF` VARCHAR(14) NOT NULL,
-  `Nome` VARCHAR(100) NOT NULL,
-  `Matricula` VARCHAR(20) NOT NULL UNIQUE,
-  `NivelAcesso` VARCHAR(20) NOT NULL,
-  `Descricao` TEXT,
-  `Observacoes` TEXT,
-  `Senha` VARCHAR(60) NOT NULL,
-  PRIMARY KEY (`idAcesso`)
-) ENGINE=InnoDB;
--- ================================
--- TABELA: Servico
--- ================================
-CREATE TABLE IF NOT EXISTS `Servico` (
+-- -----------------------------------------------------
+-- Table `fixwise`.`Funcionario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fixwise`.`Funcionario` (
+  `idUsuario` INT NOT NULL AUTO_INCREMENT,
+  `Nome` VARCHAR(45) NOT NULL,
+  `Senha` VARCHAR(45) NOT NULL,
+  `TipoUsuario` INT NOT NULL,
+  PRIMARY KEY (`idUsuario`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `fixwise`.`Servico`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fixwise`.`Servico` (
   `idServico` INT NOT NULL AUTO_INCREMENT,
-  `TipoServico` VARCHAR(100) NULL,
+  `TipoServico` VARCHAR(45) NULL,
   `DataInicio` DATE NULL,
   `DataFim` DATE NULL,
   `Status` VARCHAR(50) NULL,
@@ -84,10 +91,11 @@ CREATE TABLE IF NOT EXISTS `Servico` (
   PRIMARY KEY (`idServico`)
 ) ENGINE=InnoDB;
 
--- ================================
--- TABELA: OrdemServico
--- ================================
-CREATE TABLE IF NOT EXISTS `OrdemServico` (
+
+-- -----------------------------------------------------
+-- Table `fixwise`.`OrdemServico`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fixwise`.`OrdemServico` (
   `idOrdemServico` INT NOT NULL AUTO_INCREMENT,
   `Equipamento_idEquipamento` INT NOT NULL,
   `Servico_idServico` INT NOT NULL,
@@ -104,10 +112,11 @@ CREATE TABLE IF NOT EXISTS `OrdemServico` (
     ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
--- ================================
--- TABELA: ServicosFuncionario
--- ================================
-CREATE TABLE IF NOT EXISTS `ServicosFuncionario` (
+
+-- -----------------------------------------------------
+-- Table `fixwise`.`ServicosFuncionario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fixwise`.`ServicosFuncionario` (
   `idServicosFuncionario` INT NOT NULL AUTO_INCREMENT,
   `Funcionario_idUsuario` INT NOT NULL,
   `Servico_idServico` INT NOT NULL,

@@ -25,3 +25,16 @@
   background-color: #fff;
   flex: 1; 
 }
+
+.select-wrapper {
+  position: relative;
+}
+.select-wrapper::after {
+  content: "▼";
+  font-size: 0.8rem;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}

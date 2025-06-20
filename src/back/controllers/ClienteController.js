@@ -42,6 +42,7 @@ exports.buscarClientes = (req, res) => {
     sql += ' AND Numero = ?';
     params.push(numero);
   }
+  
   if (uf) {
     sql += ' AND UF = ?';
     params.push(uf);
@@ -73,7 +74,11 @@ exports.criarCliente = (req, res) => {
     return res.status(400).json({ erro: 'Corpo da requisição ausente ou inválido' });
   }
 
-  const { nome, cpf_cnpj, email, telefone, logradouro, cep, cidade, bairro, numero, uf, descricao, obeservacoes } = req.body;
+  const {
+    nome, cpf_cnpj, email, telefone,
+    logradouro, cep, cidade, bairro,
+    numero, uf, descricao, obeservacoes
+  } = req.body;
 
   if (!nome || !cpf_cnpj || !logradouro || !cep || !cidade || !bairro || !numero || !uf) {
     return res.status(400).json({
@@ -82,15 +87,31 @@ exports.criarCliente = (req, res) => {
     });
   }
 
-  const sql = `INSERT INTO Cliente 
-    (Nome, CPF_CNPJ, EmailContato, TelefoneContato, Logradouro, CEP, Cidade, Bairro, Numero, UF, descricao, observacoes) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+  // Verifica se já existe um cliente com o mesmo CPF_CNPJ
+  const sqlVerifica = `SELECT * FROM Cliente WHERE CPF_CNPJ = ? LIMIT 1`;
+  db.query(sqlVerifica, [cpf_cnpj], (err, results) => {
+    if (err) {
+      return res.status(500).json({ erro: 'Erro ao verificar cliente existente', detalhes: err.message });
+    }
 
-  db.query(sql,
-    [nome, cpf_cnpj, email || null, telefone || null, logradouro, cep, cidade, bairro, numero, uf, descricao || null, obeservacoes || null],
-    (err, result) => {
+    if (results.length > 0) {
+      return res.status(409).json({
+        erro: 'Cliente já cadastrado',
+        detalhes: 'Já existe um cliente com o mesmo CPF/CNPJ'
+      });
+    }
+
+    // Se não existir, faz o INSERT
+    const sql = `INSERT INTO Cliente 
+      (Nome, CPF_CNPJ, EmailContato, TelefoneContato, Logradouro, CEP, Cidade, Bairro, Numero, UF) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+    db.query(sql, [
+      nome, cpf_cnpj, email || null, telefone || null,
+      logradouro, cep, cidade, bairro, numero, uf
+    ], (err, result) => {
       if (err) {
-        return res.status(500).json({ erro: 'Erro interno no servidor', detalhes: err.message });
+        return res.status(500).json({ erro: 'Erro ao inserir cliente', detalhes: err.message });
       }
 
       res.status(201).json({
@@ -100,7 +121,9 @@ exports.criarCliente = (req, res) => {
         dados: { nome, email: email || 'Não informado' }
       });
     });
+  });
 };
+
 
 exports.atualizarCliente = (req, res) => {
   const { id } = req.params;

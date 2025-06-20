@@ -5,10 +5,7 @@ import Dashboard from '../../components/Dashboard/Dashboard'
 
 const Home = () => {
   return (
-    <div className='flex  min-h-screen'>
-        <Sidebar />
-        <Dashboard />
-    </div>
+    <MainContent />
   )
 }
 
