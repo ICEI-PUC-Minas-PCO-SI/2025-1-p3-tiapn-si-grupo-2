@@ -45,7 +45,7 @@ exports.getFuncionarioById = async (req, res) => {
   }
 };
 
-// Criar funcionário
+// Criar funcionário (com matrícula automática)
 exports.createFuncionario = async (req, res) => {
   const { Nome, Senha, TipoUsuario } = req.body;
 
@@ -60,27 +60,37 @@ exports.createFuncionario = async (req, res) => {
     const db = getConnection();
 
     const [existingUser] = await db.query('SELECT * FROM Funcionario WHERE Nome = ?', [Nome]);
-
     if (existingUser.length > 0) {
       return res.status(409).json({ erro: 'Já existe um funcionário com esse nome' });
     }
 
+    // Gera matrícula única de 6 dígitos
+    let matricula;
+    let existe = true;
+    while (existe) {
+      matricula = Math.floor(100000 + Math.random() * 900000);
+      const [rows] = await db.query('SELECT 1 FROM Funcionario WHERE Matricula = ?', [matricula]);
+      if (rows.length === 0) {
+        existe = false;
+      }
+    }
+
     const hashedPassword = await bcrypt.hash(Senha, 10);
-    
+
     if (![1, 2].includes(Number(TipoUsuario))) {
-  return res.status(400).json({ erro: 'TipoUsuario inválido. Use 1 (Funcionário) ou 2 (Administrador).' });
-}
-  
+      return res.status(400).json({ erro: 'TipoUsuario inválido. Use 1 (Funcionário) ou 2 (Administrador).' });
+    }
+
     const [result] = await db.query(
-      'INSERT INTO Funcionario (Nome, Senha, TipoUsuario) VALUES (?, ?, ?)',
-      [Nome, hashedPassword, TipoUsuario]
+      'INSERT INTO Funcionario (Nome, Senha, TipoUsuario, Matricula) VALUES (?, ?, ?, ?)',
+      [Nome, hashedPassword, TipoUsuario, matricula]
     );
 
     res.status(201).json({
       sucesso: true,
       mensagem: 'Funcionário criado com sucesso',
       idUsuario: result.insertId,
-      dados: { Nome, TipoUsuario }
+      dados: { Nome, TipoUsuario, Matricula: matricula }
     });
 
   } catch (err) {
