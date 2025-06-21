@@ -3,18 +3,18 @@ const { getConnection } = require('../db');
 const jwt = require('jsonwebtoken');
 
 exports.loginFuncionario = async (req, res) => {
-  const { Nome, Senha } = req.body;
+  const { Matricula, Senha } = req.body;
 
-  if (!Nome || !Senha) {
-    return res.status(400).json({ erro: 'Nome e senha são obrigatórios.' });
+  if (!Matricula || !Senha) {
+    return res.status(400).json({ erro: 'Matrícula e senha são obrigatórios.' });
   }
 
   try {
     const db = getConnection();
 
     const [rows] = await db.query(
-      'SELECT idUsuario, Nome, TipoUsuario, Senha FROM Funcionario WHERE Nome = ?',
-      [Nome.trim()]
+      'SELECT idUsuario, Nome, TipoUsuario, Senha FROM Funcionario WHERE Matricula = ?',
+      [Matricula.trim()]
     );
 
     if (rows.length === 0) {
@@ -45,7 +45,8 @@ exports.loginFuncionario = async (req, res) => {
       funcionario: {
         idUsuario: funcionario.idUsuario,
         Nome: funcionario.Nome,
-        TipoUsuario: funcionario.TipoUsuario
+        TipoUsuario: funcionario.TipoUsuario,
+        Matricula
       }
     });
 
