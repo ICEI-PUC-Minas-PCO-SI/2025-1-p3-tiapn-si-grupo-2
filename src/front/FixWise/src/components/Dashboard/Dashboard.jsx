@@ -59,8 +59,8 @@ const Dashboard = () => {
           </div>
 
           <CardManutencoesPendentes />
-          <HistoricoAtividades />
           <GraficoManutencoesPorMes />
+          <HistoricoAtividades />
         </div>
       </div>
     </>
