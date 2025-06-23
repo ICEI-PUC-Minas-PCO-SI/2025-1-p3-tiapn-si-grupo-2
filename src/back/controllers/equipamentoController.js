@@ -6,9 +6,9 @@ exports.criarEquipamento = (req, res) => {
   }
 
   const { Nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Descricao,
-    Observacoes, Clienteid } = req.body;
+    Observacoes, Cliente_idCliente } = req.body;
 
-  if (!Nome || !Tipo || !Marca || !SerialNumber || !Clienteid) {
+  if (!Nome || !Tipo || !Marca || !SerialNumber || !Cliente_idCliente) {
     return res.status(400).json({
       erro: 'Campos obrigatórios faltando',
       campos_obrigatorios: ['Nome', 'Tipo', 'Marca', 'SerialNumber', 'Cliente_idCliente']
@@ -31,12 +31,17 @@ exports.criarEquipamento = (req, res) => {
     }
 
   const sql = `INSERT INTO equipamento 
-    (Nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Descricao, Observacoes,Cliente_idCliente) 
+    (Nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Descricao, Observacoes, Cliente_idCliente) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+  const historico = "INSERT INTO historicoatividades (atividade, data_registro, tabelaAfetada) values (?,?,?)"
+  const atividade = `Novo cadastro de equipamento: ${Nome}`;
+  const tabelaAfetada = "Equipamento";
+  const dataRegistro = new Date();
 
   db.query(sql,
     [Nome, Tipo, Marca || null, SerialNumber, Status, DataEntrada, DataSaida, Descricao || null,
-      Observacoes || null, Clienteid],
+      Observacoes || null, Cliente_idCliente],
     (err, result) => {
       if (err) {
         return res.status(500).json({ erro: 'Erro interno no servidor', detalhes: err.message });
@@ -48,6 +53,11 @@ exports.criarEquipamento = (req, res) => {
         id: result.insertId,
         dados: { Nome, Tipo: Tipo || 'Não informado' }
       });
+
+      db.query(historico, [atividade, dataRegistro, tabelaAfetada], (err, results) => {
+
+
+      })
     });
 });
 };
@@ -55,11 +65,18 @@ exports.criarEquipamento = (req, res) => {
 exports.atualizarEquipamento = (req, res) => {
   const { id } = req.params;
   const { Nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Descricao,
-    Observacoes, Clienteid } = req.body;
+    Observacoes, Cliente_idCliente } = req.body;
+
+  const historico = "INSERT INTO historicoatividades (atividade, data_registro, tabelaAfetada) values (?,?,?)"
+  const atividade = `Atualização do equipamento: ${Nome}`;
+  const tabelaAfetada = "Equipamento";
+  const dataRegistro = new Date();
 
   db.query("UPDATE equipamento SET Nome = ?, Tipo = ?, Marca = ?, SerialNumber = ?, Status = ?, DataEntrada = ?, DataSaida = ?, Descricao = ?, Observacoes = ?,Cliente_idCliente = ? WHERE idEquipamento = ?",
-    [Nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Descricao, Observacoes, Clienteid, id],
+    [Nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Descricao, Observacoes, Cliente_idCliente, id],
     (err, result) => {
+      console.log(err);
+
       if (err) return res.status(500).json({ erro: 'Erro ao atualizar equipamento', detalhes: err.message });
 
       if (result.affectedRows === 0) {
@@ -67,23 +84,46 @@ exports.atualizarEquipamento = (req, res) => {
       }
 
       res.json({ sucesso: true, mensagem: 'Equipamento atualizado com sucesso' });
+
+      db.query(historico, [atividade, dataRegistro, tabelaAfetada], (err, results) => {
+
+
+      })
     });
 };
 
 exports.deletarEquipamento = (req, res) => {
   const idEquipamento = parseInt(req.params.id);
   if (!idEquipamento) return res.status(400).json({ erro: 'ID do Equipamento não fornecido' });
+  console.log(idEquipamento);
 
-  db.query('DELETE FROM equipamento WHERE idEquipamento = ?', [idEquipamento], (err, result) => {
-    if (err) return res.status(500).json({ erro: 'Erro ao deletar Equipamento', detalhes: err.message });
-    if (result.affectedRows === 0) return res.status(404).json({ erro: 'Equipamento não encontrado' });
+  db.query("SELECT Nome from equipamento where idEquipamento = ?", [idEquipamento], (err, results) => {
+    if (err) {
+      return console.log(err)
+    }
+    const nomeEquipamento = results[0].Nome;
+    const historico = "INSERT INTO historicoatividades (atividade, data_registro, tabelaAfetada) values (?,?,?)"
+    const atividade = `Equipamento deletado: ${nomeEquipamento}`;
+    const tabelaAfetada = "Equipamento";
+    const dataRegistro = new Date();
 
-    res.json({ sucesso: true, mensagem: 'Equipamento deletado com sucesso' });
-  });
+    db.query('DELETE FROM equipamento WHERE idEquipamento = ?', [idEquipamento], (err, result) => {
+      if (err) return res.status(500).json({ erro: 'Erro ao deletar Equipamento', detalhes: err.message });
+      if (result.affectedRows === 0) return res.status(404).json({ erro: 'Equipamento não encontrado' });
+
+      res.json({ sucesso: true, mensagem: 'Equipamento deletado com sucesso' });
+      db.query(historico, [atividade, dataRegistro, tabelaAfetada], (err, results) => {
+
+
+      })
+    });
+  })
+
+
 };
 
 exports.buscarEquipamentos = (req, res) => {
-  const { nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Clienteid, id } = req.query;
+  const { nome, Tipo, Marca, SerialNumber, Status, DataEntrada, DataSaida, Cliente_idCliente, id } = req.query;
 
   let sql = 'SELECT equipamento.*, cliente.Nome cliente FROM equipamento INNER JOIN cliente on (cliente.idCliente = equipamento.Cliente_idCliente) WHERE 1=1';
   const params = [];
@@ -116,9 +156,9 @@ exports.buscarEquipamentos = (req, res) => {
     sql += ' AND DataSaida = ?';
     params.push(DataSaida);
   }
-  if (Clienteid) {
-    sql += ' AND Cliente_idcliente = ?';
-    params.push(Clienteid);
+  if (Cliente_idCliente) {
+    sql += ' AND Cliente_idCliente = ?';
+    params.push(Cliente_idCliente);
   }
   if (id) {
     sql += ' AND idEquipamento = ?';

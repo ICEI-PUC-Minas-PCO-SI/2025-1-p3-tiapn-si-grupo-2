@@ -12,7 +12,7 @@ router.post('/', equipamentoController.criarEquipamento);
 router.put('/:id', equipamentoController.atualizarEquipamento);
 
 // DELETE /equipamento/:id
-router.delete('/:id', equipamentoController.buscarEquipamentos);
+router.delete('/:id', equipamentoController.deletarEquipamento);
 
 
 module.exports = router;

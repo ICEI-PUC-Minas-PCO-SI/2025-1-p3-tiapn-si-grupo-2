@@ -1,6 +1,11 @@
 const mysql = require('mysql2/promise');
 
-let connection;
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "#PaoDeQueijoComCafe1",
+  database: "fixwise"
+});
 
 async function connect() {
   if (!connection) {

@@ -13,24 +13,31 @@ import Manutencoes from './pages/Manutencoes/Manutencoes'
 import Login from './pages/Login/Login'
 import Equipamentos from './pages/Equipamentos/Equipamentos'
 import Sidebar from './components/Sidebar/Sidebar'
+import Funcionarios from './pages/Funcionarios/Funcionarios'
+import CadastroFuncionarios from './pages/CadastroFuncionarios/CadastroFuncionarios'
+import LoginPage from './pages/Login/Login'
 
 function App() {
 
   const Layout = () => {
     return (
       <>
-      <div className="flex min-h-screen">
-        <Sidebar />
-        <div className="flex flex-col px-8 py-6 w-full">
-          <Outlet />
+        <div className="flex min-h-screen">
+          <Sidebar />
+          <div className="flex flex-col px-8 py-6 w-full">
+            <Outlet />
+          </div>
         </div>
-      </div>
       </>
     );
   }
 
   const router = createBrowserRouter(
     [
+      {
+        path: '/login',
+        element: <LoginPage />
+      },
       {
         path: '/',
         element: <Layout />,
@@ -39,10 +46,7 @@ function App() {
             path: '/',
             element: <Home />
           },
-          {
-            path: '/login',
-            element: <Login />
-          },
+
           {
             path: '/manutencoes',
             element: <Manutencoes />
@@ -52,12 +56,44 @@ function App() {
             element: <Clientes />
           },
           {
-            path: '/equipamentos', 
-            element: <Equipamentos /> 
+            path: '/clientes/novo',
+            element: <CadastroCliente />
           },
           {
-            path: '/cadastro-equipamentos',
-            element: <CadastroEquipamentos/>
+            path: '/clientes/editar/:id',
+            element: <CadastroCliente />
+          },
+          {
+            path: '/equipamentos',
+            element: <Equipamentos />
+          },
+          {
+            path: '/equipamentos/novo',
+            element: <CadastroEquipamentos />
+          },
+          {
+            path: '/equipamentos/editar/:id',
+            element: <CadastroEquipamentos />
+          },
+          {
+            path: '/manutencoes/editar/:id',
+            element: <CadastroManutencao />
+          },
+          {
+            path: '/manutencoes/novo',
+            element: <CadastroManutencao />
+          },
+          {
+            path: '/funcionarios',
+            element: <Funcionarios />
+          },
+          {
+            path: '/funcionarios/novo',
+            element: <CadastroFuncionarios />
+          },
+          {
+            path: '/funcionarios/editar/:id',
+            element: <CadastroFuncionarios />
           }
         ]
       }

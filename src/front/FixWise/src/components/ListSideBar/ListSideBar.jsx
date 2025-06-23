@@ -18,51 +18,7 @@ const ListSideBar = (props) => {
           <ItemSideBar isOpen={props.isOpen} tagItem={IoPersonSharp} nameItem="Clientes" route="/clientes" />
           <ItemSideBar isOpen={props.isOpen} tagItem={IoConstructSharp} nameItem="Equipamentos" route="/equipamentos" />
           <ItemSideBar isOpen={props.isOpen} tagItem={IoPeopleSharp} nameItem="Funcionários" route="/funcionarios" />
-          <ItemSideBarDropdown
-            isOpen={props.isOpen}
-            tagItem={FiDatabase}
-            nameItem="Cadastros"
-            listItemsDropdown={[
-              {
-                name: "Cliente",
-                route: "/cadastro-clientes",
-                tagItem: IoPersonSharp
-              },
-              {
-                name: "Acessos",
-                route: "/cadastro-acessos",
-                tagItem: IoKeyOutline
-              },
-              {
-                name: "Equipamentos",
-                route: "/equipamentos",
-                tagItem: CiBoxes
-              },
-              {
-                name: "Manutenção",
-                route: "/cadastro-manutencao",
-                tagItem: GrVmMaintenance
-              },
-            ]}
-          />
-          {/* <ItemSideBarDropdown
-            isOpen={props.isOpen}
-            tagItem={FiDatabase}
-            nameItem="Ativos"
-            listItemsDropdown={[
-              {
-                name: "Internos",
-                route: "internos",
-                tagItem: IoHomeOutline
-              },
-              {
-                name: "Externos",
-                route: "externos",
-                tagItem: IoIosLogOut
-              },
-            ]}
-          />
-           */}
+          
           <ItemSideBar
             isOpen={props.isOpen}
             tagItem={GrVmMaintenance}
