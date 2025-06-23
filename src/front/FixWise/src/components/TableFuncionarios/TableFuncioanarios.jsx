@@ -24,7 +24,8 @@ export default function TableFuncionarios() {
     }, [setFuncionarios]);
 
     const handleEdit = (funcionario) => {
-        navigate(`/funcionarios/editar/${funcionario.idFuncionario}`, {
+        console.log(funcionario);
+        navigate(`/funcionarios/editar/${funcionario.idUsuario}`, {
             state: { funcionario }
         });
     };
@@ -77,7 +78,7 @@ export default function TableFuncionarios() {
     }
 
     const funcionariosFiltrados = funcionarios.filter((cadastro) =>
-        `${cadastro.Nome} ${cadastro.TipoUsuario}`
+        `${cadastro.Nome} ${cadastro.Email} ${cadastro.TipoUsuario}`
             .toLowerCase()
             .includes(searchTerm.toLowerCase())
     );
@@ -91,6 +92,7 @@ export default function TableFuncionarios() {
                             <tr>
                                 <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">#</th>
                                 <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Nome</th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Email</th>
                                 <th scope="col" className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">Tipo</th>
                                 <th scope="col" className="px-6 py-3 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">Ações</th>
                             </tr>
@@ -105,6 +107,9 @@ export default function TableFuncionarios() {
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="text-sm font-medium text-gray-900">{cadastro.Nome}</div>
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                <div className="text-sm text-gray-900">{cadastro.Email}</div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {cadastro.TipoUsuario}

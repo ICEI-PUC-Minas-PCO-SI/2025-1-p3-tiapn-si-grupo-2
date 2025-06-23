@@ -16,7 +16,9 @@ export default function FormCadastroFuncionarios() {
         nome: '',
         senha: '',
         confirmSenha: '',
-        tipo: ''
+        tipo: '',
+        email: '',
+        confirmEmail: ''
     });
 
     const isEditing = !!id;
@@ -24,11 +26,14 @@ export default function FormCadastroFuncionarios() {
     useEffect(() => {
         if (isEditing && state?.funcionario) {
             const funcionario = state.funcionario;
-            // console.log('cliente recebido:', cliente);
 
             setFormData({
                 nome: funcionario.Nome || '',
-                tipo: funcionario.TipoUsuario || ''
+                tipo: funcionario.TipoUsuario || '',
+                email: funcionario.Email || '',
+                senha: '',
+                confirmSenha: '',
+                confirmEmail: funcionario.Email || ''
             });
         }
     }, [isEditing, state]);
@@ -38,6 +43,16 @@ export default function FormCadastroFuncionarios() {
 
         if (!formData.nome) {
             Swal.fire('Atenção', 'Informe o nome!', 'warning');
+            return;
+        }
+
+        if (!formData.email) {
+            Swal.fire('Atenção', 'Informe o email!', 'warning');
+            return;
+        }
+
+        if (formData.email !== formData.confirmEmail) {
+            Swal.fire('Atenção', 'Os emails não correspondem!', 'warning');
             return;
         }
 
@@ -51,8 +66,6 @@ export default function FormCadastroFuncionarios() {
             return;
         }
 
-        console.log(formData)
-
         if (!formData.tipo) {
             Swal.fire('Atenção', 'Informe o tipo!', 'warning');
             return;
@@ -63,12 +76,12 @@ export default function FormCadastroFuncionarios() {
             const payload = {
                 Nome: formData.nome,
                 Senha: formData.senha,
-                TipoUsuario: +formData.tipo,
+                TipoUsuario: formData.tipo,
+                Email: formData.email
             };
 
             if (isEditing) {
                 payload.idUsuario = id;
-
                 await axios.put(`http://localhost:3010/funcionario/${id}`, payload);
                 Swal.fire('Sucesso', 'Registro atualizado com sucesso', 'success');
             } else {
@@ -95,7 +108,7 @@ export default function FormCadastroFuncionarios() {
         <div>
             <form onSubmit={handleSubmit} className="bg-white shadow overflow-hidden rounded-lg p-6">
                 <div className="mb-8">
-                    <h2 className="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Informações do Cliente</h2>
+                    <h2 className="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Informações do Funcionário</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-4">
@@ -106,7 +119,7 @@ export default function FormCadastroFuncionarios() {
                                     content="Nome"
                                     value={formData.nome}
                                     onChange={handleChange} />
-                            </div>
+                            </div>                            
 
                             <div>
                                 <label htmlFor='senha' className="block text-sm font-medium text-gray-700 mb-1">Senha</label>
@@ -118,12 +131,23 @@ export default function FormCadastroFuncionarios() {
                                     required
                                 />
                             </div>
+                            
+                            <div>
+                                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                                <InputForm
+                                    name="email"
+                                    type="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
                         </div>
 
                         <div className="space-y-4">
                             <div>
                                 <label htmlFor="tipo" className="block text-sm font-medium text-gray-700 mb-1">Tipo *</label>
-                               
+                            
                                 <select
                                     name="tipo"
                                     value={formData.tipo}
@@ -143,10 +167,19 @@ export default function FormCadastroFuncionarios() {
                                     value={formData.confirmSenha}
                                     onChange={handleChange}
                                 />
+                            </div>                           
+
+                            <div>
+                                <label htmlFor="confirmEmail" className="block text-sm font-medium text-gray-700 mb-1">Confirmar Email *</label>
+                                <InputForm
+                                    name="confirmEmail"
+                                    type="email"
+                                    value={formData.confirmEmail}
+                                    onChange={handleChange}
+                                    required
+                                />
                             </div>
                         </div>
-
-
                     </div>
                 </div>
 

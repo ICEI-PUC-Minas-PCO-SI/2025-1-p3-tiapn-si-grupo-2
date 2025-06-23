@@ -1,6 +1,5 @@
 import './App.css'
 import Home from './pages/Home/Home'
-// import { Routes, Route } from 'react-router-dom'
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 import CadastroCliente from './pages/CadastroCliente/CadastroCliente'
 import CadastroAcessos from './pages/CadastroAcessos/CadastroAcessos'

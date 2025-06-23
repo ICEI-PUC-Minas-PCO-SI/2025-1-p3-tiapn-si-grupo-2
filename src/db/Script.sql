@@ -91,6 +91,7 @@ CREATE TABLE `funcionario` (
   `Nome` varchar(100) NOT NULL,
   `Senha` varchar(100) NOT NULL,
   `TipoUsuario` int(11) NOT NULL,
+  `Email` varchar(100) NOT NULL,
   PRIMARY KEY (`idUsuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 

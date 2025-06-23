@@ -17,4 +17,7 @@ router.put('/:id', controller.atualizarFuncionario);
 // Deletar funcionário por ID
 router.delete('/:id', controller.deleteFuncionario);
 
+// Login de funcionário
+router.post('/login', controller.loginFuncionario);
+
 module.exports = router;
