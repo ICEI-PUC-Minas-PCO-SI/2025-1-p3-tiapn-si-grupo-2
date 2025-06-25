@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useLocation, useParams, useNavigate, Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { IoCheckmark } from 'react-icons/io5'
+import { compareAsc } from "date-fns";
 
 // Importe seus componentes personalizados
 import InputForm from '../InputForm/InputForm'
@@ -85,6 +86,16 @@ const FormCadastroEquipamentos = () => {
       Swal.fire('Atenção', 'Informe o cliente!', 'warning');
       return;
     }
+    if(!formData.cliente || !formData.nome || !formData.Tipo || !formData.serial || !formData.entrada || !formData.marca ){
+      Swal.fire('Atenção', 'Campos obrigatórios vazios!', 'warning');
+      return;
+    }
+
+    if(compareAsc(new Date(formData.saida), new Date(formData.entrada)) == -1){
+      Swal.fire('Atenção', ' A data de saída não pode ser anterior à data de entrada!', 'warning');
+      return
+    }
+
 
     try {
       
@@ -187,7 +198,7 @@ const FormCadastroEquipamentos = () => {
           </div>
 
           <div>
-            <label htmlFor="saida" className="block text-sm font-medium text-gray-700 mb-1">Data Saída</label>
+            <label htmlFor="saida" className="block text-sm font-medium text-gray-700 mb-1">Data Saída </label>
             <DataForm
               name="saida"
               content="Data Saída"
@@ -204,7 +215,7 @@ const FormCadastroEquipamentos = () => {
           </div>
 
           <div>
-            <label htmlFor="marca" className="block text-sm font-medium text-gray-700 mb-1">Marca</label>
+            <label htmlFor="marca" className="block text-sm font-medium text-gray-700 mb-1">Marca *</label>
             <InputForm
               name="marca"
               content="Marca"
@@ -214,7 +225,7 @@ const FormCadastroEquipamentos = () => {
           </div>
 
           <div>
-            <label htmlFor="serial" className="block text-sm font-medium text-gray-700 mb-1">Serial Number</label>
+            <label htmlFor="serial" className="block text-sm font-medium text-gray-700 mb-1">Serial Number *</label>
             <InputForm
               name="serial"
               content="Serial Number"
@@ -224,7 +235,7 @@ const FormCadastroEquipamentos = () => {
           </div>
 
           <div>
-            <label htmlFor="entrada" className="block text-sm font-medium text-gray-700 mb-1">Data Entrada</label>
+            <label htmlFor="entrada" className="block text-sm font-medium text-gray-700 mb-1">Data Entrada *</label>
             <DataForm
               name="entrada"
               content="Data Entrada"
@@ -259,7 +270,7 @@ const FormCadastroEquipamentos = () => {
         <Link to={'/equipamentos'}>
           <button
             type="button"
-            className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="cursor-pointer px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Cancelar
           </button>
@@ -267,7 +278,7 @@ const FormCadastroEquipamentos = () => {
 
         <button
           type="submit"
-          className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="cursor-pointer inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         >
           <IoCheckmark className="-ml-1 mr-2 h-5 w-5" />
           Salvar Equipamento

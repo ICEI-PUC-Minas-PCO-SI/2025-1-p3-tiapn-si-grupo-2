@@ -1,21 +1,40 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom"; // Use useNavigate de 'react-router-dom'
 import Swal from "sweetalert2";
 import { IoTrashOutline, IoCreateOutline, IoSearch, IoFunnelOutline } from "react-icons/io5";
+import { format } from "date-fns";
 
-export default function TableEquipamentos({ onEdit, setOnEdit }) {
+export default function TableEquipamentos() { 
   const navigate = useNavigate();
   const [equipamentos, setEquipamentos] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const getEquipamentos = async () => {
+    setLoading(true);
+    setError(null);
     try {
-      const res = await axios.get("http://localhost:3010/equipamento");
-      setEquipamentos(res.data.equipamento);
-      console.log(res.data.equipamento)
+      // CORREÇÃO AQUI: A URL DEVE SER '/equipamento' (singular)
+      const res = await axios.get("http://localhost:3010/equipamento"); 
+      console.log(res.data.equipamentos)
+      
+      // A propriedade da resposta que contém os dados é 'equipamentos' (plural),
+      // conforme mostrado na imagem do Insomnia.
+      if (res.data && Array.isArray(res.data.equipamentos)) { // Acessa res.data.equipamentos
+        setEquipamentos(res.data.equipamentos);
+      } else {
+        console.error("Formato de dados inesperado da API:", res.data);
+        setError("Formato de dados recebido da API é inválido.");
+        setEquipamentos([]);
+      }
     } catch (error) {
       console.error("Erro ao buscar equipamentos:", error);
+      setError(error.message || "Erro ao carregar equipamentos.");
+      setEquipamentos([]);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -27,9 +46,9 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
 
   useEffect(() => {
     getEquipamentos();
-  }, [setEquipamentos]);
+  }, []);
 
-  const handleDelete = async (idEquipamento, navigate) => {
+  const handleDelete = async (idEquipamento) => {
     const result = await Swal.fire({
       title: "Tem certeza?",
       text: "Você não poderá reverter esta ação!",
@@ -44,13 +63,11 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
 
     if (result.isConfirmed) {
       try {
-        // Faz a requisição para deletar
         const response = await axios.delete(
-          `http://localhost:3010/equipamento/${idEquipamento}`
+          `http://localhost:3010/equipamento/${idEquipamento}` // URL de delete também no singular
         );
 
         console.log(response);
-        // Mostra mensagem de sucesso
         await Swal.fire({
           title: "Deletado!",
           text: "O equipamento foi removido com sucesso.",
@@ -59,12 +76,8 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
           background: "#fff",
         });
 
-        // Redireciona ou atualiza a lista
         getEquipamentos();
-        // navigate('/equipamentos');
-        // Ou: window.location.reload(); se preferir recarregar a página
       } catch (error) {
-        // Mostra mensagem de erro
         await Swal.fire({
           title: "Erro!",
           text:
@@ -81,8 +94,27 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
   const equipamentosFiltrados = equipamentos.filter((cadastro) =>
     cadastro.Nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
     cadastro.Tipo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    cadastro.Marca.toLowerCase().includes(searchTerm.toLowerCase())
+    cadastro.SerialNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (cadastro.clienteNome && cadastro.clienteNome.toLowerCase().includes(searchTerm.toLowerCase()))
   );
+
+  if (loading) {
+    return (
+      <div className="bg-white shadow rounded-lg p-6 text-center text-gray-700">
+        Carregando equipamentos...
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <strong className="font-bold">Erro!</strong>
+        <span className="block sm:inline"> {error}</span>
+      </div>
+    );
+  }
+
 
   return (
     <>
@@ -97,16 +129,11 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
                 <input
                   type="text"
                   className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  placeholder="Buscar por nome, tipo ou marca"
+                  placeholder="Buscar por nome, tipo, cliente ou número de série"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
-
-              <button className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <IoFunnelOutline className="-ml-1 mr-2 h-5 w-5 text-gray-500" />
-                Filtros
-              </button>
             </div>
           </div>
 
@@ -131,6 +158,7 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
                 >
                   Tipo
                 </th>
+                
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
@@ -143,6 +171,18 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
                 >
                   Cliente
                 </th>
+                 <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
+                >
+                  Serial Number
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
+                >
+                  Data Entrada
+                </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-center text-xs font-bold text-gray-700 uppercase tracking-wider"
@@ -152,51 +192,64 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {equipamentosFiltrados.length > 0 ? equipamentosFiltrados.map((cadastro, index) => (
-                <tr
-                  key={cadastro.idEquipamento}
-                  className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
-                >
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.idEquipamento}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900">
-                      {cadastro.Nome}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.Tipo}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.Marca}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.cliente}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex justify-center items-center space-x-2">
-                      <button
-                        className="text-blue-600 hover:text-blue-900 p-1 rounded-full hover:bg-blue-50"
-                        onClick={() => handleEdit(cadastro)}
-                      >
-                        <IoCreateOutline className="h-5 w-5" />
-                      </button>
+              {equipamentosFiltrados.length > 0 ? (
+                equipamentosFiltrados.map((cadastro, index) => (
+                  <tr
+                    key={cadastro.idEquipamento}
+                    className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                  >
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {cadastro.idEquipamento}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm font-medium text-gray-900">
+                        {cadastro.Nome}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {cadastro.Tipo}
+                    </td>
+                    
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {cadastro.Marca || 'N/A'}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {cadastro.clienteNome || cadastro.cliente || 'Desconhecido'}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {cadastro.SerialNumber}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {format(new Date(cadastro.DataEntrada), "dd'/'MM'/'yyyy")}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex justify-center items-center space-x-2">
+                        <button
+                          className="cursor-pointer text-blue-600 hover:text-blue-900 p-1 rounded-full hover:bg-blue-50"
+                          onClick={() => handleEdit(cadastro)}
+                        >
+                          <IoCreateOutline className="h-5 w-5" />
+                        </button>
 
-                      <button
-                        className="text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50"
-                        onClick={() =>
-                          handleDelete(cadastro.idEquipamento, navigate)
-                        }
-                      >
-                        <IoTrashOutline className="h-5 w-5" />
-                      </button>
-                    </div>
+                        <button
+                          className="cursor-pointer text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50"
+                          onClick={() =>
+                            handleDelete(cadastro.idEquipamento)
+                          }
+                        >
+                          <IoTrashOutline className="h-5 w-5" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="7" className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                    Nenhum equipamento encontrado
                   </td>
                 </tr>
-              )) : <td colSpan="7" className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                Nenhum equipamento encontrado
-              </td>}
+              )}
             </tbody>
           </table>
         </div>
@@ -208,48 +261,16 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
           <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
               <p className="text-sm text-gray-700">
-                Mostrando <span className="font-medium">1</span> a{" "}
-                <span className="font-medium">10</span> de{" "}
+                Mostrando <span className="font-medium">{equipamentosFiltrados.length}</span> de {""}
+                
                 <span className="font-medium">
-                  {equipamentosFiltrados.length}
-                </span>{" "}
-                resultados
+                  {equipamentos.length}
+                </span>
+                
+                {""} resultados
               </p>
             </div>
-            <div>
-              <nav
-                className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
-                aria-label="Pagination"
-              >
-                <a
-                  href="#"
-                  className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                >
-                  <span className="sr-only">Anterior</span>
-                  &lt;
-                </a>
-                <a
-                  href="#"
-                  aria-current="page"
-                  className="z-10 bg-blue-50 border-blue-500 text-blue-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-                >
-                  1
-                </a>
-                <a
-                  href="#"
-                  className="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-                >
-                  2
-                </a>
-                <a
-                  href="#"
-                  className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                >
-                  <span className="sr-only">Próxima</span>
-                  &gt;
-                </a>
-              </nav>
-            </div>
+            
           </div>
         </div>
       )}

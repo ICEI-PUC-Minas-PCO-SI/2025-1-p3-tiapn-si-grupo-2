@@ -1,18 +1,40 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "#PaoDeQueijoComCafe1",
+  password: "",
   database: "fixwise"
 });
 
-db.connect((err) => {
-  if (err) {
-    console.error("❌ Erro de conexão:", err.message);
-    process.exit(1);
-  }
-  console.log("✅ MySQL conectado!");
-});
+let connection;
 
-module.exports = db;
+async function connect() {
+  if (!connection) {
+    connection = await mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      database: 'fixwise'
+    });
+    console.log('✅ Banco de dados conectado');
+  }
+  return connection;
+}
+
+async function disconnect() {
+  if (connection) {
+    await connection.end();
+    console.log('❌ Banco de dados desconectado');
+    connection = null;
+  }
+}
+
+function getConnection() {
+  if (!connection) {
+    throw new Error('Banco não conectado. Execute connect() primeiro.');
+  }
+  return connection;
+}
+
+module.exports = { connect, disconnect, getConnection };

@@ -14,7 +14,7 @@ exports.criarOrdemServico = (req, res) => {
   const sql = `INSERT INTO OrdemServico (Equipamento_idEquipamento, Servico_idServico) 
                VALUES (?, ?)`;
 
-  db.query(sql, [Equipamento_idEquipamento, Servico_idServico], (err, result) => {
+  db.getConnection().query(sql, [Equipamento_idEquipamento, Servico_idServico], (err, result) => {
     if (err) {
       return res.status(500).json({ erro: 'Erro ao criar Ordem de Serviço', detalhes: err.message });
     }
@@ -33,7 +33,7 @@ exports.atualizarOrdemServico = (req, res) => {
   const { idOrdemServico } = req.params;
   const { Equipamento_idEquipamento, Servico_idServico } = req.body;
 
-  db.query(`UPDATE OrdemServico 
+  db.getConnection().query(`UPDATE OrdemServico 
             SET Equipamento_idEquipamento = ?, Servico_idServico = ? 
             WHERE idOrdemServico = ?`,
     [Equipamento_idEquipamento, Servico_idServico, idOrdemServico],
@@ -57,7 +57,7 @@ exports.deletarOrdemServico = (req, res) => {
     return res.status(400).json({ erro: 'ID da Ordem de Serviço não fornecido' });
   }
 
-  db.query('DELETE FROM OrdemServico WHERE idOrdemServico = ?', [idOrdemServico], (err, result) => {
+  db.getConnection().query('DELETE FROM OrdemServico WHERE idOrdemServico = ?', [idOrdemServico], (err, result) => {
     if (err) {
       return res.status(500).json({ erro: 'Erro ao deletar Ordem de Serviço', detalhes: err.message });
     }
@@ -90,7 +90,7 @@ exports.buscarOrdemServico = (req, res) => {
     params.push(idOrdemServico);
   }
 
-  db.query(sql, params, (err, results) => {
+  db.getConnection().query(sql, params, (err, results) => {
     if (err) {
       return res.status(500).json({ erro: 'Erro ao buscar Ordem de Serviço', detalhes: err.message });
     }

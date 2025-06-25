@@ -110,10 +110,7 @@ const TableClientes = () => {
                 />
               </div>
 
-              <button className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <IoFunnelOutline className="-ml-1 mr-2 h-5 w-5 text-gray-500" />
-                Filtros
-              </button>
+            
             </div>
           </div>
           <table className="min-w-full divide-y divide-gray-200">
@@ -226,40 +223,9 @@ const TableClientes = () => {
             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
               <div>
                 <p className="text-sm text-gray-700">
-                  Mostrando <span className="font-medium">1</span> a <span className="font-medium">10</span> de{' '}
-                  <span className="font-medium">{clientesFiltrados.length}</span> resultados
+                  Mostrando <span className="font-medium">{clientesFiltrados.length}</span> de {""}
+                  <span className="font-medium">{clientes.length}</span> resultados
                 </p>
-              </div>
-              <div>
-                <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                  <a
-                    href="#"
-                    className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                  >
-                    <span className="sr-only">Anterior</span>
-                    &lt;
-                  </a>
-                  <a
-                    href="#"
-                    aria-current="page"
-                    className="z-10 bg-blue-50 border-blue-500 text-blue-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-                  >
-                    1
-                  </a>
-                  <a
-                    href="#"
-                    className="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-                  >
-                    2
-                  </a>
-                  <a
-                    href="#"
-                    className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                  >
-                    <span className="sr-only">Próxima</span>
-                    &gt;
-                  </a>
-                </nav>
               </div>
             </div>
           </div>

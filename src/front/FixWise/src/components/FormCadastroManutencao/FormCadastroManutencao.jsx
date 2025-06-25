@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useParams, useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { IoCheckmark } from "react-icons/io5";
-import { format } from 'date-fns';
+import { format, compareAsc } from 'date-fns';
 
 // Importe seus componentes personalizados
 import InputForm from "../InputForm/InputForm";
@@ -66,8 +66,9 @@ const FormCadastroManutencao = () => {
     const getEquipamentos = async () => {
       try {
         const res = await axios.get("http://localhost:3010/equipamento");
+        console.log(res.data)
         setEquipamentos(
-          res.data.equipamento.sort((a, b) => (a.Nome > b.Nome ? 1 : -1))
+          res.data.equipamentos.sort((a, b) => (a.Nome > b.Nome ? 1 : -1))
         );
         setIsLoading(false);
       } catch (error) {
@@ -130,6 +131,18 @@ const FormCadastroManutencao = () => {
       return;
     }
 
+    if(!formData.equipamento || !formData.dataEntrada || !formData.dataPrazo || !formData.responsavel || !formData.status){
+      Swal.fire("Atenção", "Campo(s) obrigatório(s) vazios!", "warning");
+      return
+    }
+    
+     if(compareAsc(new Date(formData.dataPrazo), new Date(formData.dataEntrada)) == -1){
+      Swal.fire('Atenção', ' A data de prazo não pode ser anterior à data de entrada!', 'warning');
+      return
+    }
+
+
+   
     try {
       const payload = {
         equipamento_id: +formData.equipamento,
@@ -230,7 +243,7 @@ const FormCadastroManutencao = () => {
               htmlFor="entrada"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Data Entrada
+              Data Entrada *
             </label>
             <DataForm
               name="dataEntrada"
@@ -245,7 +258,7 @@ const FormCadastroManutencao = () => {
               htmlFor="dataPrazo"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Data Prazo
+              Data Prazo *
             </label>
             <DataForm
               name="dataPrazo"
@@ -269,7 +282,7 @@ const FormCadastroManutencao = () => {
               htmlFor="responsavel"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Responsável
+              Responsável *
             </label>
             <SelectFuncionarios
               name="responsavel"
@@ -285,7 +298,7 @@ const FormCadastroManutencao = () => {
               htmlFor="serial"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Status
+              Status *
             </label>
             <select
               name="status"

@@ -18,7 +18,7 @@ exports.criarServico = (req, res) => {
   const sql = `INSERT INTO servico (tipoServico, dataInicio, dataFim, Status, Setor) 
                VALUES (?, ?, ?, ?, ?)`;
 
-  db.query(sql, [tipoServico, dataInicio, dataFim || null, Status, Setor], (err, result) => {
+  db.getConnection().query(sql, [tipoServico, dataInicio, dataFim || null, Status, Setor], (err, result) => {
     if (err) {
       return res.status(500).json({ erro: 'Erro interno no servidor', detalhes: err.message });
     }
@@ -37,7 +37,7 @@ exports.atualizarServico = (req, res) => {
   const { idServico } = req.params;
   const { tipoServico, dataInicio, dataFim, Status, Setor } = req.body;
 
-  db.query(`UPDATE servico 
+  db.getConnection().query(`UPDATE servico 
             SET tipoServico = ?, dataInicio = ?, dataFim = ?, Status = ?, Setor = ? 
             WHERE idServico = ?`,
     [tipoServico, dataInicio, dataFim, Status, Setor, idServico],
@@ -61,7 +61,7 @@ exports.deletarServico = (req, res) => {
     return res.status(400).json({ erro: 'ID do serviço não fornecido' });
   }
 
-  db.query('DELETE FROM servico WHERE idServico = ?', [idServico], (err, result) => {
+  db.getConnection().query('DELETE FROM servico WHERE idServico = ?', [idServico], (err, result) => {
     if (err) {
       return res.status(500).json({ erro: 'Erro ao deletar serviço', detalhes: err.message });
     }
@@ -106,7 +106,7 @@ exports.buscarServicos = (req, res) => {
     params.push(idServico);
   }
 
-  db.query(sql, params, (err, results) => {
+  db.getConnection().query(sql, params, (err, results) => {
     if (err) {
       return res.status(500).json({ erro: 'Erro interno no servidor', detalhes: err.message });
     }
@@ -117,4 +117,4 @@ exports.buscarServicos = (req, res) => {
 
     res.json({ sucesso: true, total: results.length, servicos: results });
   });
-};
+}
