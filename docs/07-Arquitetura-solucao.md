@@ -45,7 +45,7 @@ Relacionamentos entre classes:
  - Uma ordem de serviço está ligada a um serviço específico.
  - Um serviço pode ser executado por vários funcionários, e um funcionário pode participar de vários serviços (relação N:N através da classe ServicosFuncionario).
 
-![Diagrama de Classes](images/diagramaDeClasses.jpg)
+![Diagrama de Classes](images/diagramaDeClasses.png)
 
 ## Modelo de dados
 
