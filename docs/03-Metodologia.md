@@ -140,16 +140,6 @@ Legenda:
 ⌛: atrasado 
 ❌: não iniciado
 
-## Relação de ambientes de trabalho
-
-| Ambiente                         | Plataforma            | Link de acesso                                                                 |
-|----------------------------------|-----------------------|-------------------------------------------------------------------------------|
-| Repositório de código-fonte      | GitHub                | https://github.com/ICEI-PUC-Minas-PCO-SI/2025-1-p3-tiapn-si-grupo-2            |
-| Documentos do projeto            | GitHub Projects       | https://github.com/orgs/ICEI-PUC-Minas-PCO-SI/projects/127                    |
-| Projeto de interface             | Figma                 | Em desenvolvimento                                                           |
-| Gerenciamento do projeto         | GitHub Projects       | https://github.com/orgs/ICEI-PUC-Minas-PCO-SI/projects/127                    |
-| Hospedagem da aplicação (front)  | Vercel                | A ser implementado                                                           |
-
 ### Ferramentas
 
 | Ferramenta            | Propósito                                       | Justificativa                                                        |
