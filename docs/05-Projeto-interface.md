@@ -36,7 +36,7 @@ Com essas funcionalidades, buscamos atender às demandas dos diferentes perfis d
 ### Tela de login
 
 ![Tela de login](images/Login.png)
-- Usuário faz login.
+- Tela de login com usuário e senha com opção de recuperação de senha.
 
 
 ## Tela Home
@@ -44,7 +44,7 @@ Com essas funcionalidades, buscamos atender às demandas dos diferentes perfis d
 ### Tela de home
 
 ![Tela de home](images/Home.png)
-- Usuário seleciona qual atividade ele irá realizar.
+- Usuário seleciona entre visualizar ativos internos e externos, cadastrar produtos, clientes, acessos e manutenções.
 
 
 ## Tela de ativos 
@@ -55,6 +55,7 @@ Com essas funcionalidades, buscamos atender às demandas dos diferentes perfis d
 
 - Usuário visualiza os equipamentos internos em manutenção.
 - Possibilidade de visualizar os status dos equipamentos de maneira rápida e fácil.
+- Usuário pode cadastrar novos equipamentos.
 
 ### Ativos Externos
 
@@ -62,6 +63,7 @@ Com essas funcionalidades, buscamos atender às demandas dos diferentes perfis d
 
 - Usuário visualiza os equipamentos externos em manutenção.
 - Possibilidade de visualizar os status dos equipamentos de maneira rápida e fácil.
+- Usuário pode cadastrar novos equipamentos.
 
 ## *Tela ao selecionar o ativo*
 
@@ -69,7 +71,7 @@ Com essas funcionalidades, buscamos atender às demandas dos diferentes perfis d
 
 ![Informações do ativo](images/InfoAtivo.png)
 
-- Usuário visualiza as informações do equipamento selecionado.
+- Usuário visualiza as informações do equipamento selecionado com possibilidade de implementação de marca e local na empresa.
 
 
 ### Informações de manutenção
@@ -86,7 +88,7 @@ Com essas funcionalidades, buscamos atender às demandas dos diferentes perfis d
 ### Cadastro de produtos
 
 ![Cadastro de produtos](images/CadastroProd.png)
-- Usuário registra um equipamento.
+- Usuário registra um equipamento, define o status do produto (ativo/inativo), insere os dados principais, chegada, saída, nota fiscal, além da descrição e observações referentes ao produto.
 - Seleciona o cliente para qual aquele equipamento pertence.
 
 
@@ -95,7 +97,7 @@ Com essas funcionalidades, buscamos atender às demandas dos diferentes perfis d
 ### Cadastro de cliente
 
 ![Cadastro de cliente](images/CadastroCliente.png)
-- Usuário cadastra o cliente.
+- Usuário cadastra o cliente, sendo pessoa física ou jurídica preenchendo os dados de acordo.
 
 
 *Tela cadastro de acessos*
@@ -103,7 +105,7 @@ Com essas funcionalidades, buscamos atender às demandas dos diferentes perfis d
 ### Cadastro de acessos
 
 ![Cadastro de acessos (somente administrador)](images/CadastroAcesso.png)
-- Usuário cria acesso para os demais funcionários da empresa.
+- Usuário cria acesso para os demais funcionários da empresa, inserindo os dados pessoais do funcionario, o status na empresa e o nível de acesso ao sistema, além de descrições e observações.
 - Somente o usuário master terá acesso.
   
 
@@ -114,4 +116,4 @@ Com essas funcionalidades, buscamos atender às demandas dos diferentes perfis d
 
 ![Cadastro de manutenção](images/CadastroManutencao.png)
 
-- Usuário cadastra a manutenção que será realizada.
+- Usuário cadastra a manutenção que será realizada definindo data que foi realizada, quem realizou, o tipo da manutenção e o status atual, além de descrição e observações sobre.
