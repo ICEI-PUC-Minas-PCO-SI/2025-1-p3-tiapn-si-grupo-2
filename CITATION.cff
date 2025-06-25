@@ -14,8 +14,6 @@ authors:
     given-names: Nome do aluno 5 
   - family-names: Sobrenome do aluno 6
     given-names: Nome do aluno 6 
-  - name-suffix: Professor
-    affiliation: PUC Minas
     family-names: Sobrenome do(a) professor(a)
     given-names: Nome do(a) professor(a)
   - name-suffix: Professora
