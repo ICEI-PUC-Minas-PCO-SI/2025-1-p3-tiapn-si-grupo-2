@@ -44,13 +44,21 @@
 
 ## Ferramentas de testes (opcional)
 
-Comente sobre as ferramentas de testes utilizadas.
+Os testes descritos neste plano são realizados de forma manual, ou seja, não utilizam ferramentas automatizadas para execução. Isso significa que os membros da equipe seguem os passos descritos em cada caso de teste, verificando manualmente se os critérios de êxito são atendidos.
+
+Esse tipo de teste é o suficiente para o contexto do nosso projeto. Além disso, os testes manuais permitem uma avaliação mais detalhada da experiência do usuário, identificando problemas que podem não ser detectados por ferramentas automatizadas.
+
+### Ferramentas auxiliares para testes manuais:
+
+- **Planilhas**: Utilizadas para registrar os resultados de cada caso de teste, facilitando o acompanhamento e a análise posterior.
+- **Captura de tela**: Ferramentas como o Snipping Tool ou Print Screen ajudam a documentar problemas encontrados durante os testes.
+- **Navegadores**: Testes são realizados diretamente em navegadores como Google Chrome, Mozilla Firefox ou Microsoft Edge, dependendo da compatibilidade do sistema.
+- **Documentação**: A especificação do projeto e os casos de teste servem como guias para garantir que todos os requisitos estão sendo avaliados corretamente.
+
+Embora os testes manuais sejam eficazes, é importante considerar a automação em etapas futuras do projeto para aumentar a eficiência e a cobertura dos testes.
 
 > **Links úteis**:
 >
 > - [IBM - criação e geração de planos de teste](https://www.ibm.com/developerworks/br/local/rational/criacao_geracao_planos_testes_software/index.html)
-> - [Práticas e técnicas de testes ágeis](http://assiste.serpro.gov.br/serproagil/Apresenta/slides.pdf)
 > - [Teste de software: conceitos e tipos de testes](https://blog.onedaytesting.com.br/teste-de-software/)
 > - [Criação e geração de planos de teste de software](https://www.ibm.com/developerworks/br/local/rational/criacao_geracao_planos_testes_software/index.html)
-> - [Ferramentas de teste para JavaScript](https://geekflare.com/javascript-unit-testing/)
-> - [UX Tools](https://uxdesign.cc/ux-user-research-and-user-testing-tools-2d339d379dc7)
