@@ -2,38 +2,52 @@
 
 <span style="color:red">Pré-requisitos: <a href="02-Especificacao.md"> Especificação do projeto</a></span>, <a href="05-Projeto-interface.md"> Projeto de interface</a>
 
-O plano de testes de software é gerado a partir da especificação do sistema e consiste em casos de teste que deverão ser executados quando a implementação estiver parcial ou totalmente pronta. Apresente os cenários de teste utilizados na realização dos testes da sua aplicação. Escolha cenários de teste que demonstrem os requisitos sendo satisfeitos.
-
-Enumere quais cenários de testes foram selecionados para teste. Neste tópico, o grupo deve detalhar quais funcionalidades foram avaliadas, o grupo de usuários que foi escolhido para participar do teste e as ferramentas utilizadas.
-
-Não deixe de enumerar os casos de teste de forma sequencial e garantir que o(s) requisito(s) associado(s) a cada um deles esteja(m) correto(s) — de acordo com o que foi definido na <a href="02-Especificacao.md">Especificação do projeto</a>.
-
-Por exemplo:
-
-| **Caso de teste**  | **CT-001 – Cadastrar perfil**  |
-|:---: |:---: |
-| Requisito associado | RF-00X - A aplicação deve apresentar, na página principal, a funcionalidade de cadastro de usuários para que estes consigam criar e gerenciar seu perfil. |
-| Objetivo do teste | Verificar se o usuário consegue se cadastrar na aplicação. |
-| Passos | - Acessar o navegador <br> - Informar o endereço do site https://adota-pet.herokuapp.com/src/index.html <br> - Clicar em "Criar conta" <br> - Preencher os campos obrigatórios (e-mail, nome, sobrenome, celular, CPF, senha, confirmação de senha) <br> - Aceitar os termos de uso <br> - Clicar em "Registrar" |
-| Critério de êxito | - O cadastro foi realizado com sucesso. |
-| Responsável pela elaboração do caso de teste | Nome do integrante da equipe. |
+|              **Caso de teste**               |                                                                      **CT-001 – Cadastro de Equipamentos**                                                                       |
+| :------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|             Requisito associado              |                                                                        RF-001 - Cadastro de Equipamentos                                                                         |
+|              Objetivo do teste               |                                                     Verificar se o usuário consegue cadastrar novos equipamentos no sistema.                                                     |
+|                    Passos                    | - Acessar o sistema <br> - Navegar até a seção de cadastro de equipamentos <br> - Preencher os campos obrigatórios (nome, tipo, número de série, etc.) <br> - Clicar em "Salvar" |
+|              Critério de êxito               |                                                  - O equipamento foi cadastrado com sucesso e aparece na lista de equipamentos.                                                  |
+| Responsável pela elaboração do caso de teste |                                                                          Nome do integrante da equipe.                                                                           |
 
 <br>
 
-| **Caso de teste**  | **CT-002 – Efetuar login**  |
-|:---: |:---: |
-| Requisito associado | RF-00Y - A aplicação deve possuir opção de fazer login, sendo o login o endereço de e-mail. |
-| Objetivo do teste | Verificar se o usuário consegue realizar login. |
-| Passos | - Acessar o navegador <br> - Informar o endereço do site https://adota-pet.herokuapp.com/src/index.html <br> - Clicar no botão "Entrar" <br> - Preencher o campo de e-mail <br> - Preencher o campo de senha <br> - Clicar em "Login" |
-| Critério de êxito | - O login foi realizado com sucesso. |
-| Responsável pela elaboração do caso de teste | Nome do integrante da equipe. |
+|              **Caso de teste**               |                                                                          **CT-002 – Registro de Ordens de Serviço**                                                                          |
+| :------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|             Requisito associado              |                                                                            RF-002 - Registro de Ordens de Serviço                                                                            |
+|              Objetivo do teste               |                                                             Verificar se o usuário consegue registrar uma nova ordem de serviço.                                                             |
+|                    Passos                    | - Acessar o sistema <br> - Navegar até a seção de ordens de serviço <br> - Preencher os campos obrigatórios (cliente, equipamento, descrição do problema, etc.) <br> - Clicar em "Registrar" |
+|              Critério de êxito               |                                                   - A ordem de serviço foi registrada com sucesso e aparece na lista de ordens de serviço.                                                   |
+| Responsável pela elaboração do caso de teste |                                                                                Nome do integrante da equipe.                                                                                 |
 
+<br>
+
+|              **Caso de teste**               |                                                                               **CT-003 – Atualização de Status**                                                                                |
+| :------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|             Requisito associado              |                                                                                 RF-003 - Atualização de Status                                                                                  |
+|              Objetivo do teste               |                                                           Verificar se o usuário consegue atualizar o status de uma ordem de serviço.                                                           |
+|                    Passos                    | - Acessar o sistema <br> - Navegar até a lista de ordens de serviço <br> - Selecionar uma ordem de serviço <br> - Alterar o status (ex.: "Em andamento", "Concluído") <br> - Clicar em "Salvar" |
+|              Critério de êxito               |                                                                   - O status da ordem de serviço foi atualizado com sucesso.                                                                    |
+| Responsável pela elaboração do caso de teste |                                                                                  Nome do integrante da equipe.                                                                                  |
+
+<br>
+
+|              **Caso de teste**               |                                                                                                **CT-004 – Controle de Acesso**                                                                                                 |
+| :------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|             Requisito associado              |                                                                                                  RF-007 - Controle de Acesso                                                                                                   |
+|              Objetivo do teste               |                                                                   Verificar se o sistema restringe o acesso a funcionalidades com base no perfil do usuário.                                                                   |
+|                    Passos                    | - Acessar o sistema com diferentes perfis de usuário (técnico, supervisor, administrador) <br> - Tentar acessar funcionalidades restritas a outros perfis <br> - Verificar se o acesso é negado ou permitido conforme esperado |
+|              Critério de êxito               |                                                                     - O sistema restringe ou permite o acesso corretamente com base no perfil do usuário.                                                                      |
+| Responsável pela elaboração do caso de teste |                                                                                                 Nome do integrante da equipe.                                                                                                  |
+
+<br>
 
 ## Ferramentas de testes (opcional)
 
 Comente sobre as ferramentas de testes utilizadas.
- 
+
 > **Links úteis**:
+>
 > - [IBM - criação e geração de planos de teste](https://www.ibm.com/developerworks/br/local/rational/criacao_geracao_planos_testes_software/index.html)
 > - [Práticas e técnicas de testes ágeis](http://assiste.serpro.gov.br/serproagil/Apresenta/slides.pdf)
 > - [Teste de software: conceitos e tipos de testes](https://blog.onedaytesting.com.br/teste-de-software/)
