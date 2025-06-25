@@ -10,7 +10,9 @@ Coloque aqui o conjunto de slides.
 > O arquivo deve estar no formato PDF e conter a apresentação completa do projeto, abordando todos os itens trabalhados nos demais artefatos.
 
 [Apresentação-Sprint1.pdf](https://github.com/user-attachments/files/19655876/Apresentacao-Sprint1.pdf)<br>
-[Presentação-Sprint2.pdf](https://github.com/user-attachments/files/19696305/SPRINT2.pdf)
+[Presentação-Sprint2.pdf]([Blue and Orange Clean Illustration Computer Presentation (1).pdf](https://github.com/user-attachments/files/20895286/Blue.and.Orange.Clean.Illustration.Computer.Presentation.1.pdf)
+[Presentação-Sprint3.pdf](https://github.com/user-attachments/files/19696305/SPRINT2.pdf)
+[ApresentacaoSprint4.pdf](https://github.com/user-attachments/files/20895633/ApresentacaoSprint4.pdf)
 
 ## Vídeo
 
