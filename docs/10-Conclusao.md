@@ -1,6 +1,6 @@
 # Conclusão
 
-_Este projeto representa um grande avanço na modernização dos processos de manutenção da Porto Ferreira Locações, tornando a gestão mais eficiente, segura e organizada. Anteriormente, a ausência de um sistema específico para controlar as manutenções causava problemas como atrasos, registros imprecisos e falhas na comunicação entre os setores. Com o sistema web que propusemos, essas dificuldades foram superadas, oferecendo funcionalidades que agilizam o registro, permitem o acompanhamento em tempo real e geram relatórios gerenciais._
+Este projeto representa um grande avanço na modernização dos processos de manutenção da Porto Ferreira Locações, tornando a gestão mais eficiente, segura e organizada. Anteriormente, a ausência de um sistema específico para controlar as manutenções causava problemas como atrasos, registros imprecisos e falhas na comunicação entre os setores. Com o sistema web que propusemos, essas dificuldades foram superadas, oferecendo funcionalidades que agilizam o registro, permitem o acompanhamento em tempo real e geram relatórios gerenciais.
 
 ## Tecnologias Utilizadas
 
