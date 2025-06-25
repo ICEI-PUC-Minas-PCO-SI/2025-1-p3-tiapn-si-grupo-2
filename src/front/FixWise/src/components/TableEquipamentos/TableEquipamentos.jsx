@@ -1,21 +1,38 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom"; // Use useNavigate de 'react-router-dom'
 import Swal from "sweetalert2";
 import { IoTrashOutline, IoCreateOutline, IoSearch, IoFunnelOutline } from "react-icons/io5";
 
-export default function TableEquipamentos({ onEdit, setOnEdit }) {
+export default function TableEquipamentos() { 
   const navigate = useNavigate();
   const [equipamentos, setEquipamentos] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const getEquipamentos = async () => {
+    setLoading(true);
+    setError(null);
     try {
-      const res = await axios.get("http://localhost:3010/equipamento");
-      setEquipamentos(res.data.equipamento);
-      console.log(res.data.equipamento)
+      // CORREÇÃO AQUI: A URL DEVE SER '/equipamento' (singular)
+      const res = await axios.get("http://localhost:3010/equipamento"); 
+      
+      // A propriedade da resposta que contém os dados é 'equipamentos' (plural),
+      // conforme mostrado na imagem do Insomnia.
+      if (res.data && Array.isArray(res.data.equipamentos)) { // Acessa res.data.equipamentos
+        setEquipamentos(res.data.equipamentos);
+      } else {
+        console.error("Formato de dados inesperado da API:", res.data);
+        setError("Formato de dados recebido da API é inválido.");
+        setEquipamentos([]);
+      }
     } catch (error) {
       console.error("Erro ao buscar equipamentos:", error);
+      setError(error.message || "Erro ao carregar equipamentos.");
+      setEquipamentos([]);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -27,9 +44,9 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
 
   useEffect(() => {
     getEquipamentos();
-  }, [setEquipamentos]);
+  }, []);
 
-  const handleDelete = async (idEquipamento, navigate) => {
+  const handleDelete = async (idEquipamento) => {
     const result = await Swal.fire({
       title: "Tem certeza?",
       text: "Você não poderá reverter esta ação!",
@@ -44,13 +61,11 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
 
     if (result.isConfirmed) {
       try {
-        // Faz a requisição para deletar
         const response = await axios.delete(
-          `http://localhost:3010/equipamento/${idEquipamento}`
+          `http://localhost:3010/equipamento/${idEquipamento}` // URL de delete também no singular
         );
 
         console.log(response);
-        // Mostra mensagem de sucesso
         await Swal.fire({
           title: "Deletado!",
           text: "O equipamento foi removido com sucesso.",
@@ -59,12 +74,8 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
           background: "#fff",
         });
 
-        // Redireciona ou atualiza a lista
         getEquipamentos();
-        // navigate('/equipamentos');
-        // Ou: window.location.reload(); se preferir recarregar a página
       } catch (error) {
-        // Mostra mensagem de erro
         await Swal.fire({
           title: "Erro!",
           text:
@@ -81,8 +92,26 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
   const equipamentosFiltrados = equipamentos.filter((cadastro) =>
     cadastro.Nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
     cadastro.Tipo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    cadastro.Marca.toLowerCase().includes(searchTerm.toLowerCase())
+    (cadastro.Marca && cadastro.Marca.toLowerCase().includes(searchTerm.toLowerCase()))
   );
+
+  if (loading) {
+    return (
+      <div className="bg-white shadow rounded-lg p-6 text-center text-gray-700">
+        Carregando equipamentos...
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <strong className="font-bold">Erro!</strong>
+        <span className="block sm:inline"> {error}</span>
+      </div>
+    );
+  }
+
 
   return (
     <>
@@ -152,51 +181,57 @@ export default function TableEquipamentos({ onEdit, setOnEdit }) {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {equipamentosFiltrados.length > 0 ? equipamentosFiltrados.map((cadastro, index) => (
-                <tr
-                  key={cadastro.idEquipamento}
-                  className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
-                >
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.idEquipamento}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900">
-                      {cadastro.Nome}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.Tipo}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.Marca}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {cadastro.cliente}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex justify-center items-center space-x-2">
-                      <button
-                        className="text-blue-600 hover:text-blue-900 p-1 rounded-full hover:bg-blue-50"
-                        onClick={() => handleEdit(cadastro)}
-                      >
-                        <IoCreateOutline className="h-5 w-5" />
-                      </button>
+              {equipamentosFiltrados.length > 0 ? (
+                equipamentosFiltrados.map((cadastro, index) => (
+                  <tr
+                    key={cadastro.idEquipamento}
+                    className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                  >
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {cadastro.idEquipamento}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm font-medium text-gray-900">
+                        {cadastro.Nome}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {cadastro.Tipo}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {cadastro.Marca || 'N/A'}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {cadastro.clienteNome || cadastro.cliente || 'Desconhecido'}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex justify-center items-center space-x-2">
+                        <button
+                          className="text-blue-600 hover:text-blue-900 p-1 rounded-full hover:bg-blue-50"
+                          onClick={() => handleEdit(cadastro)}
+                        >
+                          <IoCreateOutline className="h-5 w-5" />
+                        </button>
 
-                      <button
-                        className="text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50"
-                        onClick={() =>
-                          handleDelete(cadastro.idEquipamento, navigate)
-                        }
-                      >
-                        <IoTrashOutline className="h-5 w-5" />
-                      </button>
-                    </div>
+                        <button
+                          className="text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50"
+                          onClick={() =>
+                            handleDelete(cadastro.idEquipamento)
+                          }
+                        >
+                          <IoTrashOutline className="h-5 w-5" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="7" className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                    Nenhum equipamento encontrado
                   </td>
                 </tr>
-              )) : <td colSpan="7" className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                Nenhum equipamento encontrado
-              </td>}
+              )}
             </tbody>
           </table>
         </div>

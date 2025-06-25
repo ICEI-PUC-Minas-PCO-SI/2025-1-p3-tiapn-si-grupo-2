@@ -1,59 +1,62 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { IoPerson, IoLockClosed, IoEye, IoEyeOff } from 'react-icons/io5'
 import logo from '../../assets/Logo.png'
+import { useAuth } from '../../contexts/AuthContext'; // Importe useAuth
 
 const LoginPage = () => {
-  const [credentials, setCredentials] = useState({
-    email: '',
-    password: ''
-  });
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(''); // Estado para mensagens de erro
+  const { login } = useAuth(); // Obtenha a função de login do contexto
+
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCredentials(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+  
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setIsLoading(true);
+
+  //   try {
+  //     const response = await axios.post('http://localhost:3010/auth/login', credentials);
+      
+  //     // Armazena o token JWT (ajuste conforme sua implementação)
+  //     localStorage.setItem('token', response.data.token);
+  //     localStorage.setItem('user', JSON.stringify(response.data.user));
+      
+  //     Swal.fire({
+  //       title: 'Login realizado!',
+  //       text: 'Bem-vindo ao FixWise',
+  //       icon: 'success',
+  //       confirmButtonColor: '#3085d6'
+  //     });
+      
+  //     navigate('/dashboard');
+  //   } catch (error) {
+  //     Swal.fire({
+  //       title: 'Erro no login',
+  //       text: error.response?.data?.message || 'Credenciais inválidas',
+  //       icon: 'error',
+  //       confirmButtonColor: '#d33'
+  //     });
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      const response = await axios.post('http://localhost:3010/auth/login', credentials);
-      
-      // Armazena o token JWT (ajuste conforme sua implementação)
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-      
-      Swal.fire({
-        title: 'Login realizado!',
-        text: 'Bem-vindo ao FixWise',
-        icon: 'success',
-        confirmButtonColor: '#3085d6'
-      });
-      
-      navigate('/dashboard');
-    } catch (error) {
-      Swal.fire({
-        title: 'Erro no login',
-        text: error.response?.data?.message || 'Credenciais inválidas',
-        icon: 'error',
-        confirmButtonColor: '#d33'
-      });
-    } finally {
-      setIsLoading(false);
+    setError(''); // Limpa erros anteriores
+    const success = await login(user, password);
+    if (!success) {
+      setError('Credenciais inválidas. Tente novamente.'); // Mensagem de erro simples
     }
   };
-
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -72,7 +75,7 @@ const LoginPage = () => {
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email
+                Usuário
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -81,13 +84,13 @@ const LoginPage = () => {
                 <input
                   id="email"
                   name="email"
-                  type="email"
-                  autoComplete="email"
+                  type="text"
+                  autoComplete=""
                   required
-                  value={credentials.email}
-                  onChange={handleChange}
+                  value={user}
+                  onChange={(e) => setUser(e.target.value)}
                   className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md"
-                  placeholder="seu@email.com"
+                  placeholder="Seu nome"
                 />
               </div>
             </div>
@@ -106,8 +109,8 @@ const LoginPage = () => {
                   type={showPassword ? "text" : "password"}
                   autoComplete="current-password"
                   required
-                  value={credentials.password}
-                  onChange={handleChange}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md"
                   placeholder="••••••••"
                 />
