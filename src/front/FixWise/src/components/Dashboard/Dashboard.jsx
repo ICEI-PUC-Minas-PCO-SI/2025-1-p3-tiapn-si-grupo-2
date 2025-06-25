@@ -7,7 +7,7 @@ import GraficoManutencoesPorMes from '../GraficoManutencoesPorMes/GraficoManuten
 import { useAuth } from '../../contexts/AuthContext'
 
 const Dashboard = () => {
-  const {user, loading} = useAuth();
+  const { user, loading } = useAuth(); // Pega o usuário e o estado de carregamento
   const [saudacao, setSaudacao] = useState(getSaudacao());
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -41,6 +41,26 @@ const Dashboard = () => {
     });
   };
 
+  // 1. Adicione a verificação de loading
+  if (loading) {
+    return (
+      <div className="p-6 bg-white min-h-screen flex items-center justify-center">
+        <div className="text-xl text-gray-700">Carregando Dashboard...</div>
+      </div>
+    );
+  }
+
+  // 2. Adicione a verificação se o usuário não está autenticado (embora PrivateRoute já faça isso)
+  // Isso é mais uma salvaguarda, pois PrivateRoute deveria impedir que user seja null aqui.
+  if (!user) {
+      return (
+          <div className="p-6 bg-white min-h-screen flex items-center justify-center">
+              <div className="text-xl text-gray-700">Acesso negado. Redirecionando para login...</div>
+              {/* O PrivateRoute já cuida do redirecionamento, mas esta é uma boa prática */}
+          </div>
+      );
+  }
+
   return (
     <>
       <div className="p-6 bg-white min-h-screen">
@@ -48,7 +68,8 @@ const Dashboard = () => {
           {/* Cabeçalho com saudação */}
           <div className="mb-8">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
-              {saudacao}, {user.Nome}!
+              {saudacao}, {user?.Nome || user?.email || 'Usuário'}! {/* <--- AQUI ESTÁ A CORREÇÃO */}
+              {/* Use optional chaining (?. ) e fallback para user.Nome ou user.email */}
             </h1>
             <div className="flex items-center text-gray-600">
               <IoCalendar className="h-5 w-5 mr-2" />
