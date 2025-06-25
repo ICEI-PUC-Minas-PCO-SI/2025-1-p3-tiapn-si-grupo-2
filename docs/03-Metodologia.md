@@ -16,7 +16,7 @@ Adotamos uma abordagem organizada e colaborativa para atender a todos os requisi
 
 Seguimos o framework Scrum, com ciclos de Sprint de duas semanas. Cada Sprint inicia com uma reunião de planejamento (_Sprint Planning_), na qual definimos o backlog e estimamos as tarefas. Durante a Sprint, as atividades são acompanhadas no **GitHub Projects**, onde usamos um quadro Kanban para visualizar o progresso. As reuniões de acompanhamento (_Daily Stand‑ups_) ocorrem às sextas-feiras, e reuniões extras são convocadas via **Microsoft Teams** sempre que surgem impedimentos. Ao final de cada Sprint, realizamos a **Sprint Review** para demonstrar os entregáveis e a **Retrospectiva** para identificar melhorias no processo. O **Scrum Master** garante que o time siga as práticas ágeis, enquanto o **Product Owner** prioriza o backlog e valida os requisitos.
 
-#Github Projects
+# Github Projects
 ![Print Github Projects](./images/GitHubProjects.png)
 
 ## Controle de versão
