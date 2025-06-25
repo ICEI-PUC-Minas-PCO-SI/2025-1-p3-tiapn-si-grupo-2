@@ -2,7 +2,6 @@
 
 <span style="color:red">Pré-requisitos: Todos os demais artefatos</span>
 
-
 ## Slides
 
 Coloque aqui o conjunto de slides.
@@ -11,9 +10,9 @@ Coloque aqui o conjunto de slides.
 
 [Apresentação-Sprint1.pdf](https://github.com/user-attachments/files/19655876/Apresentacao-Sprint1.pdf)
 
-[Presentação-Sprint2.pdf](https://github.com/user-attachments/files/20895672/SPRINT2.4.pdf)
+[Apresentação-Sprint2.pdf](https://github.com/user-attachments/files/20895672/SPRINT2.4.pdf)
 
-[Presentação-Sprint3.pdf](https://github.com/user-attachments/files/19696305/SPRINT2.pdf)
+[Sprint_3_Grupo2_SI.pdf](https://github.com/user-attachments/files/20912676/Sprint_3_Grupo2_SI.pdf)
 
 [ApresentacaoSprint4.pdf](https://github.com/user-attachments/files/20895633/ApresentacaoSprint4.pdf)
 
