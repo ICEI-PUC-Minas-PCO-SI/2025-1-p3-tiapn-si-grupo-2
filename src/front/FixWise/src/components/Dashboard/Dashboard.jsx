@@ -4,8 +4,10 @@ import { IoCalendar } from 'react-icons/io5'
 import { useState, useEffect } from 'react'
 import HistoricoAtividades from '../HistoricoAtividades/HistoricoAtividades'
 import GraficoManutencoesPorMes from '../GraficoManutencoesPorMes/GraficoManutencoesPorMes'
+import { useAuth } from '../../contexts/AuthContext'
 
 const Dashboard = () => {
+  const {user, loading} = useAuth();
   const [saudacao, setSaudacao] = useState(getSaudacao());
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -46,7 +48,7 @@ const Dashboard = () => {
           {/* Cabeçalho com saudação */}
           <div className="mb-8">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
-              {saudacao}, Amigo!
+              {saudacao}, {user.Nome}!
             </h1>
             <div className="flex items-center text-gray-600">
               <IoCalendar className="h-5 w-5 mr-2" />

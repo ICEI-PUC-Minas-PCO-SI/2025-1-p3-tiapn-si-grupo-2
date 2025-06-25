@@ -95,7 +95,7 @@ export default function FormCadastroFuncionarios() {
         <div>
             <form onSubmit={handleSubmit} className="bg-white shadow overflow-hidden rounded-lg p-6">
                 <div className="mb-8">
-                    <h2 className="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Informações do Cliente</h2>
+                    <h2 className="text-xl font-semibold text-gray-700 border-b pb-2 mb-4">Informações do Funcionário</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-4">
