@@ -4,7 +4,7 @@ Esse projeto surgiu com a abordagem extensionista da disciplina "Trabalho Interd
 
 ## Cliente
 
-O cliente em questão será a empresa Porto Ferreira Locações, localizada na Rua Rio Paranaguá, 1316 - Novo Riacho - Contagem/MG, telefone: 2568-0202, e-mail: comercial@portoferreiralocacoes.com.br e manutencao@portoferreiralocacoes.com.br. Essa é uma empresa familiar, de porte pequeno/médio, que surgiu em janeiro de 2004 e que já passou por altos e baixos durante esses 21 anos de mercado no setor de locação de máquinas e ferramentas industriais, torqueamento e manutenção e assistência técnica. Nos últimos anos, por motivos internos, a empresa passou por um momento financeiro muito delicado, porém, hoje esse problema está controlado e eles obtiveram e ainda obtêm, bons resultados, felizmente. A principal solução oferecida pela empresa é a de locação de máquinas para: Solda (MIG/MAG, Retificadoras, Inversoras e Plasma), Hidráulica (Cilindros, Bombas Hidráulicas Elétricas e Manuais), Içamento e Carga (Tirfor, patescas, Talhas manuais e elétricas), Elétrica (Lixadeiras, Marteletes, Furadeiras e Parafusadeiras), Torque (Torqueadeiras, Torquímetros e Bombas de Torque) e Roscas e tubos (Rosqueadeiras Elétricas e Dobradores de Tubo). 
+O cliente em questão será a empresa Porto Ferreira Locações, localizada na Rua Rio Paranaguá, 1316 - Novo Riacho - Contagem/MG, telefone: 2568-0202, e-mail: comercial@portoferreiralocacoes.com.br e manutencao@portoferreiralocacoes.com.br. Essa é uma empresa familiar, de porte pequeno/médio, que surgiu em janeiro de 2004 e que já passou por altos e baixos durante esses 21 anos de mercado no setor de locação de máquinas e ferramentas industriais, torqueamento e manutenção e assistência técnica. Nos últimos anos, por motivos internos, a empresa passou por um momento financeiro muito delicado, porém, hoje esse problema está controlado e eles obtiveram e ainda obtêm, bons resultados, felizmente. A principal solução oferecida pela empresa é a de locação de máquinas para: Solda (MIG/MAG, Retificadoras, Inversoras e Plasma), Hidráulica (Cilindros, Bombas Hidráulicas Elétricas e Manuais), Içamento e Carga (Tirfor, patescas, Talhas manuais e elétricas), Elétrica (Lixadeiras, Marteletes, Furadeiras e Parafusadeiras), Torque (Torqueadeiras, Torquímetros e Bombas de Torque) e Roscas e tubos (Rosqueadeiras Elétricas e Dobradores de Tubo).
 
 Além disso, eles também oferecem serviços para manutenção de equipamentos, tanto para terceiros, quanto para a própria empresa, que conta com um estoque de mais ou menos 3000 equipamentos.
 Quanto à parte de locação de máquinas, a empresa possui um sistema antigo que cumpre seu papel e auxilia esse processo, porém, o mesmo não ocorre em relação à parte de manutenção de equipamentos, essa é uma área que o cliente gostaria de melhorar e é onde vimos uma oportunidade em atuar para superar essa dor da empresa. Segundo o gestor da empresa, o setor de manutenção precisa melhorar esse processo por meio de uma aplicação para gestão desse maquinário, ou seja, deve-se fazer um cadastro de equipamentos que seja coerente com o contexto da empresa, cadastrando cada caso e garantindo que não terá nenhum tipo de confusão ou engano em relação aos equipamentos. Ainda segundo o gestor, já houve casos em que foram trocados os equipamentos para devolução, ou seja, confundiram um equipamento de cliente com o da própria empresa ou um terceiro cliente da empresa, etc.
@@ -12,6 +12,8 @@ Quanto à parte de locação de máquinas, a empresa possui um sistema antigo qu
 ## Problema
 
 Conforme foi dito anteriormente, a Porto Ferreira Locações enfrenta problemas em seu processo para manutenção de equipamentos. Não há um controle eficaz em relação ao registro das máquinas que chegam, por exemplo, o que impacta negativamente o acompanhamento desse processo. Isso tudo gera muito estresse no dia a dia da empresa, gerando constrangimento e atrasos indevidos.
+
+Segundo a administração da empresa, eles fazem a manutenção de cerca de 300 equipamentos dos mais diversos, sejam eles equipamentos próprios ou de clientes. Ganhar agilidade nesse processo por meio do uso do FixWise, permitirá um melhor aproveitamento da mão de obra disponível, aumentando assim a qualidade do serviço fornecido.
 
 > **Links úteis**:
 >
@@ -22,11 +24,11 @@ Conforme foi dito anteriormente, a Porto Ferreira Locações enfrenta problemas 
 
 O objetivo desse projeto é melhorar o processo de acompanhamento da manutenção dos equipamentos (de clientes ou da própria empresa) ajudando os funcionários envolvidos a terem um melhor nível de ornanização e informação sobre a situação de cada equipamento durante todas as etapas desse processo. Faremos isso por meio de uma aplicação Web que será utilizada para auxiliar os funcionários da empresa no processo de manutenção de equipamentos.
 
-> **Objetivos principais:**
->
-> - Melhorar o nível de informação sobre cada equipamento durante o processo de manutenção.
-> - Auxiliar os funcionários durante o processo.
-> - Diminuir erros durante o processo.
+**Objetivos principais:**
+
+- Melhorar o nível de informação sobre cada equipamento durante o processo de manutenção.
+- Auxiliar os funcionários durante o processo.
+- Diminuir erros durante o processo.
 
 ## Justificativa
 
