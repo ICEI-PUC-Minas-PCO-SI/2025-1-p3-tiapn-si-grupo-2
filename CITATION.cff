@@ -1,28 +1,28 @@
 cff-version: 1.2.0
 message: Please cite this software using these metadata.
-title: Coloque aqui o título do seu trabalho
+title: FixWise
 authors:
-  - family-names: Sobrenome do aluno 1
-    given-names: Nome do aluno 1 
-  - family-names: Sobrenome do aluno 2
-    given-names: Nome do aluno 2 
-  - family-names: Sobrenome do aluno 3
-    given-names: Nome do aluno 3 
-  - family-names: Sobrenome do aluno 4
-    given-names: Nome do aluno 4 
-  - family-names: Sobrenome do aluno 5
-    given-names: Nome do aluno 5 
-  - family-names: Sobrenome do aluno 6
-    given-names: Nome do aluno 6 
-    family-names: Sobrenome do(a) professor(a)
-    given-names: Nome do(a) professor(a)
+  - family-names: Lima Camargos
+    given-names: Arthur 
+  - family-names: Martins Bicalho da Costa
+    given-names: Caio
+  - family-names: de Queiroz Fernandes
+    given-names: Daniel 
+  - family-names: Heringer Verner Silva
+    given-names: Daniel
+  - family-names: Vitalino da Silva Roveda
+    given-names: João Vitor
+  - family-names: Mendonça Braga 
+    given-names: Vitor
+    family-names: Soares Vieira de Vasconcelos
+    given-names: Amália
   - name-suffix: Professora
     affiliation: PUC Minas    
 keywords:
     - coloque aqui a palavra-chave 1
     - coloque aqui a palavra-chave 2
     - coloque aqui a palavra-chave 3
-repository-code: coloque o link do seu repositório
+repository-code: https://github.com/ICEI-PUC-Minas-PCO-SI/2025-1-p3-tiapn-si-grupo-2
 license: CC-BY-4.0
 version: 1.0.0
 date-released: 2024-08-01
