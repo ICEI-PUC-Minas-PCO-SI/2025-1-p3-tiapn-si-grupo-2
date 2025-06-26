@@ -9,7 +9,8 @@ Atualmente, a empresa utiliza o Trello para registrar os equipamentos enviados p
 
 Uma das maiores dores enfrentadas atualmente é justamente a falta de visibilidade e alinhamento entre os setores sobre o status dos equipamentos. Isso causa atrasos, retrabalho, perda de tempo e, muitas vezes, informações inconsistentes ou desatualizadas, prejudicando tanto a operação interna quanto a experiência do cliente.
 
-O novo sistema proposto busca resolver esse problema com a implementação de atualizações de status específicas para os funcionários, permitindo que cada setor sinalize claramente em que etapa o equipamento se encontra. Essa visibilidade facilitará a comunicação interna e agilizará os processos, sem a necessidade de múltiplas consultas informais.
+O novo sistema proposto busca resolver esse problema por meio da implementação de uma plataforma web integrada, na qual cada setor poderá registrar e consultar atualizações de status de forma centralizada e em tempo real. O sistema contará com um painel de acompanhamento do fluxo dos equipamentos, permitindo que os funcionários indiquem em que etapa o serviço se encontra — como "Recebido", "Em análise", "Em manutenção", "Aguardando peça", "Pronto para entrega" ou "Entregue ao cliente". Essa visibilidade facilitará a comunicação interna e reduzirá a necessidade de consultas informais, agilizando o processo e minimizando falhas. Além disso, o sistema será preparado para tratar fluxos críticos, como notificações automáticas em caso de atrasos, alertas sobre inconsistências no registro de informações e registro de ocorrências quando um equipamento não puder seguir o fluxo padrão (por exemplo, quando uma peça necessária estiver em falta ou houver recusa do orçamento por parte do cliente). Isso garantirá maior alinhamento entre os setores e melhorará significativamente a experiência do cliente.
+
 
 [PROCESSO 1 EM PDF - AS-IS-INTERNO](./processes/AS-IS-Interno.pdf "Processo 1.")
 
