@@ -82,5 +82,7 @@ As tabelas a seguir apresentam os requisitos funcionais e não funcionais que de
 | 006    | O desenvolvimento do projeto dependerá da disponibilidade e alocação de profissionais internos da empresa. Caso a equipe técnica necessária não esteja disponível, isso poderá impactar no andamento do projeto, exigindo uma revisão de prazos. |
 
 ## Diagrama de casos de uso
+![DiagramaUML](https://github.com/user-attachments/assets/1c110824-0748-4150-82a9-d50fa7341132)
+![DiagramaUML](https://github.com/user-attachments/assets/1c110824-0748-4150-82a9-d50fa7341132)
 
-![WiseFix](https://github.com/user-attachments/assets/256af132-02ee-428a-8d9f-b74b8b0bd333)
+
