@@ -83,6 +83,4 @@ As tabelas a seguir apresentam os requisitos funcionais e não funcionais que de
 
 ## Diagrama de casos de uso
 ![DiagramaUML](https://github.com/user-attachments/assets/1c110824-0748-4150-82a9-d50fa7341132)
-![DiagramaUML](https://github.com/user-attachments/assets/1c110824-0748-4150-82a9-d50fa7341132)
-
 
