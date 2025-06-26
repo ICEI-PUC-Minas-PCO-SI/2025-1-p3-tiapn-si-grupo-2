@@ -49,6 +49,13 @@ As tabelas a seguir apresentam os requisitos funcionais e não funcionais que de
 |RF-006| Relatórios Gerenciais   | MÉDIA |
 |RF-007| Controle de Acesso   | ALTA |
 |RF-008| Busca e Filtros   | MÉDIA |
+|RF-009|	Delegação de Ordens de Serviço  |	MÉDIA |
+|RF-010|	Painel de Status em Tempo Real	| ALTA |
+|RF-011|	Exportação de Dados (PDF/Excel)	| MÉDIA |
+|RF-012|	Dashboard com Indicadores de Desempenho	| MÉDIA |
+|RF-013|	Integração com E-mail e WhatsApp para alertas	| MÉDIA |
+|RF-014|	Agendamento de Manutenções Preventivas	| ALTA |
+|RF-015|	Comentários e Anexos em Ordens de Serviço	| MÉDIA |
 
 ### Requisitos não funcionais
 
