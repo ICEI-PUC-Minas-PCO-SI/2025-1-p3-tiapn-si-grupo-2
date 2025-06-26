@@ -9,7 +9,7 @@ export default function GraficoManutencoesPorMes() {
 
     const carregaDados = async () => {
         try {
-            const res = await axios.get('http://localhost:3010/cadastromanutencao/manutencoes-por-mes');
+            const res = await axios.get('https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cadastromanutencao/manutencoes-por-mes');
             
             // Verificação adicional de segurança
             if (!res.data?.manutencoes) {

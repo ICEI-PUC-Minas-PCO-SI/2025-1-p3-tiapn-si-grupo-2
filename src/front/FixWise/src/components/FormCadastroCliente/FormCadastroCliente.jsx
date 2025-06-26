@@ -126,10 +126,10 @@ const FormCadastroCliente = () => {
       };
 
       if (isEditing) {
-        await axios.put(`http://localhost:3010/cliente/${id}`, payload);
+        await axios.put(`https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cliente/${id}`, payload);
         Swal.fire("Sucesso", "Registro atualizado com sucesso", "success");
       } else {
-        await axios.post("http://localhost:3010/cliente", payload);
+        await axios.post("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cliente", payload);
         Swal.fire("Sucesso", "Registro incluído com sucesso", "success");
       }
 

@@ -11,7 +11,7 @@ const HistoricoAtividades = () => {
 
   useEffect(() => {
     const getHistoricoAtividades = async () => {
-      const response = await axios.get('http://localhost:3010/historico-atividades');
+      const response = await axios.get('https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/historico-atividades');
       setHistoricoAtividades(response.data.historicoAtividades);
       console.log(response.data.historicoAtividades)
     }

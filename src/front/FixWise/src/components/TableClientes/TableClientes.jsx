@@ -16,7 +16,7 @@ const TableClientes = () => {
 
   const getClientes = async () => {
     try {
-      const res = await axios.get("http://localhost:3010/cliente");
+      const res = await axios.get("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cliente");
       setClientes(res.data.clientes);
       console.log(res);
     } catch (error) {
@@ -47,7 +47,7 @@ const TableClientes = () => {
       try {
         // Faz a requisição para deletar
         const response = await axios.delete(
-          `http://localhost:3010/cliente/${idCliente}`
+          `https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cliente/${idCliente}`
         );
 
         console.log(response);

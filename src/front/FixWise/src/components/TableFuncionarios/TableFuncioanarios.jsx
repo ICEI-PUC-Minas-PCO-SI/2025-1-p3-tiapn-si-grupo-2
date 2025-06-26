@@ -11,7 +11,7 @@ export default function TableFuncionarios() {
 
     const getFuncionarios = async () => {
         try {
-            const res = await axios.get("http://localhost:3010/funcionario");
+            const res = await axios.get("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/funcionario");
             setFuncionarios(res.data.funcionarios);
 
         } catch (error) {
@@ -45,7 +45,7 @@ export default function TableFuncionarios() {
         if (result.isConfirmed) {
             try {
                 // Faz a requisição para deletar
-                const response = await axios.delete(`http://localhost:3010/funcionario/${idFuncionario}`);
+                const response = await axios.delete(`https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/funcionario/${idFuncionario}`);
 
                 console.log(response);
                 // Mostra mensagem de sucesso

@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
             
         try {
             // Substitua 'http://localhost:5000/api/login' pela sua URL de API de login
-            const response = await axios.post('http://localhost:3010/autentificador/login', credentials);
+            const response = await axios.post('https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/autentificador/login', credentials);
             const { token, funcionario } = response.data; // Adapte de acordo com a resposta do seu backend
 
             localStorage.setItem('authToken', token);

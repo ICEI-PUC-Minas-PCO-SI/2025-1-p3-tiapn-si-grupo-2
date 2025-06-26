@@ -66,7 +66,7 @@ const FormCadastroManutencao = () => {
   useEffect(() => {
     const getEquipamentos = async () => {
       try {
-        const res = await axios.get("http://localhost:3010/equipamento");
+        const res = await axios.get("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/equipamento");
         console.log(res.data)
         setEquipamentos(
           res.data.equipamentos.sort((a, b) => (a.Nome > b.Nome ? 1 : -1))
@@ -84,7 +84,7 @@ const FormCadastroManutencao = () => {
   useEffect(() => {
     const getFuncionarios = async () => {
       try {
-        const response = await axios.get("http://localhost:3010/funcionario")
+        const response = await axios.get("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/funcionario")
         setFuncionarios(response.data.funcionarios.sort((a, b) => (a.Nome > b.Nome ? 1 : -1)))
       }
       catch (error) {
@@ -160,13 +160,13 @@ const FormCadastroManutencao = () => {
         payload.idEquipamento = id;
 
         await axios.put(
-          `http://localhost:3010/cadastromanutencao/${id}`,
+          `https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cadastromanutencao/${id}`,
           payload
         );
         Swal.fire("Sucesso", "Registro atualizado com sucesso", "success");
       } else {
         console.log(payload);
-        await axios.post("http://localhost:3010/cadastromanutencao", payload);
+        await axios.post("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cadastromanutencao", payload);
 
         Swal.fire("Sucesso", "Registro incluído com sucesso", "success");
       }

@@ -12,7 +12,7 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
 
   const getManutencoes = async () => {
     try {
-      const res = await axios.get("http://localhost:3010/cadastromanutencao");
+      const res = await axios.get("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cadastromanutencao");
       setManutencoes(res.data.manutencoes)
     } catch (error) {
       console.error("Erro ao buscar manutencoes:", error);
@@ -50,7 +50,7 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
       try {
         // Faz a requisição para deletar
         const response = await axios.delete(
-          `http://localhost:3010/cadastromanutencao/${idManutencao}`
+          `https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cadastromanutencao/${idManutencao}`
         );
 
         console.log(response);

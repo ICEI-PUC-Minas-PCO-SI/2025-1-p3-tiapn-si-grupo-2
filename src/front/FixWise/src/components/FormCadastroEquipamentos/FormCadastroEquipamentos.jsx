@@ -38,7 +38,7 @@ const FormCadastroEquipamentos = () => {
   useEffect(() => {
     const getClientes = async () => {
       try {
-        const res = await axios.get("http://localhost:3010/cliente");
+        const res = await axios.get("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cliente");
         await setClientes(res.data.clientes.sort((a, b) => (a.Nome > b.Nome ? 1 : -1)));
         setIsLoading(false);
         console.log(res.data.clientes.sort((a, b) => (a.Nome > b.Nome ? 1 : -1)))
@@ -114,10 +114,10 @@ const FormCadastroEquipamentos = () => {
       if (isEditing) {
         payload.idEquipamento = id;
         
-        await axios.put(`http://localhost:3010/equipamento/${id}`, payload);
+        await axios.put(`https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/equipamento/${id}`, payload);
         Swal.fire('Sucesso', 'Registro atualizado com sucesso', 'success');
       } else {
-        await axios.post('http://localhost:3010/equipamento', payload);
+        await axios.post('https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/equipamento', payload);
         Swal.fire('Sucesso', 'Registro incluído com sucesso', 'success');
       }
 

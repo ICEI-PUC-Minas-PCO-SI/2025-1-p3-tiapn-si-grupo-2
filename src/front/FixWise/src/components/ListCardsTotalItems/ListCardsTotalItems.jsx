@@ -21,7 +21,7 @@ const ListCardsTotalItems = () => {
   let manutencoesAtrasadas = 0;
   const getClientes = async () => {
     try {
-      const res = await axios.get("http://localhost:3010/cliente");
+      const res = await axios.get("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cliente");
       setNumberClientes(res.data.total);
     } catch (error) {
       console.error("Erro ao buscar clientes:", error);
@@ -30,7 +30,7 @@ const ListCardsTotalItems = () => {
 
   const getEquipamentos = async () => {
     try {
-      const res = await axios.get("http://localhost:3010/equipamento");
+      const res = await axios.get("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/equipamento");
       setNumberEquipamentos(res.data.total);
     } catch (error) {
       console.error("Erro ao buscar equipamentos:", error);
@@ -39,7 +39,7 @@ const ListCardsTotalItems = () => {
 
   const getManutencoes = async () => {
     try {
-      const res = await axios.get("http://localhost:3010/cadastromanutencao");
+      const res = await axios.get("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cadastromanutencao");
       setNumberManutencoes(res.data.total);
       setManutencoesList(res.data.manutencoes);
       setManutencoesAlertList(

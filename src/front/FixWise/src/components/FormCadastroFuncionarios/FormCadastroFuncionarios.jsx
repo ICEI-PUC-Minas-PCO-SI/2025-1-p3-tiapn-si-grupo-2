@@ -69,10 +69,10 @@ export default function FormCadastroFuncionarios() {
       if (isEditing) {
         payload.idUsuario = id;
 
-        await axios.put(`http://localhost:3010/funcionario/${id}`, payload);
+        await axios.put(`https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/funcionario/${id}`, payload);
         Swal.fire("Sucesso", "Registro atualizado com sucesso", "success");
       } else {
-        await axios.post("http://localhost:3010/funcionario", payload);
+        await axios.post("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/funcionario", payload);
         Swal.fire("Sucesso", "Registro incluído com sucesso", "success");
       }
 

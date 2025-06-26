@@ -17,7 +17,7 @@ export default function TableEquipamentos() {
     setError(null);
     try {
       // CORREÇÃO AQUI: A URL DEVE SER '/equipamento' (singular)
-      const res = await axios.get("http://localhost:3010/equipamento"); 
+      const res = await axios.get("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/equipamento"); 
       console.log(res.data.equipamentos)
       
       // A propriedade da resposta que contém os dados é 'equipamentos' (plural),
@@ -64,7 +64,7 @@ export default function TableEquipamentos() {
     if (result.isConfirmed) {
       try {
         const response = await axios.delete(
-          `http://localhost:3010/equipamento/${idEquipamento}` // URL de delete também no singular
+          `https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/equipamento/${idEquipamento}` // URL de delete também no singular
         );
 
         console.log(response);

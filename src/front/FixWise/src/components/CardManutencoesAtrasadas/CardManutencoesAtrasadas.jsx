@@ -10,7 +10,7 @@ const CardManutencoesAtrasadas = () => {
 
   const getManutencoes = async () => {
     try {
-      const res = await axios.get("http://localhost:3010/cadastromanutencao");
+      const res = await axios.get("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cadastromanutencao");
       console.log("manutencoes", res);
       setManutencoes(res.data.manutencoes);
       setManutencoesAtrasadas(
