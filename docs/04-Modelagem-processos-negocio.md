@@ -11,8 +11,6 @@ Uma das maiores dores enfrentadas atualmente é justamente a falta de visibilida
 
 O novo sistema proposto busca resolver esse problema com a implementação de atualizações de status específicas para os funcionários, permitindo que cada setor sinalize claramente em que etapa o equipamento se encontra. Essa visibilidade facilitará a comunicação interna e agilizará os processos, sem a necessidade de múltiplas consultas informais.
 
-Com o tema do projeto definido, escolham alguns processos no contexto de negócios. Para ilustrar os potenciais ganhos com a automatização, imaginem processos manuais, ineficientes e/ou com muitas idas e vindas, gerando, assim, retrabalho. Colem aqui os modelos dos processos atuais (modelo AS-IS), elaborados com o apoio da ferramenta baseada em BPMN utilizada na disciplina.
-
 [PROCESSO 1 EM PDF - AS-IS-INTERNO](./processes/AS-IS-Interno.pdf "Processo 1.")
 
 [PROCESSO 2 EM PDF- AS-IS-TERCEIROS](./processes/AS-IS-Terceiros.pdf "Processo 2.")
