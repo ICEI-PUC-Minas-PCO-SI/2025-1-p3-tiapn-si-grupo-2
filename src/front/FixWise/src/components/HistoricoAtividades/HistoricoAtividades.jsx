@@ -20,7 +20,7 @@ const HistoricoAtividades = () => {
   }, [])
 
   return (
-    <div className='bg-white overflow-hidden shadow rounded-lg'>
+    <div className='bg-white overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] rounded-lg w-4/10'>
       <div className='px-4 py-5 sm:px-6 border-b border-gray-200'>
         <h1 className='text-lg font-semibold text-gray-800'>Atividades recentes</h1>
       </div>

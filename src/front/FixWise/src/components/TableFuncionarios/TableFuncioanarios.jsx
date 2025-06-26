@@ -24,7 +24,7 @@ export default function TableFuncionarios() {
     }, [setFuncionarios]);
 
     const handleEdit = (funcionario) => {
-        navigate(`/funcionarios/editar/${funcionario.idFuncionario}`, {
+        navigate(`/funcionarios/editar/${funcionario.idUsuario}`, {
             state: { funcionario }
         });
     };

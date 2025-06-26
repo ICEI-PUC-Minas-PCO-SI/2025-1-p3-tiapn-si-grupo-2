@@ -6,7 +6,7 @@ import { ReactComponent as PlusIcon } from '../../assets/add-outline.svg'
 export default function Clientes() {
   return (
     <>
-      <div className="p-6 bg-gray-50 min-h-screen">
+      <div className="p-6 bg-gray-50 min-h-screen w-full">
         <div className="max-w-7x1 mx-auto">
           <div className="flex justify-between items-start mb-8">
             <div>

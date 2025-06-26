@@ -1,5 +1,4 @@
 import  { useState, useEffect } from 'react'
-import ManutencoesPendentes from '../ManutencoesPendentes/ManutencoesPendentes'
 import { IoCog, IoCalendar, IoHammer, IoAlertSharp } from 'react-icons/io5'
 import axios from 'axios'
 

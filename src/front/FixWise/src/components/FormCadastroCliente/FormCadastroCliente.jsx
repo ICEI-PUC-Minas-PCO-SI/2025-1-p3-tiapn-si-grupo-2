@@ -189,6 +189,7 @@ const FormCadastroCliente = () => {
                   </label>
                   <InputForm
                     name="telefone"
+                    content="Telefone"
                     value={formData.telefone}
                     onChange={handleChange}
                     placeholder="(00) 00000-0000"
@@ -218,10 +219,11 @@ const FormCadastroCliente = () => {
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Email
+                    E-mail
                   </label>
                   <InputForm
                     name="email"
+                    content="E-mail"
                     type="email"
                     value={formData.email}
                     onChange={handleChange}

@@ -7,7 +7,7 @@ import { IoTrashOutline, IoCreateOutline, IoSearch, IoFunnelOutline } from "reac
 
 export default function TableManutencoes({ onEdit, setOnEdit }) {
   const navigate = useNavigate();
-  const [manutecoes, setManutencoes] = useState([]);
+  const [manutencoes, setManutencoes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   const getManutencoes = async () => {
@@ -19,9 +19,9 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
     }
   };
 
-  const handleEdit = (manutecoes) => {
-    navigate(`/manutencoes/editar/${manutecoes.idManutencao}`, {
-      state: { manutecoes },
+  const handleEdit = (manutencoes) => {
+    navigate(`/manutencoes/editar/${manutencoes.idManutencao}`, {
+      state: { manutencoes },
     });
   };
 
@@ -82,13 +82,13 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
     }
   };
 
-  const manutencoesFiltradas = manutecoes.filter((cadastro) =>
+  const manutencoesFiltradas = manutencoes.filter((cadastro) =>
     cadastro.nomeCliente.toLowerCase().includes(searchTerm.toLowerCase()) ||
     cadastro.Status.toLowerCase().includes(searchTerm.toLowerCase()) ||
     cadastro.nomeEquipamento.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  console.log(manutecoes)
+  console.log(manutencoes)
 
   return (
     <>
@@ -231,9 +231,9 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
           <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
               <p className="text-sm text-gray-700">
-                Mostrando <span className="font-medium">1</span> de {""}
+                Mostrando <span className="font-medium">{manutencoesFiltradas.length}</span> de {""}
                 <span className="font-medium">
-                  {manutencoesFiltradas.length}
+                  {manutencoes.length}
                 </span>{" "}
                 resultados
               </p>

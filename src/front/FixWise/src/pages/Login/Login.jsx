@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -14,51 +14,47 @@ const LoginPage = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  // const navigate = useNavigate();
+  const [rememberMe, setRememberMe] = useState(false);
+  const storage = rememberMe ? localStorage : sessionStorage;
+ 
+  const loadUser = () => {
+  const item = localStorage.getItem("user");
+  if (item) {
+    const savedUser = JSON.parse(item);
+    setUser(savedUser.username); // ou `savedUser.email` se o nome da chave for esse
+    setRememberMe(true);
+  }
+};
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setIsLoading(true);
-
-  //   try {
-  //     const response = await axios.post('http://localhost:3010/auth/login', credentials);
-
-  //     // Armazena o token JWT (ajuste conforme sua implementação)
-  //     localStorage.setItem('token', response.data.token);
-  //     localStorage.setItem('user', JSON.stringify(response.data.user));
-
-  //     Swal.fire({
-  //       title: 'Login realizado!',
-  //       text: 'Bem-vindo ao FixWise',
-  //       icon: 'success',
-  //       confirmButtonColor: '#3085d6'
-  //     });
-
-  //     navigate('/dashboard');
-  //   } catch (error) {
-  //     Swal.fire({
-  //       title: 'Erro no login',
-  //       text: error.response?.data?.message || 'Credenciais inválidas',
-  //       icon: 'error',
-  //       confirmButtonColor: '#d33'
-  //     });
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
+  useEffect(() =>{
+    loadUser();
+  }, [])
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      setError(""); // Limpa erros anteriores
-      const success = await login(user, password);
+      setError("");
+      setIsLoading(true);
+
+      const success = await login(user, password); // você precisa adaptar isso pra retornar os dados
+
       if (!success) {
-        setError("Credenciais inválidas. Tente novamente."); // Mensagem de erro simples
+        setError("Credenciais inválidas. Tente novamente.");
+         Swal.fire("Erro", "Credenciais inválidas. Tente novamente.", "error");
+        return;
       }
+
+      
+      // Exemplo: vamos supor que login() retorne um token
+      storage.setItem("user", JSON.stringify({ username: user }));
+      storage.setItem("token", success.token); // ou como vier da API
     } catch (erro) {
       Swal.fire("Erro", "Falha no login", "error");
+    } finally {
+      setIsLoading(false);
     }
   };
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -145,6 +141,8 @@ const LoginPage = () => {
                   name="remember-me"
                   type="checkbox"
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
                 />
                 <label
                   htmlFor="remember-me"
@@ -153,14 +151,13 @@ const LoginPage = () => {
                   Lembrar de mim
                 </label>
               </div>
-
             </div>
 
             <div>
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+                className={`cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
                   isLoading ? "opacity-70 cursor-not-allowed" : ""
                 }`}
               >
@@ -168,8 +165,6 @@ const LoginPage = () => {
               </button>
             </div>
           </form>
-
-          
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 const CardsTotalItems = (props) => {
   return (
-    <div className="bg-white overflow-hidden shadow rounded-lg">
+    <div className="bg-white overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] rounded-lg">
       <div className="p-5">
         <div className="flex items-center">
           <div className="flex-shrink-0">

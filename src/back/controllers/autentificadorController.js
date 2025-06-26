@@ -37,7 +37,7 @@ exports.loginFuncionario = async (req, res) => {
       process.env.JWT_SECRET || 'chave-secreta-padrao',
       {
         subject: funcionario.idUsuario.toString(),
-        expiresIn: '30m'
+        expiresIn: '24h'
       }
     );
 

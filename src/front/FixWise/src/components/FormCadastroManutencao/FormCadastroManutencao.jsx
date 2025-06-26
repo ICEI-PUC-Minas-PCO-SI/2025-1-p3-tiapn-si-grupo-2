@@ -36,6 +36,7 @@ const FormCadastroManutencao = () => {
   const [isLoading, setIsLoading] = useState(true);
   const isEditing = !!id;
 
+
   function formatDateForInput(dateString) {
     if (!dateString) return '';
 
@@ -96,8 +97,8 @@ const FormCadastroManutencao = () => {
   }, [])
 
   useEffect(() => {
-    if (!isLoading && isEditing && state?.manutecoes) {
-      const manutencao = state.manutecoes;
+    if (!isLoading && isEditing && state?.manutencoes) {
+      const manutencao = state.manutencoes;
       console.log('Equipamento recebido:', manutencao);
 
       setFormData({
@@ -137,7 +138,7 @@ const FormCadastroManutencao = () => {
     }
     
      if(compareAsc(new Date(formData.dataPrazo), new Date(formData.dataEntrada)) == -1){
-      Swal.fire('Atenção', ' A data de prazo não pode ser anterior à data de entrada!', 'warning');
+      Swal.fire('Atenção', ' A data de prazo  não pode ser anterior à data de entrada!', 'warning');
       return
     }
 
@@ -155,6 +156,7 @@ const FormCadastroManutencao = () => {
       };
       console.log(payload);
       if (isEditing) {
+        console.log("aqui")
         payload.idEquipamento = id;
 
         await axios.put(

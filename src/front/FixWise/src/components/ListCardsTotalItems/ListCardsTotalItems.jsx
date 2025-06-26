@@ -44,7 +44,7 @@ const ListCardsTotalItems = () => {
       setManutencoesList(res.data.manutencoes);
       setManutencoesAlertList(
         res.data.manutencoes.filter(
-          (manutencao) => new Date(manutencao.DataSaida) < new Date()
+          (manutencao) => new Date(manutencao.DataSaida) < new Date() && manutencao.Status !== "Finalizada"
         )
       );
     } catch (error) {
