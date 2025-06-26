@@ -25,7 +25,12 @@ Com base na análise das personas, foram identificadas as seguintes histórias d
 |Carlos Ferreira (Técnico de manutenção)           | Registrar e atualizar o status das manutenções de forma rápida e organizada        | Melhorar a eficiência no acompanhamento dos serviços e evitar atrasos                         |
 |Mariana Souza (Supervisora de manutenção)         | Acompanhar o andamento das manutenções em tempo real                               | Garantir que os serviços sejam concluídos dentro dos prazos                                   |
 |João Pedro (Atendente)                            | Consultar rapidamente o status das ordens de serviço                               | Responder com agilidade e precisão às dúvidas dos clientes                                    |
-|Sérgio Rodrigues (Empresário)                     | Monitorar todas as manutenções de forma centralizada                               | Melhorar a organização e garantir um controle eficiente dos serviços prestados                |
+|Sérgio Rodrigues (Empresário)                     | Monitorar todas as manutenções de forma centralizada                               | Melhorar a organização e garantir um controle eficiente
+|Carlos Ferreira (Técnico de manutenção)	         | Acessar o histórico de manutenções de um equipamento	                              | Realizar diagnósticos mais precisos e evitar retrabalho dos serviços prestados 
+|Mariana Souza (Supervisora de manutenção)         | Delegar ordens de serviço diretamente pelo sistema                                 | Melhorar a distribuição de tarefas e aumentar a produtividade da equipe
+|João Pedro (Atendente)                            | 	Visualizar o status das manutenções em um painel unificado                        | Informar os clientes com mais precisão e rapidez
+|Sérgio Rodrigues (Empresário)                     | Configurar alertas para manutenções críticas ou atrasadas                          | Prevenir impactos nos contratos e garantir a satisfação dos clientes           
+
 
 
 ## Requisitos
