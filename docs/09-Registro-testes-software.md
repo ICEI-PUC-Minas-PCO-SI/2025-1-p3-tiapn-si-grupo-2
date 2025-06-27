@@ -1,6 +1,6 @@
 # Registro de testes de software
 
-
+## Caso de teste 1
 | **Caso de teste** 	| **CT-001 – Cadastro de Equipamentos** 	|
 |:---:	|:---:	|
 | Requisito associado |RF-001 - Cadastro de Equipamentos |
@@ -9,7 +9,7 @@
 
 
 
-
+## Caso de teste 2
 | **Caso de teste** 	| **CT-002 – Registro de Ordens de Serviço** 	|
 |:---:	|:---:	|
 | Requisito associado | RF-002 - Registro de Ordens de Serviço |
@@ -18,14 +18,14 @@
 
 
 
-
+## Caso de teste 3
 | **Caso de teste** 	| **CT-003 – Atualização de Status** 	|
 |:---:	|:---:	|
 | Requisito associado | RF-003 - Atualização de Status |
 | Registro de evidência | [www.teste.com.br/drive/ct-02](http://www.teste.com.br/drive/ct-02) |
 
 
-
+## Caso de teste 4
 | **Caso de teste** 	| **CT-004 – Controle de Acesso** 	|
 |:---:	|:---:	|
 | Requisito associado | RF-007 - Controle de Acesso |
