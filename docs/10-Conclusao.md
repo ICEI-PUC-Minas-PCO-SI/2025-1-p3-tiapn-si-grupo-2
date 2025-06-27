@@ -5,7 +5,7 @@ Este projeto representa um grande avanço na modernização dos processos de man
 ## Tecnologias Utilizadas
 
 - **Frontend**: React
-- **API**: .NET Core
+- **API**: Node.js
 - **Banco de Dados**: MySQL
 
 Essa escolha não apenas possibilitou a criação de uma solução robusta, mas também nos permitiu pôr em prática os conhecimentos adquiridos durante o curso. Ao modelarmos o estado atual dos processos (**AS IS**) e a solução ideal (**TO BE**), obtivemos uma visão crítica e estruturada do funcionamento interno da empresa, incentivando a melhoria contínua.
