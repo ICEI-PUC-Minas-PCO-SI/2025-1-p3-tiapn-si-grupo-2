@@ -4,7 +4,7 @@
 | **Caso de teste** 	| **CT-001 – Cadastro de Equipamentos** 	|
 |:---:	|:---:	|
 | Requisito associado |RF-001 - Cadastro de Equipamentos |
-| Registro de evidência | [Teste CT-001](images/Videos/CT-001.mp4) |
+| Registro de evidência | [www.teste.com.br/drive/ct-001](https://drive.google.com/drive/folders/1sd1KI2WkhK1c0pRD2vXAB0jzhJa9AUHg?usp=sharing) |
 
 
 
@@ -29,7 +29,7 @@
 | **Caso de teste** 	| **CT-004 – Controle de Acesso** 	|
 |:---:	|:---:	|
 | Requisito associado | RF-007 - Controle de Acesso |
-| Registro de evidência | [www.teste.com.br/drive/ct-02](http://www.teste.com.br/drive/ct-02) |
+| Registro de evidência | [www.teste.com.br/drive/ct-004](https://drive.google.com/drive/folders/1sd1KI2WkhK1c0pRD2vXAB0jzhJa9AUHg?usp=sharing) |
 
 
 
