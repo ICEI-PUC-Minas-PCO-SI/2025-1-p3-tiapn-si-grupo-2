@@ -1,0 +1,40 @@
+.container {
+    /* max-width: 120rem;
+    margin: 8rem auto; */
+    background-color: var(--color-grey-light-1); 
+    box-shadow: var(--shadow-dark);
+
+    min-height: 50rem;
+
+    @media only screen and (max-width: var(--bp-largest)) {
+        margin: 0;
+        max-width: 100%;
+        width: 100%; 
+    } 
+}
+
+.content {
+    display: flex;
+
+    @media only screen and (max-width: var(--bp-medium)) {
+        flex-direction: column;
+    } 
+}
+
+.hotel-view {
+  background-color: #fff;
+  flex: 1; 
+}
+
+.select-wrapper {
+  position: relative;
+}
+.select-wrapper::after {
+  content: "▼";
+  font-size: 0.8rem;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
