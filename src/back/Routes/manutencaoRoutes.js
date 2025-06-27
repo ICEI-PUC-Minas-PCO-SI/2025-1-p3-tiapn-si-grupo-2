@@ -1,19 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const manutencaoController = require('../controllers/manutencaoController');
-
+const autenticarToken = require('../middlewares/authMiddleware');
 // GET /manutenção/ todos e com filtros de pesquisa
-router.get('/', manutencaoController.buscarManutencao);
-router.get('/manutencoes-pendentes', manutencaoController.listaManutencoesPendentes);
-router.get('/manutencoes-por-mes', manutencaoController.listaManutencoesPorMes);
+router.get('/', autenticarToken, manutencaoController.buscarManutencao);
+router.get('/manutencoes-pendentes', autenticarToken, manutencaoController.listaManutencoesPendentes);
+router.get('/manutencoes-por-mes', autenticarToken, manutencaoController.listaManutencoesPorMes);
 
 // POST /manutenção
-router.post('/', manutencaoController.criarmanutencao);
+router.post('/', autenticarToken, manutencaoController.criarmanutencao);
 
 // PUT /manutenção/:id
-router.put('/:id', manutencaoController.atualizarManutencao)
+router.put('/:id', autenticarToken, manutencaoController.atualizarManutencao)
 
 // DELETE /manutenção/:id
-router.delete('/:id', manutencaoController.deletarManutencao)
+router.delete('/:id', autenticarToken, manutencaoController.deletarManutencao)
 
 module.exports = router;

@@ -7,21 +7,21 @@ import { IoTrashOutline, IoCreateOutline, IoSearch, IoFunnelOutline } from "reac
 
 export default function TableManutencoes({ onEdit, setOnEdit }) {
   const navigate = useNavigate();
-  const [manutecoes, setManutencoes] = useState([]);
+  const [manutencoes, setManutencoes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   const getManutencoes = async () => {
     try {
-      const res = await axios.get("http://localhost:3010/cadastromanutencao");
+      const res = await axios.get("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cadastromanutencao");
       setManutencoes(res.data.manutencoes)
     } catch (error) {
       console.error("Erro ao buscar manutencoes:", error);
     }
   };
 
-  const handleEdit = (manutecoes) => {
-    navigate(`/manutencoes/editar/${manutecoes.idManutencao}`, {
-      state: { manutecoes },
+  const handleEdit = (manutencoes) => {
+    navigate(`/manutencoes/editar/${manutencoes.idManutencao}`, {
+      state: { manutencoes },
     });
   };
 
@@ -50,7 +50,7 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
       try {
         // Faz a requisição para deletar
         const response = await axios.delete(
-          `http://localhost:3010/cadastromanutencao/${idManutencao}`
+          `https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cadastromanutencao/${idManutencao}`
         );
 
         console.log(response);
@@ -82,13 +82,13 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
     }
   };
 
-  const manutencoesFiltradas = manutecoes.filter((cadastro) =>
+  const manutencoesFiltradas = manutencoes.filter((cadastro) =>
     cadastro.nomeCliente.toLowerCase().includes(searchTerm.toLowerCase()) ||
     cadastro.Status.toLowerCase().includes(searchTerm.toLowerCase()) ||
     cadastro.nomeEquipamento.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  console.log(manutecoes)
+  console.log(manutencoes)
 
   return (
     <>
@@ -109,10 +109,6 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
                 />
               </div>
 
-              <button className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <IoFunnelOutline className="-ml-1 mr-2 h-5 w-5 text-gray-500" />
-                Filtros
-              </button>
             </div>
           </div>
 
@@ -202,14 +198,14 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex justify-center items-center space-x-2">
                       <button
-                        className="text-blue-600 hover:text-blue-900 p-1 rounded-full hover:bg-blue-50"
+                        className="cursor-pointer text-blue-600 hover:text-blue-900 p-1 rounded-full hover:bg-blue-50"
                         onClick={() => handleEdit(cadastro)}
                       >
                         <IoCreateOutline className="h-5 w-5" />
                       </button>
 
                       <button
-                        className="text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50"
+                        className="cursor-pointer text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50"
                         onClick={() =>
                           handleDelete(cadastro.idManutencao, navigate)
                         }
@@ -235,48 +231,14 @@ export default function TableManutencoes({ onEdit, setOnEdit }) {
           <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
               <p className="text-sm text-gray-700">
-                Mostrando <span className="font-medium">1</span> a{" "}
-                <span className="font-medium">10</span> de{" "}
+                Mostrando <span className="font-medium">{manutencoesFiltradas.length}</span> de {""}
                 <span className="font-medium">
-                  {manutencoesFiltradas.length}
+                  {manutencoes.length}
                 </span>{" "}
                 resultados
               </p>
             </div>
-            <div>
-              <nav
-                className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
-                aria-label="Pagination"
-              >
-                <a
-                  href="#"
-                  className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                >
-                  <span className="sr-only">Anterior</span>
-                  &lt;
-                </a>
-                <a
-                  href="#"
-                  aria-current="page"
-                  className="z-10 bg-blue-50 border-blue-500 text-blue-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-                >
-                  1
-                </a>
-                <a
-                  href="#"
-                  className="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-                >
-                  2
-                </a>
-                <a
-                  href="#"
-                  className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                >
-                  <span className="sr-only">Próxima</span>
-                  &gt;
-                </a>
-              </nav>
-            </div>
+       
           </div>
         </div>
       )}

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useParams, useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { IoCheckmark } from "react-icons/io5";
-import { format } from 'date-fns';
+import { format, compareAsc } from 'date-fns';
 
 // Importe seus componentes personalizados
 import InputForm from "../InputForm/InputForm";
@@ -36,6 +36,7 @@ const FormCadastroManutencao = () => {
   const [isLoading, setIsLoading] = useState(true);
   const isEditing = !!id;
 
+
   function formatDateForInput(dateString) {
     if (!dateString) return '';
 
@@ -65,9 +66,10 @@ const FormCadastroManutencao = () => {
   useEffect(() => {
     const getEquipamentos = async () => {
       try {
-        const res = await axios.get("http://localhost:3010/equipamento");
+        const res = await axios.get("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/equipamento");
+        console.log(res.data)
         setEquipamentos(
-          res.data.equipamento.sort((a, b) => (a.Nome > b.Nome ? 1 : -1))
+          res.data.equipamentos.sort((a, b) => (a.Nome > b.Nome ? 1 : -1))
         );
         setIsLoading(false);
       } catch (error) {
@@ -82,7 +84,7 @@ const FormCadastroManutencao = () => {
   useEffect(() => {
     const getFuncionarios = async () => {
       try {
-        const response = await axios.get("http://localhost:3010/funcionario")
+        const response = await axios.get("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/funcionario")
         setFuncionarios(response.data.funcionarios.sort((a, b) => (a.Nome > b.Nome ? 1 : -1)))
       }
       catch (error) {
@@ -95,8 +97,8 @@ const FormCadastroManutencao = () => {
   }, [])
 
   useEffect(() => {
-    if (!isLoading && isEditing && state?.manutecoes) {
-      const manutencao = state.manutecoes;
+    if (!isLoading && isEditing && state?.manutencoes) {
+      const manutencao = state.manutencoes;
       console.log('Equipamento recebido:', manutencao);
 
       setFormData({
@@ -130,6 +132,18 @@ const FormCadastroManutencao = () => {
       return;
     }
 
+    if(!formData.equipamento || !formData.dataEntrada || !formData.dataPrazo || !formData.responsavel || !formData.status){
+      Swal.fire("Atenção", "Campo(s) obrigatório(s) vazios!", "warning");
+      return
+    }
+    
+     if(compareAsc(new Date(formData.dataPrazo), new Date(formData.dataEntrada)) == -1){
+      Swal.fire('Atenção', ' A data de prazo  não pode ser anterior à data de entrada!', 'warning');
+      return
+    }
+
+
+   
     try {
       const payload = {
         equipamento_id: +formData.equipamento,
@@ -142,16 +156,17 @@ const FormCadastroManutencao = () => {
       };
       console.log(payload);
       if (isEditing) {
+        console.log("aqui")
         payload.idEquipamento = id;
 
         await axios.put(
-          `http://localhost:3010/cadastromanutencao/${id}`,
+          `https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cadastromanutencao/${id}`,
           payload
         );
         Swal.fire("Sucesso", "Registro atualizado com sucesso", "success");
       } else {
         console.log(payload);
-        await axios.post("http://localhost:3010/cadastromanutencao", payload);
+        await axios.post("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cadastromanutencao", payload);
 
         Swal.fire("Sucesso", "Registro incluído com sucesso", "success");
       }
@@ -230,7 +245,7 @@ const FormCadastroManutencao = () => {
               htmlFor="entrada"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Data Entrada
+              Data Entrada *
             </label>
             <DataForm
               name="dataEntrada"
@@ -245,7 +260,7 @@ const FormCadastroManutencao = () => {
               htmlFor="dataPrazo"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Data Prazo
+              Data Prazo *
             </label>
             <DataForm
               name="dataPrazo"
@@ -269,7 +284,7 @@ const FormCadastroManutencao = () => {
               htmlFor="responsavel"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Responsável
+              Responsável *
             </label>
             <SelectFuncionarios
               name="responsavel"
@@ -285,7 +300,7 @@ const FormCadastroManutencao = () => {
               htmlFor="serial"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Status
+              Status *
             </label>
             <select
               name="status"

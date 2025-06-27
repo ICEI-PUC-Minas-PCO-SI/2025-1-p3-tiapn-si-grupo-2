@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ordemServicoController = require('../controllers/ordemServicoController');
-
+const autenticarToken = require('../middlewares/authMiddleware');
 // 👉 Criar Ordem de Serviço
 router.post('/', ordemServicoController.criarOrdemServico);
 

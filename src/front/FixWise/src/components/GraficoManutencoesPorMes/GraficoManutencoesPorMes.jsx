@@ -9,7 +9,7 @@ export default function GraficoManutencoesPorMes() {
 
     const carregaDados = async () => {
         try {
-            const res = await axios.get('http://localhost:3010/cadastromanutencao/manutencoes-por-mes');
+            const res = await axios.get('https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cadastromanutencao/manutencoes-por-mes');
             
             // Verificação adicional de segurança
             if (!res.data?.manutencoes) {
@@ -63,11 +63,11 @@ export default function GraficoManutencoesPorMes() {
     );
 
     return (
-        <div className="bg-slate-800 rounded-lg shadow border border-slate-700 p-4 mb-8">
+        <div className="bg-slate-800 rounded-lg shadow border border-slate-700 p-4 w-6/10">
             <h2 className="text-slate-200 text-lg font-semibold mb-4">Manutenções por Mês</h2>
             
             {data.length > 0 ? (
-                <div className="h-80"> {/* Aumentei a altura para 80 */}
+                <div className="h-100"> {/* Aumentei a altura para 80 */}
                     <ResponsiveContainer width="100%" height="100%">
                         <LineChart
                             data={data}
@@ -80,7 +80,7 @@ export default function GraficoManutencoesPorMes() {
                             />
                             <XAxis 
                                 dataKey="month"
-                                tick={{ fill: '#e2e8f0', fontSize: 12 }}
+                                tick={{ fill: '#e2e8f0', fontSize: 12}}
                                 label={{ value: 'Mês', position: 'insideBottomRight', offset: -10 }}
                             />
                             <YAxis 
@@ -99,7 +99,7 @@ export default function GraficoManutencoesPorMes() {
                             />
                             <Legend 
                                 wrapperStyle={{ 
-                                    paddingTop: 10,
+                                    paddingTop: 0,
                                     color: '#e2e8f0'
                                 }}
                             />

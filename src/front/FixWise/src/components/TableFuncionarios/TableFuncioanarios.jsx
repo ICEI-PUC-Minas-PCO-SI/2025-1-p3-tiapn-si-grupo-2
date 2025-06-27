@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import Swal from 'sweetalert2'
-import { IoTrashOutline, IoCreateOutline } from "react-icons/io5";
+import { IoTrashOutline, IoCreateOutline, IoSearch, IoFunnelOutline } from "react-icons/io5";
 
 export default function TableFuncionarios() {
     const navigate = useNavigate();
@@ -11,7 +11,7 @@ export default function TableFuncionarios() {
 
     const getFuncionarios = async () => {
         try {
-            const res = await axios.get("http://localhost:3010/funcionario");
+            const res = await axios.get("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/funcionario");
             setFuncionarios(res.data.funcionarios);
 
         } catch (error) {
@@ -24,7 +24,7 @@ export default function TableFuncionarios() {
     }, [setFuncionarios]);
 
     const handleEdit = (funcionario) => {
-        navigate(`/funcionarios/editar/${funcionario.idFuncionario}`, {
+        navigate(`/funcionarios/editar/${funcionario.idUsuario}`, {
             state: { funcionario }
         });
     };
@@ -45,7 +45,7 @@ export default function TableFuncionarios() {
         if (result.isConfirmed) {
             try {
                 // Faz a requisição para deletar
-                const response = await axios.delete(`http://localhost:3010/funcionario/${idFuncionario}`);
+                const response = await axios.delete(`https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/funcionario/${idFuncionario}`);
 
                 console.log(response);
                 // Mostra mensagem de sucesso
@@ -77,7 +77,7 @@ export default function TableFuncionarios() {
     }
 
     const funcionariosFiltrados = funcionarios.filter((cadastro) =>
-        `${cadastro.Nome} ${cadastro.TipoUsuario}`
+        `${cadastro.Nome}`
             .toLowerCase()
             .includes(searchTerm.toLowerCase())
     );
@@ -85,6 +85,25 @@ export default function TableFuncionarios() {
     return (
         <>
             <div className="bg-white shadow overflow-hidden rounded-lg">
+                <div className="bg-white rounded-lg shadow p-4 mb-6">
+                    <div className="flex flex-col md:flex-row md:items-center md-justify-between gap-4">
+                        <div className="relative flex-1">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <IoSearch className="h-5 w-5 text-gray-400" />
+                            </div>
+                            
+                            <input
+                                type="text"
+                                className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                placeholder="Buscar por nome"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                        </div>
+
+                       
+                    </div>
+                </div>
                 <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
                         <thead className="bg-gray-50">
@@ -97,7 +116,8 @@ export default function TableFuncionarios() {
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
                             {
-                                funcionarios.map(
+                                funcionariosFiltrados.length > 0 ?
+                                funcionariosFiltrados.map(
                                     (cadastro, index) => (
                                         <tr key={cadastro.idUsuario} className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -107,23 +127,28 @@ export default function TableFuncionarios() {
                                                 <div className="text-sm font-medium text-gray-900">{cadastro.Nome}</div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {cadastro.TipoUsuario}
+                                                {cadastro.TipoUsuario == 1 ? "Administrador" : "Funcionário"}
                                             </td>
 
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="flex justify-center items-center space-x-2">
-                                                    <button className="text-blue-600 hover:text-blue-900 p-1 rounded-full hover:bg-blue-50" onClick={() => handleEdit(cadastro)}>
+                                                    <button className="cursor-pointer text-blue-600 hover:text-blue-900 p-1 rounded-full hover:bg-blue-50" onClick={() => handleEdit(cadastro)}>
                                                         <IoCreateOutline className="h-5 w-5" />
                                                     </button>
 
-                                                    <button className="text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50" onClick={() => handleDelete(cadastro.idUsuario)}>
+                                                    <button className="cursor-pointer text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50" onClick={() => handleDelete(cadastro.idUsuario)}>
                                                         <IoTrashOutline className="h-5 w-5" />
                                                     </button>
                                                 </div>
                                             </td>
                                         </tr>
                                     )
-                                )
+                                ) :
+                                <tr>
+                                    <td colSpan="7" className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                        Nenhum funcionário encontrado
+                                    </td>
+                                </tr>                                
                             }
                         </tbody>
                     </table>
@@ -136,41 +161,11 @@ export default function TableFuncionarios() {
                     <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                         <div>
                             <p className="text-sm text-gray-700">
-                                Mostrando <span className="font-medium">1</span> a <span className="font-medium">10</span> de{' '}
-                                <span className="font-medium">{funcionariosFiltrados.length}</span> resultados
+                                Mostrando <span className="font-medium">{funcionariosFiltrados.length}</span> de <span className="font-medium">{funcionarios.length}</span>
+                                
                             </p>
                         </div>
-                        <div>
-                            <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                                <a
-                                    href="#"
-                                    className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                                >
-                                    <span className="sr-only">Anterior</span>
-                                    &lt;
-                                </a>
-                                <a
-                                    href="#"
-                                    aria-current="page"
-                                    className="z-10 bg-blue-50 border-blue-500 text-blue-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-                                >
-                                    1
-                                </a>
-                                <a
-                                    href="#"
-                                    className="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-                                >
-                                    2
-                                </a>
-                                <a
-                                    href="#"
-                                    className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                                >
-                                    <span className="sr-only">Próxima</span>
-                                    &gt;
-                                </a>
-                            </nav>
-                        </div>
+                        
                     </div>
                 </div>
             )}

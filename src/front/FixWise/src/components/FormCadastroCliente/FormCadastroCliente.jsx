@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import InputForm from "../InputForm/InputForm";
 import TextAreaForm from "../TextAreaForm/TextAreaForm";
 
+
 const FormCadastroCliente = () => {
   const queryClient = new QueryClient();
   const { state } = useLocation();
@@ -98,6 +99,11 @@ const FormCadastroCliente = () => {
       return;
     }
 
+     if (!formData.nome || !formData.cpfCnpj || !formData.logradouro || !formData.cep || !formData.cidade || !formData.bairro || !formData.numero || !formData.uf) {
+      Swal.fire("Atenção", "Campo(s) obrigatorio(s) vazio(s)!", "warning");
+      return;
+    }
+
     if (!formData.cpfCnpj) {
       Swal.fire("Atenção", "Informe o cpf ou o cnpj!", "warning");
       return;
@@ -120,10 +126,10 @@ const FormCadastroCliente = () => {
       };
 
       if (isEditing) {
-        await axios.put(`http://localhost:3010/cliente/${id}`, payload);
+        await axios.put(`https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cliente/${id}`, payload);
         Swal.fire("Sucesso", "Registro atualizado com sucesso", "success");
       } else {
-        await axios.post("http://localhost:3010/cliente", payload);
+        await axios.post("https://api-fixwise-awa3cbckgmebe6bm.centralus-01.azurewebsites.net/cliente", payload);
         Swal.fire("Sucesso", "Registro incluído com sucesso", "success");
       }
 
@@ -179,10 +185,11 @@ const FormCadastroCliente = () => {
                     htmlFor="telefone"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Telefone *
+                    Telefone 
                   </label>
                   <InputForm
                     name="telefone"
+                    content="Telefone"
                     value={formData.telefone}
                     onChange={handleChange}
                     placeholder="(00) 00000-0000"
@@ -212,10 +219,11 @@ const FormCadastroCliente = () => {
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Email
+                    E-mail
                   </label>
                   <InputForm
                     name="email"
+                    content="E-mail"
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
@@ -238,7 +246,7 @@ const FormCadastroCliente = () => {
                     htmlFor=""
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    CEP
+                    CEP *
                   </label>
                   <InputForm
                     name="cep"
@@ -253,7 +261,7 @@ const FormCadastroCliente = () => {
                     htmlFor=""
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Número
+                    Número *
                   </label>
                   <InputForm
                     name="numero"
@@ -268,7 +276,7 @@ const FormCadastroCliente = () => {
                     htmlFor=""
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Bairro
+                    Bairro *
                   </label>
                   <InputForm
                     name="cidade"
@@ -285,7 +293,7 @@ const FormCadastroCliente = () => {
                     htmlFor=""
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Logradouro
+                    Logradouro *
                   </label>
                   <InputForm
                     name="logradouro"
@@ -300,7 +308,7 @@ const FormCadastroCliente = () => {
                     htmlFor=""
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Cidade
+                    Cidade *
                   </label>
                   <InputForm
                     name="cidade"
@@ -315,7 +323,7 @@ const FormCadastroCliente = () => {
                     htmlFor="uf"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    UF
+                    UF *
                   </label>
                   <select
                     value={formData.uf}
